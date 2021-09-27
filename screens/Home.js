@@ -36,19 +36,19 @@ function HomeScreen({ navigation }) {
             <Block key={`mantenimientos`}>
               <Button 
                 style={styles.report_btn} color="#999"
-                onPress={() => navigation.navigate('reports', { type: 'Mantenimientos' })}
+                onPress={() => navigation.navigate('reports', { type: 'Mantenimiento' })}
                 >
                   Mantenimientos
               </Button>
             </Block>
             <Block key={`rutinas`}>
               <Button style={styles.report_btn} color="#777"
-                onPress={() => navigation.navigate('reports', { type: 'Rutinas' })}
+                onPress={() => navigation.navigate('reports', { type: 'Rutina' })}
                 >Rutinas</Button>
             </Block>
             <Block key={`servicios`}>
               <Button style={styles.report_btn} color="#555"
-                onPress={() => navigation.navigate('reports', { type: 'Servicios' })}
+                onPress={() => navigation.navigate('reports', { type: 'Servicio' })}
                 >Servicios</Button>
             </Block>
           </Block>

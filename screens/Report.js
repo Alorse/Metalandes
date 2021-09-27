@@ -2,7 +2,8 @@ import React from "react";
 import {
   ScrollView,
   StyleSheet,
-  Dimensions
+  Dimensions,
+  Alert
 } from "react-native";
 import { I18n } from "../constants/locales";
 //galio
@@ -11,34 +12,29 @@ import { Block, Button, theme, Accordion, Text } from "galio-framework";
 const { width, height } = Dimensions.get("screen");
 
 const data = [
-  { title: "Report #1", content: renderContent('Text 1') },
-  { title: "Mantenimiento #1", content: renderContent('Text 2') },
-  { title: "Servicio #1", content: renderContent() },
-  { title: "Report #1", content: renderContent() },
-  { title: "Report #1", content: renderContent() },
-  { title: "Rutina #1", content: renderContent() },
-  { title: "Report #1", content: renderContent() },
-  { title: "Report #1", content: renderContent() },
-  { title: "Report #1", content: renderContent() },
-  { title: "Report #1", content: renderContent() },
-  { title: "Report #2", content: "Lorem ipsum dolor sit amet" },
+  { title: "Rosales", content: renderContent('Text 1') },
+  { title: "Check", content: renderContent('Text 2') },
+  { title: "EPM", content: renderContent() },
+  { title: "Electro Caribe", content: renderContent() },
   { title: "Report #3", content: "Lorem ipsum dolor sit amet"}
 ];
 
-function ReportScreen() {
+function ReportScreen({  navigation }) {
   return (
     <Block flex center>
       <ScrollView
         showsVerticalScrollIndicator={false}
       >
-        {renderCards()}
+        {renderCards(navigation)}
 
       </ScrollView>
     </Block>
   );
 }
 
-function renderCards() {
+function renderCards(navigation) {
+  var state = navigation.getState()
+  var type = state.routeNames[0] == 'Rutinas' ? 'Nueva Rutina' : 'Nuevo ' + state.routeNames[0].slice(0, -1)
   return (
     <Block style={{height:height-200}}>
       <Accordion 
@@ -56,7 +52,8 @@ function renderCards() {
           iconColor={theme.COLORS.WHITE}
           iconSize={theme.SIZES.BASE * 1.625}
           color={theme.COLORS.SUCCESS}
-          style={[styles.social, styles.shadow]}
+          style={[styles.shadow]}
+          onPress={() => navigation.navigate('new', { type: type })}
         />
       </Block>
     </Block>
@@ -64,6 +61,20 @@ function renderCards() {
 }
 
 function renderContent(text) {
+  const createTwoButtonAlert = () =>
+  Alert.alert(
+    "Eliminar reporte",
+    "Esta seguro que desea eliminar el reporte?",
+    [
+      {
+        text: "Cancelar",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel"
+      },
+      { text: "OK", onPress: () => console.log("OK Pressed") }
+    ]
+  );
+  
   return (
     <Block>
       <Text>{text}</Text>
@@ -73,7 +84,7 @@ function renderContent(text) {
         <Block flex left style={{marginTop: 8}}>
         </Block>
         <Block>
-          <Button size='small' center color="rgb(23, 43, 77)">
+          <Button size='small' center color="rgb(23, 43, 77)" onPress={createTwoButtonAlert}>
             DELETE
           </Button>
         </Block>

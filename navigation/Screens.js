@@ -9,6 +9,7 @@ import Home from "../screens/Home";
 import Elements from "../screens/Elements";
 import AboutUs from "../screens/AboutUs";
 import Reports from "../screens/Report";
+import CreateReport from "../screens/CreateReport";
 // drawer
 import CustomDrawerContent from "./Menu";
 import { I18n } from '../constants/locales';
@@ -68,8 +69,19 @@ function ReportsStack(props) {
   return (
     <Stack.Navigator mode="card" headerMode="screen">
       <Stack.Screen
-        name={props.route.params.type}
+        name={props.route.params.type + 's'}
         component={Reports}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function CreateReportsStack(props) {
+  return (
+    <Stack.Navigator mode="card" headerMode="screen">
+      <Stack.Screen
+        name={props.route.params.type}
+        component={CreateReport}
       />
     </Stack.Navigator>
   );
@@ -89,6 +101,7 @@ export default function App(props) {
       <Drawer.Screen name={I18n.pages.about.id} component={AboutUsStack} />
       <Drawer.Screen name={I18n.pages.terms.id} component={ElementsStack} />
       <Drawer.Screen name={I18n.pages.reports.id} component={ReportsStack} />
+      <Drawer.Screen name={I18n.pages.new.id} component={CreateReportsStack} />
     </Drawer.Navigator>
   );
 }

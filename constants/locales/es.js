@@ -17,7 +17,7 @@ export default {
         index: { id: 'index', title: 'Inicio' },
         login: { id: 'login', title: 'Indentificarse' },
         profile: { id: 'profile', title: 'Perfil' },
-        register: { id: 'register', title: 'Registrarse' },
+        new: { id: 'new', title: 'Nuevo' },
         reports: { id: 'reports', title: 'Reportes' },
         terms: { id: 'terms', title: 'Términos y Condiciones' },
     },

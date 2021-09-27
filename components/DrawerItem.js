@@ -29,15 +29,6 @@ class DrawerItem extends React.Component {
             color={focused ? "white" : Theme.COLORS.INPUT_SUCCESS}
           />
         );
-      case I18n.pages.register.id:
-        return (
-          <Icon
-            name="spaceship"
-            family="Extra"
-            size={14}
-            color={focused ? "white" : Theme.COLORS.ERROR}
-          />
-        );
       case I18n.pages.login.id:
         return (
           <Icon
