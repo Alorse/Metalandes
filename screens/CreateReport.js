@@ -48,6 +48,7 @@ function getDataForm(data) {
       if(equipo.tipo !== undefined) {
         renderEquipos(equipo, "CELDA SECCIONADOR", schema.seccionador, uiSchema.seccionador)
         renderEquipos(equipo, "CELDA DOBLE TIRO PRIMARIO", schema.doble_tiro_primario, uiSchema.doble_tiro_primario)
+        renderEquipos(equipo, "CELDA MEDIDA EN MEDIA O BAJA TENSIÓN", schema.media_baja, uiSchema.media_baja)
       }
     })
   }

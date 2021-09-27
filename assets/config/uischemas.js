@@ -106,7 +106,136 @@ const correccion = {
 };
 
 const media_baja = {
-
+  id: "md",
+  type: "Group",
+  label: "CELDA MEDIDA EN MEDIA O BAJA TENSIÓN",
+  elements: [
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/tipo_mb",
+          label: "Tipo De Celda De Medida",
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/marca_medidor_md",
+          label: "Marca Medidor",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/referencia_mb",
+          label: "Referencia",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/marca_tc_tp_mb",
+          label: "Marca TCs & TPs",
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/num_tc1_mb",
+          label: "Numero de TC 1",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/num_tc2_mb",
+          label: "Numero de TC 2",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/num_tc3_mb",
+          label: "Numero de TC 3",
+        },
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/rel_trans_tc_mb",
+          label: "Relación de Transformación",
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/num_tp1_mb",
+          label: "Numero de TC 1",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/num_tp2_mb",
+          label: "Numero de TC 2",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/num_tp3_mb",
+          label: "Numero de TC 3",
+        },
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/rel_trans_tp_mb",
+          label: "Relación de Transformación",
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/mult_mb",
+          label: "Constante o factor de multiplicación",
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/ano_fabricacion_mb",
+          label: "Año de fabricación",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/calibre_mb",
+          label: "Calibre de las Fases",
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/observ_mb",
+          label: "Observaciones generales",
+        }
+      ]
+    },
+  ]
 };
 const seccionador = {
   id: "seccionador",
@@ -294,5 +423,6 @@ const hv = {
 export default {
     hv,
     doble_tiro_primario,
-    seccionador
+    seccionador,
+    media_baja
 };

@@ -105,7 +105,42 @@ const doble_tiro_primario = {
   },
 };
 const media_baja = {
-
+  tipo_mb: {
+    type: "string",
+    enum: [
+      "Indirecta",
+      "Semidirecta",
+    ]
+  },
+  marca_medidor_md: {type: "string"},
+  referencia_mb: {type: "string"},
+  marca_tc_tp_mb: {
+    type: "string",
+    enum: [
+      "ABB",
+      "AMEO",
+      "Arteche",
+      "ATEL",
+      "Rymel",
+      "Schneider",
+    ]
+  },
+  num_tc1_mb: {type: "string"},
+  num_tc2_mb: {type: "string"},
+  num_tc3_mb: {type: "string"},
+  rel_trans_tc_mb: {type: "string"},
+  num_tp1_mb: {type: "string"},
+  num_tp2_mb: {type: "string"},
+  num_tp3_mb: {type: "string"},
+  rel_trans_tp_mb: {type: "string"},
+  mult_mb: {type: "string"},
+  ano_fabricacion_mb: {
+    type: "integer",
+    minLength: 4,
+    maxLength: 4,
+  },
+  calibre_mb: {type: "string"},
+  observ_mb: {type: "string"},
 };
 const seccionador = {
   marca_seccionador: doble_tiro_primario.marca_dtp,
@@ -187,7 +222,7 @@ const hv = {
             enum: [
               "CELDA CORRECCION DE F.P",
               "CELDA DOBLE TIRO PRIMARIO",
-              "CELDA MEDIDA EN MEDIA O BAJA TENSION",
+              "CELDA MEDIDA EN MEDIA O BAJA TENSIÓN",
               "CELDA SECCIONADOR",
               "CELDA TRANSFERENCIA",
               "CELDA TRANSFORMADOR DE POTENCIA",
@@ -233,5 +268,6 @@ const hv = {
 export default {
     hv,
     doble_tiro_primario,
-    seccionador
+    seccionador,
+    media_baja
 };
