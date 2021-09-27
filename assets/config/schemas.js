@@ -1,39 +1,190 @@
+const si_no = {
+  type: "string",
+  enum: [
+    "Sí",
+    "No",
+  ]
+};
+const correccion = {
+
+};
+const doble_tiro_primario = {
+  marca_dtp: {
+    type: "string",
+    enum: [
+      "ABB",
+      "BBC",
+      "Celco",
+      "Demitas",
+      "Eaton",
+      "Elimsan",
+      "G&W",
+      "General Electric",
+      "Hyundai",
+      "Merlin Gerin",
+      "Ormazabal",
+      "Sarel",
+      "Schneider Electric",
+      "Socol",
+      "Xikai"
+    ]
+  },
+  tipo_dtp: {
+    type: "string",
+    enum: [
+      "Aceite",
+      "Aire",
+      "SF6",
+      "Vacio",
+    ]
+  },
+  cap_fus_hh_dtp: {
+    type: "string",
+    enum: [
+      "2Amp",
+      "4 Amp",
+      "6.3 Amp",
+      "10 Amp",
+      "16 Amp",
+      "20 Amp",
+      "25 Amp",
+      "31.5 Amp",
+      "40 Amp",
+      "50 Amp",
+      "63 Amp",
+      "80 Amp",
+      "100 Amp",
+      "125 Amp",
+      "160 Amp",
+      "No tiene"
+    ]
+  },
+  "NumeroCircuitoPreferencial": {
+    type: "string",
+  },
+  "NumeroCircuitoEmergencia": {
+    type: "string",
+  },
+  "TipoAccionamiento": {
+    type: "string",
+    enum: [
+      "Automático",
+      "Manual",
+    ]
+  },
+  estado_dtp: {
+    type: "string",
+    enum: [
+      "Bueno",
+      "Regular",
+      "Inoperativo",
+    ]
+  },
+  "MarcaRele": {
+    type: "string",
+  },
+  "VoltajeAlto": {
+    type: "string",
+  },
+  "VoltajeBajo": {
+    type: "string",
+  },
+  "TensionDeControl": {
+    type: "string",
+    enum: [
+      "12VDC","25VDC","125VDC","25VAC","120VAC","220VAC"
+    ]
+  },
+  ano_fabricacion_dtp: {
+    type: "integer",
+    minLength: 4,
+    maxLength: 4,
+  },
+  observ_dtp: {
+    type: "string",
+  },
+};
+const media_baja = {
+
+};
+const seccionador = {
+  marca_seccionador: doble_tiro_primario.marca_dtp,
+  tipo_seccionador: doble_tiro_primario.tipo_dtp,
+  cap_fus_hh_seccionador: doble_tiro_primario.cap_fus_hh_dtp,
+  cuchillas_seccionador: si_no,
+  numero_serie_seccionador: {
+    type: "string",
+  },
+  referencia_seccionador:{
+    type: "string",
+  },
+  palanca_seccionador: si_no,
+  ano_fabricacion_seccionador: {
+    type: "integer",
+    minLength: 4,
+    maxLength: 4,
+  },
+  inom_seccionador:{
+    type: "string",
+  },
+  vnom_seccionador:{
+    type: "string",
+  },
+  observ_seccionador:{
+    type: "string",
+  },
+};
+const transferencia = {
+
+};
+const transformador = {
+
+};
+const contadores = {
+
+};
+const tablero_protecciones = {
+
+};
+
 const hv = {
-  "type": "object",
-  "required": [
-    "Indetificación",
+  type: "object",
+  required: [
+    "indentificacion",
     "Fecha",
     "Ciudad",
+    "Contacto",
+    "Establecimiento",
   ],
-  "properties": {
-    "Indetificación": {
-      "type": "number",
-      "minLength": 2,
-      "maxLength": 20
+  properties: {
+    "indentificacion": {
+      type: "number",
+      minLength: 2,
+      maxLength: 20
     },
     "Fecha": {
-      "type": "string",
+      type: "string",
       "format": "date"
     },
     "Ciudad": {
-      "type": "string",
+      type: "string",
       "minimum": 1,
       "maximum": 20
     },
     "Contacto": {
-      "type": "string"
+      type: "string"
     },
     "Establecimiento": {
-      "type": "string"
+      type: "string"
     },
-    "Equipos": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "Equipo": {
-            "type": "string",
-            "enum": [
+    equipos: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          tipo: {
+            type: "string",
+            enum: [
               "CELDA CORRECCION DE F.P",
               "CELDA DOBLE TIRO PRIMARIO",
               "CELDA MEDIDA EN MEDIA O BAJA TENSION",
@@ -44,53 +195,43 @@ const hv = {
               "TABLERO DE PROTECCIONES",
             ]
           },
-          "Cantidad": {
-            "type": "integer"
+         cantidad: {
+            type: "integer"
           },
         }
       }
     },
-    // "gender": {
-    //   "type": "string",
-    //   "enum": [
-    //     "Male",
-    //     "Female",
-    //     "Undisclosed"
-    //   ]
-    // },
-    // "height": {
-    //   "type": "number"
-    // },
-    // "dateOfBirth": {
-    //   "type": "string",
-    //   "format": "date"
-    // },
-    // "rating": {
-    //   "type": "integer"
-    // },
-    // "committer": {
-    //   "type": "boolean"
-    // },
-    // "address": {
-    //   "type": "object",
-    //   "properties": {
-    //     "street": {
-    //       "type": "string"
-    //     },
-    //     "streetnumber": {
-    //       "type": "string"
-    //     },
-    //     "postalCode": {
-    //       "type": "string"
-    //     },
-    //     "city": {
-    //       "type": "string"
-    //     }
-    //   }
-    // }
+    // doble_tiro_primario
+    // marca_dtp: doble_tiro_primario.marca,
+    // tipo_dtp: doble_tiro_primario.tipo,
+    // cap_fus_hh_dtp: doble_tiro_primario.cap_fus_hh,
+    // "NumeroCircuitoPreferencial": doble_tiro_primario['NumeroCircuitoPreferencial'],
+    // "NumeroCircuitoEmergencia": doble_tiro_primario['NumeroCircuitoEmergencia'],
+    // "TipoAccionamiento": doble_tiro_primario['TipoAccionamiento'],
+    // estado_dtp: doble_tiro_primario.estado,
+    // "MarcaRele": doble_tiro_primario['MarcaRele'],
+    // "VoltajeAlto": doble_tiro_primario['VoltajeAlto'],
+    // "VoltajeBajo": doble_tiro_primario['VoltajeBajo'],
+    // "TensionDeControl": doble_tiro_primario['TensionDeControl'],
+    // ano_fabricacion_dtp: doble_tiro_primario.ano_fabricacion,
+    // observ_dtp: doble_tiro_primario.observ,
+    // //Seccionador
+    // marca_seccionador: seccionador.marca,
+    // tipo_seccionador: seccionador.tipo,
+    // cap_fus_hh_seccionador: seccionador.cap_fus_hh,
+    // cuchillas_seccionador: seccionador.cuchillas,
+    // numero_serie_seccionador: seccionador.numero_serie,
+    // referencia_seccionador: seccionador.referencia,
+    // palanca_seccionador: seccionador.palanca,
+    // ano_fabricacion_seccionador: seccionador.ano_fabricacion,
+    // inom_seccionador: seccionador.inom,
+    // vnom_seccionador: seccionador.vnom,
+    // observ_seccionador: seccionador.observ
   }
 };
 
 export default {
-    hv
+    hv,
+    doble_tiro_primario,
+    seccionador
 };

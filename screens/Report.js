@@ -5,7 +5,6 @@ import {
   Dimensions,
   Alert
 } from "react-native";
-import { I18n } from "../constants/locales";
 //galio
 import { Block, Button, theme, Accordion, Text } from "galio-framework";
 
@@ -85,12 +84,12 @@ function renderContent(text) {
         </Block>
         <Block>
           <Button size='small' center color="rgb(23, 43, 77)" onPress={createTwoButtonAlert}>
-            DELETE
+            Borrar
           </Button>
         </Block>
         <Block>
           <Button center color="rgb(23, 43, 77)">
-            EDIT
+            Editar
           </Button>
         </Block>
       </Block>
