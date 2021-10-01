@@ -95,16 +95,94 @@ const doble_tiro_primario = {
           type: "Control",
           scope: "#/properties/observ_dtp",
           label: "Observaciones generales",
+          options: {
+            multi: true
+          }
         },
       ]
     },
   ]
 };
-
 const correccion = {
-
+  id: "corre",
+  type: "Group",
+  label: "CELDA CORRECCION DE F.P",
+  elements: [
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/marca_rele_corre",
+          label: "Marca Relé",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/referencia_corre",
+          label: "Referencia",
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/totalizador_corre",
+          label: "Totalizador",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/factor_corre",
+          label: "Factor de P",
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/bancos_fijos_corre",
+          label: "Nro. Bancos Fijos",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/bancos_moviles_corre",
+          label: "Nro. Bancos Móviles",
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/bancos_fijos_corre",
+          label: "Calibre conductores",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/bancos_moviles_corre",
+          label: "Relación TC",
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/observ_corre",
+          label: "Observaciones generales",
+          options: {
+            multi: true
+          }
+        },
+      ]
+    },
+  ]
 };
-
 const media_baja = {
   id: "md",
   type: "Group",
@@ -146,17 +224,17 @@ const media_baja = {
         {
           type: "Control",
           scope: "#/properties/num_tc1_mb",
-          label: "Numero de TC 1",
+          label: "Nro. de TC 1",
         },
         {
           type: "Control",
           scope: "#/properties/num_tc2_mb",
-          label: "Numero de TC 2",
+          label: "Nro. de TC 2",
         },
         {
           type: "Control",
           scope: "#/properties/num_tc3_mb",
-          label: "Numero de TC 3",
+          label: "Nro. de TC 3",
         },
       ]
     },
@@ -176,17 +254,17 @@ const media_baja = {
         {
           type: "Control",
           scope: "#/properties/num_tp1_mb",
-          label: "Numero de TC 1",
+          label: "Nro. de TC 1",
         },
         {
           type: "Control",
           scope: "#/properties/num_tp2_mb",
-          label: "Numero de TC 2",
+          label: "Nro. de TC 2",
         },
         {
           type: "Control",
           scope: "#/properties/num_tp3_mb",
-          label: "Numero de TC 3",
+          label: "Nro. de TC 3",
         },
       ]
     },
@@ -232,6 +310,9 @@ const media_baja = {
           type: "Control",
           scope: "#/properties/observ_mb",
           label: "Observaciones generales",
+          options: {
+            multi: true
+          }
         }
       ]
     },
@@ -325,13 +406,106 @@ const seccionador = {
           type: "Control",
           scope: "#/properties/observ_seccionador",
           label: "Observaciones generales",
+          options: {
+            multi: true
+          }
         },
       ]
     },
   ]
 };
 const transferencia = {
-
+  id: "cia",
+  type: "Group",
+  label: "CELDA TRANSFERENCIA",
+  elements: [
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/marca_cia",
+          label: "Marca",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/tipo_cia",
+          label: "Tipo",
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/capacidad_cia",
+          label: "Capacidad",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/estado_cia",
+          label: "Estado",
+        },
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/distribucion_cia",
+          label: "Posee distribución",
+          options: {
+            format: "radio"
+          }
+        },
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/rele_2759_cia",
+          label: "Relé de transferencia 27/59",
+        },
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/rele_81_cia",
+          label: "Relé 81",
+        },
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/calibre_conductores_cia",
+          label: "Calibre conductores",
+        },
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/observ_cia",
+          label: "Observaciones generales",
+          options: {
+            multi: true
+          }
+        },
+      ]
+    },
+  ]
 };
 const transformador = {
   id: "dor",
@@ -523,17 +697,189 @@ const transformador = {
         {
           type: "Control",
           scope: "#/properties/observ_dor",
-          label: "Observaciones generales"
+          label: "Observaciones generales",
+          options: {
+            multi: true
+          }
         }
       ]
     },
   ]
 };
 const contadores = {
-
+  id: "cont",
+  type: "Group",
+  label: "CELDA CONTADORES",
+  elements: [
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/num_celdas_cont",
+          label: "Nro. Celdas de Medidores",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/num_medidores_cont",
+          label: "Nro. Medidores por tablero",
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/tipo_medidores_cont",
+          label: "Tipo de Medidores y capacidad",
+          options: {
+            multi: true
+          }
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/marca_medidores_cont",
+          label: "Marca de los medidores",
+          options: {
+            multi: true
+          }
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/calibre_conductores_cont",
+          label: "Calibre conductores",
+          options: {
+            multi: true
+          }
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/totalizador_cont",
+          label: "Totalizador principal de cada celda",
+          options: {
+            multi: true
+          }
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/observ_cont",
+          label: "Observaciones generales",
+          // className: "observ",
+          options: {
+            multi: true
+          }
+        }
+      ]
+    },
+  ]
 };
-const tablero_protecciones = {
-
+const tablero = {
+  id: "cont",
+  type: "Group",
+  label: "CELDA CONTADORES",
+  elements: [
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/nombre_tab",
+          label: "Nombre del Tablero",
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/capacidad_tab",
+          label: "Capacidad totalizador",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/cortocircuito_tab",
+          label: "I cortocircuito",
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/marca_tab",
+          label: "Marca",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/protecciones_tab",
+          label: "Nro. de protecciones en el tablero",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/tiene_dps_tab",
+          label: "Posee DPS",
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/dps_tab",
+          label: "Especificaciones DPS",
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/barrajes_tab",
+          label: "Posee protección de barrajes (lamina de policarbonato u otras)",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/peligro_tab",
+          label: "Existe marcación de peligro (calcomanía rayo)",
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/observ_tab",
+          label: "Observaciones generales",
+        }
+      ]
+    },
+  ]
 };
 
 const hv = {
@@ -623,5 +969,9 @@ export default {
     doble_tiro_primario,
     seccionador,
     media_baja,
-    transformador
+    transformador,
+    transferencia,
+    correccion,
+    contadores,
+    tablero
 };

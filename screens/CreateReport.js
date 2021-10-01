@@ -48,6 +48,10 @@ function getDataForm(data) {
         renderEquipos(equipo, "CELDA DOBLE TIRO PRIMARIO", schema.doble_tiro_primario, uiSchema.doble_tiro_primario)
         renderEquipos(equipo, "CELDA MEDIDA EN MEDIA O BAJA TENSIÓN", schema.media_baja, uiSchema.media_baja)
         renderEquipos(equipo, "CELDA TRANSFORMADOR DE POTENCIA", schema.transformador, uiSchema.transformador)
+        renderEquipos(equipo, "CELDA TRANSFERENCIA", schema.transferencia, uiSchema.transferencia)
+        renderEquipos(equipo, "CELDA CORRECCION DE F.P", schema.correccion, uiSchema.correccion)
+        renderEquipos(equipo, "CELDA CONTADORES", schema.contadores, uiSchema.contadores)
+        renderEquipos(equipo, "TABLERO DE PROTECCIONES", schema.tablero, uiSchema.tablero)
       }
     })
   }
@@ -58,10 +62,10 @@ function renderEquipos(equipo, type, shema, uiShema) {
   cantidad = equipo.cantidad !== undefined ? equipo.cantidad : 0
   if(equipo.tipo == type) {
     for(var i=0; i < cantidad; i++) {
-      uiShema.label = type + " - " + (i+1)
+      uiShema.label = type //+ " - " + (i+1)
       tales.properties = {...tales.properties, ...shema}
-      console.log(uiShema)
-      console.log(uiTales.elements[1].elements)
+      // console.log(uiShema)
+      // console.log(uiTales.elements[1].elements)
       uiTales.elements[1].elements.push(uiShema)
     }
   }

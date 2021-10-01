@@ -6,7 +6,44 @@ const si_no = {
   ]
 };
 const correccion = {
-
+  marca_rele_corre: {
+    type: "string",
+    enum: [
+      "ABB",
+      "Disproel",
+      "Elico",
+      "ICAR",
+      "Lovato",
+      "Schneider",
+      "Siemens",
+      "YHZ",
+      "Otro"
+    ]
+  },
+  referencia_corre: {
+    type: "string",
+  },
+  totalizador_corre: {
+    type: "string",
+  },
+  factor_corre: {
+    type: "string",
+  },
+  bancos_fijos_corre: {
+    type: "integer",
+  },
+  bancos_moviles_corre: {
+    type: "integer",
+  },
+  calibre_corre: {
+    type: "integer",
+  },
+  relacion_corre: {
+    type: "integer",
+  },
+  observ_corre: {
+    type: "string",
+  },
 };
 const doble_tiro_primario = {
   marca_dtp: {
@@ -125,13 +162,13 @@ const media_baja = {
       "Schneider",
     ]
   },
-  num_tc1_mb: {type: "string"},
-  num_tc2_mb: {type: "string"},
-  num_tc3_mb: {type: "string"},
+  num_tc1_mb: {type: "integer"},
+  num_tc2_mb: {type: "integer"},
+  num_tc3_mb: {type: "integer"},
   rel_trans_tc_mb: {type: "string"},
-  num_tp1_mb: {type: "string"},
-  num_tp2_mb: {type: "string"},
-  num_tp3_mb: {type: "string"},
+  num_tp1_mb: {type: "integer"},
+  num_tp2_mb: {type: "integer"},
+  num_tp3_mb: {type: "integer"},
   rel_trans_tp_mb: {type: "string"},
   mult_mb: {type: "string"},
   ano_fabricacion_mb: {
@@ -170,7 +207,69 @@ const seccionador = {
   },
 };
 const transferencia = {
-
+  marca_cia: {
+    type: "string",
+    enum: [
+      "ABB",
+      "Mitsubishi",
+      "Siemens",
+      "Schneider",
+      "LS",
+      "Chint",
+      "Eaton",
+      "Hyundai",
+      "Lovato Gerin",
+      "Otro"
+    ]
+  },
+  tipo_cia: {
+    type: "string",
+    enum: [
+      "Interruptor",
+      "Conmutador",
+      "Contactor",
+      "Manual"
+    ]
+  },
+  capacidad_cia: {
+    type: "string",
+  },
+  estado_cia: {
+    type: "string",
+    enum: [
+      "Operativo",
+      "Inoperativo"
+    ]
+  },
+  distribucion_cia: si_no,
+  rele_2759_cia: {
+    type: "object",
+    properties: {
+      marca: {
+        type: "string",
+      },
+      referencia: {
+        type: "string",
+      },
+    }
+  },
+  rele_81_cia: {
+    type: "object",
+    properties: {
+      marca: {
+        type: "string",
+      },
+      referencia: {
+        type: "string",
+      },
+    }
+  },
+  calibre_conductores_cia: {
+    type: "string",
+  },
+  observ_cia: {
+    type: "string",
+  },
 };
 const transformador = {
   marca_dor: {
@@ -234,10 +333,65 @@ const transformador = {
   observ_dor: {type: "string"},
 };
 const contadores = {
-
+  num_celdas_cont: {
+    type: "integer"
+  },
+  num_medidores_cont: {
+    type: "integer"
+  },
+  tipo_medidores_cont: {
+    type: "string"
+  },
+  marca_medidores_cont: {
+    type: "string"
+  },
+  calibre_conductores_cont: {
+    type: "string"
+  },
+  totalizador_cont: {
+    type: "string"
+  },
+  observ_cont: {
+    type: "string"
+  },
 };
-const tablero_protecciones = {
-
+const tablero = {
+  nombre_tab: {
+    type: "string"
+  },
+  capacidad_tab: {
+    type: "string"
+  },
+  cortocircuito_tab: {
+    type: "string"
+  },
+  marca_tab: {
+    type: "string",
+    enum: [
+      "ABB",
+      "Mitsubishi",
+      "Siemens",
+      "Schneider",
+      "LS",
+      "Chint",
+      "Eaton",
+      "Hyundai",
+      "Lovato",
+      "Otro"
+    ]
+  },
+  protecciones_tab: {
+    type: "integer"
+  },
+  tiene_dps_tab: si_no,
+  dps_tab: {
+    type: "string"
+  },
+  barrajes_tab: si_no,
+  peligro_tab: si_no,
+  observ_tab: {
+    type: "string"
+  }
 };
 
 const hv = {
@@ -293,33 +447,7 @@ const hv = {
           },
         }
       }
-    },
-    // doble_tiro_primario
-    // marca_dtp: doble_tiro_primario.marca,
-    // tipo_dtp: doble_tiro_primario.tipo,
-    // cap_fus_hh_dtp: doble_tiro_primario.cap_fus_hh,
-    // "NumeroCircuitoPreferencial": doble_tiro_primario['NumeroCircuitoPreferencial'],
-    // "NumeroCircuitoEmergencia": doble_tiro_primario['NumeroCircuitoEmergencia'],
-    // "TipoAccionamiento": doble_tiro_primario['TipoAccionamiento'],
-    // estado_dtp: doble_tiro_primario.estado,
-    // "MarcaRele": doble_tiro_primario['MarcaRele'],
-    // "VoltajeAlto": doble_tiro_primario['VoltajeAlto'],
-    // "VoltajeBajo": doble_tiro_primario['VoltajeBajo'],
-    // "TensionDeControl": doble_tiro_primario['TensionDeControl'],
-    // ano_fabricacion_dtp: doble_tiro_primario.ano_fabricacion,
-    // observ_dtp: doble_tiro_primario.observ,
-    // //Seccionador
-    // marca_seccionador: seccionador.marca,
-    // tipo_seccionador: seccionador.tipo,
-    // cap_fus_hh_seccionador: seccionador.cap_fus_hh,
-    // cuchillas_seccionador: seccionador.cuchillas,
-    // numero_serie_seccionador: seccionador.numero_serie,
-    // referencia_seccionador: seccionador.referencia,
-    // palanca_seccionador: seccionador.palanca,
-    // ano_fabricacion_seccionador: seccionador.ano_fabricacion,
-    // inom_seccionador: seccionador.inom,
-    // vnom_seccionador: seccionador.vnom,
-    // observ_seccionador: seccionador.observ
+    }
   }
 };
 
@@ -328,5 +456,9 @@ export default {
     doble_tiro_primario,
     seccionador,
     media_baja,
-    transformador
+    transformador,
+    transferencia,
+    correccion,
+    contadores,
+    tablero
 };
