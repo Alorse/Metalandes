@@ -173,7 +173,65 @@ const transferencia = {
 
 };
 const transformador = {
-
+  marca_dor: {
+    type: "string",
+    enum: [
+      "ABB",
+      "AWA",
+      "Andina de Transformadores",
+      "FMF",
+      "FYR",
+      "Magnetron",
+      "Rymel",
+      "Siemens",
+      "Sierra",
+      "Suntec",
+      "Tesla",
+      "WEG",
+      "Otro"
+    ]
+  },
+  tipo_dor: {
+    type: "string",
+    enum: [
+      "Aceite",
+      "Seco Clase F",
+      "Seco Clase H",
+    ]
+  },
+  rel_trans_dor: {type: "string"},
+  capacidad_dor: {
+    type: "string",
+    enum: ["10 kVA","15 kVA","20 kVA","30 kVA","45 kVA","50 kVA","75 kVA","100 kVA","112.5 kVA","125 kVA","150 kVA","175 kVA","200 kVA","225 kVA","300 kVA","400 kVA","500 kVA","630 kVA","750 kVA","800 kVA","1000 kVA","1250 kVA","1600 kVA","2000 kVA","2500 kVA","3000 kVA","4000 kVA","5000 kVA","Otro"]
+  },
+  num_epm_dor: {type: "string"},
+  num_serie_dor: {type: "string"},
+  capacidad_tot_dor: {type: "string"},
+  icc_dor: {type: "string"},
+  calibre_baja_dor: {type: "string"},
+  calibre_media_dor: {type: "string"},
+  foso_dor: si_no,
+  dps_alta_dor: si_no,
+  ano_fabricacion_dor: {
+    type: "integer",
+    minLength: 4,
+    maxLength: 4,
+  },
+  dps_baja_dor: si_no,
+  peso_dor: {type: "string"},
+  conexion_dor: {
+    type: "string",
+    enum: [
+      "Grupo 1",
+      "Grupo 2"
+    ]
+  },
+  adfq_dor: si_no,
+  pcb_dor: si_no,
+  gases_dor: si_no,
+  ttr_dor: si_no,
+  prueba_dor: si_no,
+  observ_dor: {type: "string"},
 };
 const contadores = {
 
@@ -269,5 +327,6 @@ export default {
     hv,
     doble_tiro_primario,
     seccionador,
-    media_baja
+    media_baja,
+    transformador
 };

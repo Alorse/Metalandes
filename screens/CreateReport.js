@@ -49,17 +49,22 @@ function getDataForm(data) {
         renderEquipos(equipo, "CELDA SECCIONADOR", schema.seccionador, uiSchema.seccionador)
         renderEquipos(equipo, "CELDA DOBLE TIRO PRIMARIO", schema.doble_tiro_primario, uiSchema.doble_tiro_primario)
         renderEquipos(equipo, "CELDA MEDIDA EN MEDIA O BAJA TENSIÓN", schema.media_baja, uiSchema.media_baja)
+        renderEquipos(equipo, "CELDA TRANSFORMADOR DE POTENCIA", schema.transformador, uiSchema.transformador)
       }
     })
   }
 }
 
-function renderEquipos(equipo, type, shema, uiShema,) {
-  var cantidad = equipo.cantidad !== undefined ? equipo.cantidad : 0
+function renderEquipos(equipo, type, shema, uiShema) {
+  var cantidad = 0
+  cantidad = equipo.cantidad !== undefined ? equipo.cantidad : 0
   if(equipo.tipo == type) {
     for(var i=0; i < cantidad; i++) {
+      uiShema.label = type + " - " + (i+1)
       tales.properties = {...tales.properties, ...shema}
-      uiTales.elements[1].elements.push({...uiSchema.hv.elements[1].elements, ...uiShema})
+      console.log(uiShema)
+      console.log(uiTales.elements[1].elements)
+      uiTales.elements[1].elements.push(uiShema)
     }
   }
 }

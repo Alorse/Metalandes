@@ -267,8 +267,8 @@ const seccionador = {
       elements: [
         {
           type: "Control",
-          scope: "#/properties/cuchillas_seccionador",
-          label: "Posee Cuchillas de puesta Tierra",
+          scope: "#/properties/referencia_seccionador",
+          label: "Referencia",
         },
         {
           type: "Control",
@@ -282,13 +282,19 @@ const seccionador = {
       elements: [
         {
           type: "Control",
-          scope: "#/properties/referencia_seccionador",
-          label: "Referencia",
+          scope: "#/properties/cuchillas_seccionador",
+          label: "Posee cuchillas de puesta tierra",
+          options: {
+            format: "radio"
+          }
         },
         {
           type: "Control",
           scope: "#/properties/palanca_seccionador",
-          label: "Posee Palanca De Accionamiento",
+          label: "Posee palanca de accionamiento",
+          options: {
+            format: "radio"
+          }
         },
       ]
     },
@@ -328,7 +334,200 @@ const transferencia = {
 
 };
 const transformador = {
-
+  id: "dor",
+  type: "Group",
+  label: "CELDA TRANSFORMADOR DE POTENCIA",
+  elements: [
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/marca_dor",
+          label: "Marca",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/tipo_dor",
+          label: "Tipo",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/rel_trans_dor",
+          label: "Relación de transformación"
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/capacidad_dor",
+          label: "Capacidad",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/num_epm_dor",
+          label: "Número EPM",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/num_serie_dor",
+          label: "Número de serie"
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/capacidad_tot_dor",
+          label: "Capacidad totalizador y corriente de Cortocircuito",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/icc_dor",
+          label: "Icc"
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/calibre_baja_dor",
+          label: "Calibre conductores en baja tensión",
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/calibre_media_dor",
+          label: "Calibre conductores en media tensión",
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/foso_dor",
+          label: "Posee foso (aplica trf aceite)",
+          options: {
+            format: "radio"
+          }
+        },
+        {
+          type: "Control",
+          scope: "#/properties/dps_alta_dor",
+          label: "Posee DPS o pararrayos en el lado de alta",
+          options: {
+            format: "radio"
+          }
+        },
+        {
+          type: "Control",
+          scope: "#/properties/dps_baja_dor",
+          label: "Posee DPS o pararrayos en el lado de baja",
+          options: {
+            format: "radio"
+          }
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/ano_fabricacion_dor",
+          label: "Año fabricación"
+        },
+        {
+          type: "Control",
+          scope: "#/properties/peso_dor",
+          label: "Peso (Kg)"
+        },
+        {
+          type: "Control",
+          scope: "#/properties/conexion_dor",
+          label: "Grupo Conexión"
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/adfq_dor",
+          label: "ADFQ",
+          options: {
+            format: "radio"
+          }
+        },
+        {
+          type: "Control",
+          scope: "#/properties/pcb_dor",
+          label: "PCB",
+          options: {
+            format: "radio"
+          }
+        },
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/gases_dor",
+          label: "Cromatografía de gases",
+          options: {
+            format: "radio"
+          }
+        },
+        {
+          type: "Control",
+          scope: "#/properties/ttr_dor",
+          label: "TTR",
+          options: {
+            format: "radio"
+          }
+        },
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/prueba_dor",
+          label: "Prueba de aislamiento e índice de polarización",
+          options: {
+            format: "radio"
+          }
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/observ_dor",
+          label: "Observaciones generales"
+        }
+      ]
+    },
+  ]
 };
 const contadores = {
 
@@ -346,7 +545,6 @@ const hv = {
       elements: [
         {
           type: "Group",
-          // label: "HOJA DE VIDA SUBESTACION ELECTRICA",
           elements: [
             {
               type: "HorizontalLayout",
@@ -424,5 +622,6 @@ export default {
     hv,
     doble_tiro_primario,
     seccionador,
-    media_baja
+    media_baja,
+    transformador
 };
