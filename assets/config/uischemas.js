@@ -695,6 +695,70 @@ const transformador = {
       type: "HorizontalLayout",
       elements: [
         {
+          type: "Group",
+          scope: "#/properties/prueba",
+          label: "Reporte de pruebas",
+          elements: [
+            {
+              type: "HorizontalLayout",
+              elements: [
+                {
+                  type: "Control",
+                  scope: "#/properties/prueba/properties/at_tierra",
+                  label: "(GΩ) AT-Tierra",
+                },
+                {
+                  type: "Control",
+                  scope: "#/properties/prueba/properties/bt_tierra",
+                  label: "(GΩ) BT-Tierra",
+                }
+              ]
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [
+                {
+                  type: "Control",
+                  scope: "#/properties/prueba/properties/at_tierra",
+                  label: "(GΩ) AT-BT",
+                },
+                {
+                  type: "Control",
+                  scope: "#/properties/prueba/properties/bt_tierra",
+                  label: "AT-BT (MΩ) 10 minutos",
+                }
+              ]
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [
+                {
+                  type: "Control",
+                  scope: "#/properties/prueba/properties/valor",
+                  label: "Valor índice de polarización",
+                },
+                {
+                  type: "Control",
+                  scope: "#/properties/prueba/properties/diagnostico",
+                  label: "Diagnóstico",
+                }
+              ]
+            },
+          ],
+          rule: {
+            effect: "SHOW",
+            condition: {
+              scope: "#/properties/prueba_dor",
+              schema: { const: true }
+            }
+          }
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
+        {
           type: "Control",
           scope: "#/properties/observ_dor",
           label: "Observaciones generales",
@@ -836,11 +900,19 @@ const tablero = {
           type: "Control",
           scope: "#/properties/protecciones_tab",
           label: "Nro. de protecciones en el tablero",
-        },
+        }
+      ]
+    },
+    {
+      type: "HorizontalLayout",
+      elements: [
         {
           type: "Control",
           scope: "#/properties/tiene_dps_tab",
           label: "Posee DPS",
+          options: {
+            format: "radio"
+          }
         }
       ]
     },
@@ -851,6 +923,13 @@ const tablero = {
           type: "Control",
           scope: "#/properties/dps_tab",
           label: "Especificaciones DPS",
+          rule: {
+            effect: "SHOW",
+            condition: {
+              scope: "#/properties/tiene_dps_tab",
+              schema: { enum: ["Sí"] }
+            }
+          }
         }
       ]
     },
@@ -876,6 +955,9 @@ const tablero = {
           type: "Control",
           scope: "#/properties/observ_tab",
           label: "Observaciones generales",
+          options: {
+            multi: true
+          }
         }
       ]
     },

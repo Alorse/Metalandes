@@ -329,7 +329,38 @@ const transformador = {
   pcb_dor: si_no,
   gases_dor: si_no,
   ttr_dor: si_no,
-  prueba_dor: si_no,
+  prueba_dor: {
+    type: "boolean"
+  },
+  prueba: {
+    type: "object",
+    properties: {
+      at_tierra: {
+        type: "number"
+      },
+      bt_tierra: {
+        type: "number"
+      },
+      at_bt: {
+        type: "number"
+      },
+      minutos: {
+        type: "number"
+      },
+      valor: {
+        type: "number"
+      },
+      diagnostico: {
+        type: "string",
+        enum: [
+          "Aislamiento muy bueno",
+          "Aislamiento bueno",
+          "Aislamiento dudoso",
+          "Aislamiento insuficiente",
+        ]
+      },
+    }
+  },
   observ_dor: {type: "string"},
 };
 const contadores = {

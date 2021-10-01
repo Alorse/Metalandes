@@ -19,7 +19,7 @@ const data = {
   equipos: [
     {
       tipo: "CELDA SECCIONADOR",
-      cantidad: 2,
+      cantidad: 1,
     }
   ]
 };
