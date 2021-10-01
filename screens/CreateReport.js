@@ -12,8 +12,6 @@ import { JsonForms } from '@jsonforms/react';
 import { Block, theme } from "galio-framework";
 import schema from '../assets/config/schemas';
 import uiSchema from '../assets/config/uischemas';
-import { JsonFormsStyleContext } from '@jsonforms/vanilla-renderers';
-import { eq } from "react-native-reanimated";
 
 const { width, height } = Dimensions.get("screen");
 const data = {
@@ -72,16 +70,14 @@ function renderCards() {
   // const [data, setData] = useState(data);
 
   return (
-    <JsonFormsStyleContext.Provider value={styleContextValue}>
-      <JsonForms
-        schema={tales}
-        uischema={uiTales}
-        data={data}
-        renderers={materialRenderers}
-        cells={materialCells}
-        onChange={({ data, _errors }) => getDataForm(data)}
-      />
-    </JsonFormsStyleContext.Provider>
+    <JsonForms
+      schema={tales}
+      uischema={uiTales}
+      data={data}
+      renderers={materialRenderers}
+      cells={materialCells}
+      onChange={({ data, _errors }) => getDataForm(data)}
+    />
   );
 }
 
