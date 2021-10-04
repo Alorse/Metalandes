@@ -476,13 +476,13 @@ const hv = {
           tipo: {
             type: "string",
             enum: [
+              "CELDA CONTADORES",
               "CELDA CORRECCION DE F.P",
               "CELDA DOBLE TIRO PRIMARIO",
               "CELDA MEDIDA EN MEDIA O BAJA TENSIÓN",
               "CELDA SECCIONADOR",
               "CELDA TRANSFERENCIA",
               "CELDA TRANSFORMADOR DE POTENCIA",
-              "CELDA CONTADORES",
               "TABLERO DE PROTECCIONES",
             ]
           },

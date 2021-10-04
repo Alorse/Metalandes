@@ -1035,8 +1035,7 @@ const hv = {
       type: "Category",
       label: "Detalle Equipos",
       elements: [
-        // doble_tiro_primario,
-        // seccionador,
+        // If fills automaticaly,
       ],
     }
   ],

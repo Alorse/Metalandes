@@ -15,7 +15,7 @@ import uiSchema from '../assets/config/uischemas';
 
 const { width, height } = Dimensions.get("screen");
 const data = {
-  "Fecha": new Date(),
+  fecha: new Date(),
   equipos: [
     {
       tipo: "CELDA SECCIONADOR",
@@ -44,13 +44,13 @@ function getDataForm(data) {
     uiTales.elements[1].elements = []
     equipos.map((equipo) => {
       if(equipo.tipo !== undefined) {
-        renderEquipos(equipo, "CELDA SECCIONADOR", schema.seccionador, uiSchema.seccionador)
+        renderEquipos(equipo, "CELDA CONTADORES", schema.contadores, uiSchema.contadores)
+        renderEquipos(equipo, "CELDA CORRECCION DE F.P", schema.correccion, uiSchema.correccion)
         renderEquipos(equipo, "CELDA DOBLE TIRO PRIMARIO", schema.doble_tiro_primario, uiSchema.doble_tiro_primario)
         renderEquipos(equipo, "CELDA MEDIDA EN MEDIA O BAJA TENSIÓN", schema.media_baja, uiSchema.media_baja)
+        renderEquipos(equipo, "CELDA SECCIONADOR", schema.seccionador, uiSchema.seccionador)
         renderEquipos(equipo, "CELDA TRANSFORMADOR DE POTENCIA", schema.transformador, uiSchema.transformador)
         renderEquipos(equipo, "CELDA TRANSFERENCIA", schema.transferencia, uiSchema.transferencia)
-        renderEquipos(equipo, "CELDA CORRECCION DE F.P", schema.correccion, uiSchema.correccion)
-        renderEquipos(equipo, "CELDA CONTADORES", schema.contadores, uiSchema.contadores)
         renderEquipos(equipo, "TABLERO DE PROTECCIONES", schema.tablero, uiSchema.tablero)
       }
     })
@@ -62,14 +62,21 @@ function renderEquipos(equipo, type, shema, uiShema) {
   cantidad = equipo.cantidad !== undefined ? equipo.cantidad : 0
   if(equipo.tipo == type) {
     for(var i=0; i < cantidad; i++) {
-      uiShema.label = type //+ " - " + (i+1)
       tales.properties = {...tales.properties, ...shema}
-      // console.log(uiShema)
-      // console.log(uiTales.elements[1].elements)
       uiTales.elements[1].elements.push(uiShema)
     }
   }
 }
+
+function fillScope(uiShema, slug, pos) {
+  uiShema.elements.map((element) => {
+    element.elements.map((ele) => {
+      ele.scope = '#properties/' + slug + '/' + pos + '/' + ele.slug
+    })
+  })
+  return uiShema
+}
+
 function renderCards() {
   // const [data, setData] = useState(data);
 
