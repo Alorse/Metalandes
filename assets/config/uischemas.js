@@ -719,12 +719,12 @@ const transformador = {
               elements: [
                 {
                   type: "Control",
-                  scope: "#/properties/prueba/properties/at_tierra",
+                  scope: "#/properties/prueba/properties/at_bt",
                   label: "(GΩ) AT-BT",
                 },
                 {
                   type: "Control",
-                  scope: "#/properties/prueba/properties/bt_tierra",
+                  scope: "#/properties/prueba/properties/minutos",
                   label: "AT-BT (MΩ) 10 minutos",
                 }
               ]
@@ -984,11 +984,11 @@ const hv = {
                 },
                 {
                   type: "Control",
-                  scope: "#/properties/Fecha"
+                  scope: "#/properties/fecha"
                 },
                 {
                   type: "Control",
-                  scope: "#/properties/Ciudad"
+                  scope: "#/properties/ciudad"
                 }
               ]
             },
@@ -997,7 +997,7 @@ const hv = {
               elements: [
                 {
                   type: "Control",
-                  scope: "#/properties/Contacto"
+                  scope: "#/properties/contacto"
                 },
               ]
             },
@@ -1006,7 +1006,7 @@ const hv = {
               elements: [
                 {
                   type: "Control",
-                  scope: "#/properties/Establecimiento"
+                  scope: "#/properties/establecimiento"
                 },
               ]
             },

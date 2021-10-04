@@ -63,7 +63,8 @@ const doble_tiro_primario = {
       "Sarel",
       "Schneider Electric",
       "Socol",
-      "Xikai"
+      "Xikai",
+      "Otro"
     ]
   },
   tipo_dtp: {
@@ -162,13 +163,13 @@ const media_baja = {
       "Schneider",
     ]
   },
-  num_tc1_mb: {type: "integer"},
-  num_tc2_mb: {type: "integer"},
-  num_tc3_mb: {type: "integer"},
+  num_tc1_mb: {type: "string"},
+  num_tc2_mb: {type: "string"},
+  num_tc3_mb: {type: "string"},
   rel_trans_tc_mb: {type: "string"},
-  num_tp1_mb: {type: "integer"},
-  num_tp2_mb: {type: "integer"},
-  num_tp3_mb: {type: "integer"},
+  num_tp1_mb: {type: "string"},
+  num_tp2_mb: {type: "string"},
+  num_tp3_mb: {type: "string"},
   rel_trans_tp_mb: {type: "string"},
   mult_mb: {type: "string"},
   ano_fabricacion_mb: {
@@ -429,30 +430,30 @@ const hv = {
   type: "object",
   required: [
     "indentificacion",
-    "Fecha",
-    "Ciudad",
-    "Contacto",
-    "Establecimiento",
+    "fecha",
+    "ciudad",
+    "contacto",
+    "establecimiento",
   ],
   properties: {
-    "indentificacion": {
-      type: "number",
+    indentificacion: {
+      type: "string",
       minLength: 2,
       maxLength: 20
     },
-    "Fecha": {
+    fecha: {
       type: "string",
-      "format": "date"
+      format: "date"
     },
-    "Ciudad": {
+    ciudad: {
       type: "string",
-      "minimum": 1,
-      "maximum": 20
+      minimum: 1,
+      maximum: 20
     },
-    "Contacto": {
+    contacto: {
       type: "string"
     },
-    "Establecimiento": {
+    establecimiento: {
       type: "string"
     },
     equipos: {
