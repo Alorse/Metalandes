@@ -302,7 +302,13 @@ const transformador = {
   rel_trans_dor: {type: "string"},
   capacidad_dor: {
     type: "string",
-    enum: ["10 kVA","15 kVA","20 kVA","30 kVA","45 kVA","50 kVA","75 kVA","100 kVA","112.5 kVA","125 kVA","150 kVA","175 kVA","200 kVA","225 kVA","300 kVA","400 kVA","500 kVA","630 kVA","750 kVA","800 kVA","1000 kVA","1250 kVA","1600 kVA","2000 kVA","2500 kVA","3000 kVA","4000 kVA","5000 kVA","Otro"]
+    enum: [
+      "10 kVA","15 kVA","20 kVA","30 kVA","45 kVA","50 kVA","75 kVA",
+      "100 kVA","112.5 kVA","125 kVA","150 kVA","175 kVA","200 kVA","225 kVA",
+      "300 kVA","400 kVA","500 kVA","630 kVA","750 kVA","800 kVA","1000 kVA",
+      "1250 kVA","1600 kVA","2000 kVA","2500 kVA","3000 kVA","4000 kVA","5000 kVA",
+      "Otro"
+    ]
   },
   num_epm_dor: {type: "string"},
   num_serie_dor: {type: "string"},
@@ -322,8 +328,14 @@ const transformador = {
   conexion_dor: {
     type: "string",
     enum: [
-      "Grupo 1",
-      "Grupo 2"
+      "Dd0","Dd5","Dd11",
+      "Dy0","Dy5","Dy11",
+      "Dyn0","Dyn5","Dyn11",
+      "Yd0","Yd5","Yd11",
+      "Ynd0","Ynd5","Ynd11",
+      "Ynd0","Ynd5","Ynd11",
+      "Yny0","Yny5","Yny11",
+      "Ynyn0","Ynyn5","Ynyn11",
     ]
   },
   adfq_dor: si_no,
