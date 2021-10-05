@@ -1,7 +1,7 @@
 const doble_tiro_primario = {
-  id: "dtp",
-  type: "Group",
+  type: "ListWithDetail",
   label: "CELDA DOBLE TIRO PRIMARIO",
+  scope: "#/properties/doble_tiro_primario",
   elements: [
     {
       type: "HorizontalLayout",
@@ -104,9 +104,9 @@ const doble_tiro_primario = {
   ]
 };
 const correccion = {
-  id: "corre",
-  type: "Group",
+  type: "ListWithDetail",
   label: "CELDA CORRECCION DE F.P",
+  scope: "#/properties/correccion",
   elements: [
     {
       type: "HorizontalLayout",
@@ -184,9 +184,9 @@ const correccion = {
   ]
 };
 const media_baja = {
-  id: "md",
-  type: "Group",
+  type: "ListWithDetail",
   label: "CELDA MEDIDA EN MEDIA O BAJA TENSIÓN",
+  scope: "#/properties/media_baja",
   elements: [
     {
       type: "HorizontalLayout",
@@ -319,9 +319,9 @@ const media_baja = {
   ]
 };
 const seccionador = {
-  id: "seccionador",
-  type: "Group",
+  type: "ListWithDetail",
   label: "CELDA SECCIONADOR",
+  scope: "#/properties/seccionador",
   elements: [
     {
       type: "HorizontalLayout",
@@ -415,9 +415,9 @@ const seccionador = {
   ]
 };
 const transferencia = {
-  id: "cia",
-  type: "Group",
+  type: "ListWithDetail",
   label: "CELDA TRANSFERENCIA",
+  scope: "#/properties/transferencia",
   elements: [
     {
       type: "HorizontalLayout",
@@ -508,460 +508,475 @@ const transferencia = {
   ]
 };
 const transformador = {
-  id: "dor",
-  type: "Group",
+  type: "ListWithDetail",
   label: "CELDA TRANSFORMADOR DE POTENCIA",
-  elements: [
-    {
-      type: "HorizontalLayout",
+  scope: "#/properties/transformador",
+  options: {
+    detail: {
+      type: "VerticalLayout",
       elements: [
         {
-          type: "Control",
-          scope: "#/properties/marca_dor",
-          label: "Marca",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/tipo_dor",
-          label: "Tipo",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/rel_trans_dor",
-          label: "Relación de transformación"
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/capacidad_dor",
-          label: "Capacidad",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/num_epm_dor",
-          label: "Número EPM",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/num_serie_dor",
-          label: "Número de serie"
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/capacidad_tot_dor",
-          label: "Capacidad totalizador y corriente de Cortocircuito",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/icc_dor",
-          label: "Icc"
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/calibre_baja_dor",
-          label: "Calibre conductores en baja tensión",
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/calibre_media_dor",
-          label: "Calibre conductores en media tensión",
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/foso_dor",
-          label: "Posee foso (aplica trf aceite)",
-          options: {
-            format: "radio"
-          }
-        },
-        {
-          type: "Control",
-          scope: "#/properties/dps_alta_dor",
-          label: "Posee DPS o pararrayos en el lado de alta",
-          options: {
-            format: "radio"
-          }
-        },
-        {
-          type: "Control",
-          scope: "#/properties/dps_baja_dor",
-          label: "Posee DPS o pararrayos en el lado de baja",
-          options: {
-            format: "radio"
-          }
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/ano_fabricacion_dor",
-          label: "Año fabricación"
-        },
-        {
-          type: "Control",
-          scope: "#/properties/peso_dor",
-          label: "Peso (Kg)"
-        },
-        {
-          type: "Control",
-          scope: "#/properties/conexion_dor",
-          label: "Grupo Conexión"
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/adfq_dor",
-          label: "ADFQ",
-          options: {
-            format: "radio"
-          }
-        },
-        {
-          type: "Control",
-          scope: "#/properties/pcb_dor",
-          label: "PCB",
-          options: {
-            format: "radio"
-          }
-        },
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/gases_dor",
-          label: "Cromatografía de gases",
-          options: {
-            format: "radio"
-          }
-        },
-        {
-          type: "Control",
-          scope: "#/properties/ttr_dor",
-          label: "TTR",
-          options: {
-            format: "radio"
-          }
-        },
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/prueba_dor",
-          label: "Prueba de aislamiento e índice de polarización",
-          options: {
-            format: "radio"
-          }
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Group",
-          scope: "#/properties/prueba",
-          label: "Reporte de pruebas",
+          type: "HorizontalLayout",
           elements: [
             {
-              type: "HorizontalLayout",
-              elements: [
-                {
-                  type: "Control",
-                  scope: "#/properties/prueba/properties/at_tierra",
-                  label: "(GΩ) AT-Tierra",
-                },
-                {
-                  type: "Control",
-                  scope: "#/properties/prueba/properties/bt_tierra",
-                  label: "(GΩ) BT-Tierra",
-                }
-              ]
+              type: "Control",
+              scope: "#/properties/marca_dor",
+              label: "Marca",
             },
             {
-              type: "HorizontalLayout",
-              elements: [
-                {
-                  type: "Control",
-                  scope: "#/properties/prueba/properties/at_bt",
-                  label: "(GΩ) AT-BT",
-                },
-                {
-                  type: "Control",
-                  scope: "#/properties/prueba/properties/minutos",
-                  label: "AT-BT (MΩ) 10 minutos",
-                }
-              ]
+              type: "Control",
+              scope: "#/properties/tipo_dor",
+              label: "Tipo",
             },
             {
-              type: "HorizontalLayout",
-              elements: [
-                {
-                  type: "Control",
-                  scope: "#/properties/prueba/properties/valor",
-                  label: "Valor índice de polarización",
-                },
-                {
-                  type: "Control",
-                  scope: "#/properties/prueba/properties/diagnostico",
-                  label: "Diagnóstico",
-                }
-              ]
-            },
-          ],
-          rule: {
-            effect: "SHOW",
-            condition: {
-              scope: "#/properties/prueba_dor",
-              schema: { const: true }
+              type: "Control",
+              scope: "#/properties/rel_trans_dor",
+              label: "Relación de transformación"
             }
-          }
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
+          ]
+        },
         {
-          type: "Control",
-          scope: "#/properties/observ_dor",
-          label: "Observaciones generales",
-          options: {
-            multi: true
-          }
-        }
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/capacidad_dor",
+              label: "Capacidad",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/num_epm_dor",
+              label: "Número EPM",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/num_serie_dor",
+              label: "Número de serie"
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/capacidad_tot_dor",
+              label: "Capacidad totalizador y corriente de Cortocircuito",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/icc_dor",
+              label: "Icc"
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/calibre_baja_dor",
+              label: "Calibre conductores en baja tensión",
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/calibre_media_dor",
+              label: "Calibre conductores en media tensión",
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/foso_dor",
+              label: "Posee foso (aplica trf aceite)",
+              options: {
+                format: "radio"
+              }
+            },
+            {
+              type: "Control",
+              scope: "#/properties/dps_alta_dor",
+              label: "Posee DPS o pararrayos en el lado de alta",
+              options: {
+                format: "radio"
+              }
+            },
+            {
+              type: "Control",
+              scope: "#/properties/dps_baja_dor",
+              label: "Posee DPS o pararrayos en el lado de baja",
+              options: {
+                format: "radio"
+              }
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/ano_fabricacion_dor",
+              label: "Año fabricación"
+            },
+            {
+              type: "Control",
+              scope: "#/properties/peso_dor",
+              label: "Peso (Kg)"
+            },
+            {
+              type: "Control",
+              scope: "#/properties/conexion_dor",
+              label: "Grupo Conexión"
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/adfq_dor",
+              label: "ADFQ",
+              options: {
+                format: "radio"
+              }
+            },
+            {
+              type: "Control",
+              scope: "#/properties/pcb_dor",
+              label: "PCB",
+              options: {
+                format: "radio"
+              }
+            },
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/gases_dor",
+              label: "Cromatografía de gases",
+              options: {
+                format: "radio"
+              }
+            },
+            {
+              type: "Control",
+              scope: "#/properties/ttr_dor",
+              label: "TTR",
+              options: {
+                format: "radio"
+              }
+            },
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/prueba_dor",
+              label: "Prueba de aislamiento e índice de polarización",
+              options: {
+                format: "radio"
+              }
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Group",
+              scope: "#/properties/prueba",
+              label: "Reporte de pruebas",
+              elements: [
+                {
+                  type: "HorizontalLayout",
+                  elements: [
+                    {
+                      type: "Control",
+                      scope: "#/properties/prueba/properties/at_tierra",
+                      label: "(GΩ) AT-Tierra",
+                    },
+                    {
+                      type: "Control",
+                      scope: "#/properties/prueba/properties/bt_tierra",
+                      label: "(GΩ) BT-Tierra",
+                    }
+                  ]
+                },
+                {
+                  type: "HorizontalLayout",
+                  elements: [
+                    {
+                      type: "Control",
+                      scope: "#/properties/prueba/properties/at_bt",
+                      label: "(GΩ) AT-BT",
+                    },
+                    {
+                      type: "Control",
+                      scope: "#/properties/prueba/properties/minutos",
+                      label: "AT-BT (MΩ) 10 minutos",
+                    }
+                  ]
+                },
+                {
+                  type: "HorizontalLayout",
+                  elements: [
+                    {
+                      type: "Control",
+                      scope: "#/properties/prueba/properties/valor",
+                      label: "Valor índice de polarización",
+                    },
+                    {
+                      type: "Control",
+                      scope: "#/properties/prueba/properties/diagnostico",
+                      label: "Diagnóstico",
+                    }
+                  ]
+                },
+              ],
+              rule: {
+                effect: "SHOW",
+                condition: {
+                  scope: "#/properties/prueba_dor",
+                  schema: { const: true }
+                }
+              }
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/observ_dor",
+              label: "Observaciones generales",
+              options: {
+                multi: true
+              }
+            }
+          ]
+        },
       ]
-    },
-  ]
+    }
+  }
 };
 const contadores = {
-  id: "cont",
-  type: "Group",
+  type: "ListWithDetail",
   label: "CELDA CONTADORES",
-  elements: [
-    {
-      type: "HorizontalLayout",
+  scope: "#/properties/contadores",
+  options: {
+    detail: {
+      type: "VerticalLayout",
       elements: [
         {
-          type: "Control",
-          scope: "#/properties/num_celdas_cont",
-          label: "Nro. Celdas de Medidores",
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/num_celdas_cont",
+              label: "Nro. Celdas de Medidores",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/num_medidores_cont",
+              label: "Nro. Medidores por tablero",
+            }
+          ]
         },
         {
-          type: "Control",
-          scope: "#/properties/num_medidores_cont",
-          label: "Nro. Medidores por tablero",
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/tipo_medidores_cont",
+              label: "Tipo de Medidores y capacidad",
+              options: {
+                multi: true
+              }
+            }
+          ]
+        },
         {
-          type: "Control",
-          scope: "#/properties/tipo_medidores_cont",
-          label: "Tipo de Medidores y capacidad",
-          options: {
-            multi: true
-          }
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/marca_medidores_cont",
+              label: "Marca de los medidores",
+              options: {
+                multi: true
+              }
+            }
+          ]
+        },
         {
-          type: "Control",
-          scope: "#/properties/marca_medidores_cont",
-          label: "Marca de los medidores",
-          options: {
-            multi: true
-          }
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/calibre_conductores_cont",
+              label: "Calibre conductores",
+              options: {
+                multi: true
+              }
+            }
+          ]
+        },
         {
-          type: "Control",
-          scope: "#/properties/calibre_conductores_cont",
-          label: "Calibre conductores",
-          options: {
-            multi: true
-          }
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/totalizador_cont",
+              label: "Totalizador principal de cada celda",
+              options: {
+                multi: true
+              }
+            }
+          ]
+        },
         {
-          type: "Control",
-          scope: "#/properties/totalizador_cont",
-          label: "Totalizador principal de cada celda",
-          options: {
-            multi: true
-          }
-        }
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/observ_cont",
+              label: "Observaciones generales",
+              // className: "observ",
+              options: {
+                multi: true
+              }
+            }
+          ]
+        },
       ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/observ_cont",
-          label: "Observaciones generales",
-          // className: "observ",
-          options: {
-            multi: true
-          }
-        }
-      ]
-    },
-  ]
+    }
+  }
 };
 const tablero = {
-  id: "cont",
-  type: "Group",
-  label: "CELDA CONTADORES",
-  elements: [
-    {
-      type: "HorizontalLayout",
+  type: "ListWithDetail",
+  label: "TABLERO DE PROTECCIONES",
+  scope: "#/properties/tablero",
+  options: {
+    detail: {
+      type: "VerticalLayout",
       elements: [
         {
-          type: "Control",
-          scope: "#/properties/nombre_tab",
-          label: "Nombre del Tablero",
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/capacidad_tab",
-          label: "Capacidad totalizador",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/cortocircuito_tab",
-          label: "I cortocircuito",
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/marca_tab",
-          label: "Marca",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/protecciones_tab",
-          label: "Nro. de protecciones en el tablero",
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/tiene_dps_tab",
-          label: "Posee DPS",
-          options: {
-            format: "radio"
-          }
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/dps_tab",
-          label: "Especificaciones DPS",
-          rule: {
-            effect: "SHOW",
-            condition: {
-              scope: "#/properties/tiene_dps_tab",
-              schema: { enum: ["Sí"] }
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/nombre_tab",
+              label: "Nombre del Tablero",
             }
-          }
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/barrajes_tab",
-          label: "Posee protección de barrajes (lamina de policarbonato u otras)",
+          ]
         },
         {
-          type: "Control",
-          scope: "#/properties/peligro_tab",
-          label: "Existe marcación de peligro (calcomanía rayo)",
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/capacidad_tab",
+              label: "Capacidad totalizador",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/cortocircuito_tab",
+              label: "I cortocircuito",
+            }
+          ]
+        },
         {
-          type: "Control",
-          scope: "#/properties/observ_tab",
-          label: "Observaciones generales",
-          options: {
-            multi: true
-          }
-        }
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/marca_tab",
+              label: "Marca",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/protecciones_tab",
+              label: "Nro. de protecciones en el tablero",
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/tiene_dps_tab",
+              label: "Posee DPS",
+              options: {
+                format: "radio"
+              }
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/dps_tab",
+              label: "Especificaciones DPS",
+              rule: {
+                effect: "SHOW",
+                condition: {
+                  scope: "#/properties/tiene_dps_tab",
+                  schema: { enum: ["Sí"] }
+                }
+              }
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/barrajes_tab",
+              label: "Posee protección de barrajes (lamina de policarbonato u otras)",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/peligro_tab",
+              label: "Existe marcación de peligro (calcomanía rayo)",
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/observ_tab",
+              label: "Observaciones generales",
+              options: {
+                multi: true
+              }
+            }
+          ]
+        },
       ]
-    },
-  ]
+    }
+  }
 };
 
 const hv = {
@@ -1014,45 +1029,44 @@ const hv = {
         },
         {
           type: "Group",
-          // label: "Gabinetes que componen la subestación\n Total: <span id='amount'>1</span>",
           label: "Gabinetes que componen la subestación",
           elements: [
             {
-              type: "HorizontalLayout",
+              type: "Group",
               elements: [
-                {
-                  type: "Control",
-                  scope: "#/properties/equipos",
-                  label: "Equipos"
-                }
+                doble_tiro_primario,
+                correccion,
+                media_baja,
+                seccionador,
+                transferencia,
+                transformador,
+                contadores,
+                tablero
+                // {
+                //   type: "Control",
+                //   scope: "#/properties/equipos",
+                //   label: "Equipos",
+                //   options: {
+                //     detail: {
+                //       type: "VerticalLayout",
+                //       elements: [
+                //         {
+                //           type: "Label",
+                //           text: "Person Info",
+                //         },
+                //       ],
+                //     },
+                //   },
+                // }
               ]
             }
           ],
         },
       ],
-    },
-    {
-      type: "Category",
-      label: "Detalle Equipos",
-      elements: [
-        // If fills automaticaly,
-      ],
     }
-  ],
-  options: {
-    variant: "stepper",
-    showNavButtons: true
-  }
+  ]
 };
 
 export default {
-    hv,
-    doble_tiro_primario,
-    seccionador,
-    media_baja,
-    transformador,
-    transferencia,
-    correccion,
-    contadores,
-    tablero
+    hv
 };

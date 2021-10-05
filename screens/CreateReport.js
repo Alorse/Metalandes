@@ -14,15 +14,7 @@ import schema from '../assets/config/schemas';
 import uiSchema from '../assets/config/uischemas';
 
 const { width, height } = Dimensions.get("screen");
-const data = {
-  fecha: new Date(),
-  equipos: [
-    {
-      tipo: "CELDA SECCIONADOR",
-      cantidad: 1,
-    }
-  ]
-};
+const data = {};
 var tales = schema.hv
 var uiTales = uiSchema.hv
 
@@ -37,44 +29,7 @@ function CreateReportScreen() {
 }
 
 function getDataForm(data) {
-  var equipos = {};
-  if(data.equipos.length > 0) {
-    equipos = data.equipos
-    // Reset Forms
-    uiTales.elements[1].elements = []
-    equipos.map((equipo) => {
-      if(equipo.tipo !== undefined) {
-        renderEquipos(equipo, "CELDA CONTADORES", schema.contadores, uiSchema.contadores)
-        renderEquipos(equipo, "CELDA CORRECCION DE F.P", schema.correccion, uiSchema.correccion)
-        renderEquipos(equipo, "CELDA DOBLE TIRO PRIMARIO", schema.doble_tiro_primario, uiSchema.doble_tiro_primario)
-        renderEquipos(equipo, "CELDA MEDIDA EN MEDIA O BAJA TENSIÓN", schema.media_baja, uiSchema.media_baja)
-        renderEquipos(equipo, "CELDA SECCIONADOR", schema.seccionador, uiSchema.seccionador)
-        renderEquipos(equipo, "CELDA TRANSFORMADOR DE POTENCIA", schema.transformador, uiSchema.transformador)
-        renderEquipos(equipo, "CELDA TRANSFERENCIA", schema.transferencia, uiSchema.transferencia)
-        renderEquipos(equipo, "TABLERO DE PROTECCIONES", schema.tablero, uiSchema.tablero)
-      }
-    })
-  }
-}
-
-function renderEquipos(equipo, type, shema, uiShema) {
-  var cantidad = 0
-  cantidad = equipo.cantidad !== undefined ? equipo.cantidad : 0
-  if(equipo.tipo == type) {
-    for(var i=0; i < cantidad; i++) {
-      tales.properties = {...tales.properties, ...shema}
-      uiTales.elements[1].elements.push(uiShema)
-    }
-  }
-}
-
-function fillScope(uiShema, slug, pos) {
-  uiShema.elements.map((element) => {
-    element.elements.map((ele) => {
-      ele.scope = '#properties/' + slug + '/' + pos + '/' + ele.slug
-    })
-  })
-  return uiShema
+  console.log(data)
 }
 
 function renderCards() {

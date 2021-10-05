@@ -1,3 +1,13 @@
+const equipos = [
+  "CELDA CONTADORES",
+  "CELDA CORRECCION DE F.P",
+  "CELDA DOBLE TIRO PRIMARIO",
+  "CELDA MEDIDA EN MEDIA O BAJA TENSIÓN",
+  "CELDA SECCIONADOR",
+  "CELDA TRANSFERENCIA",
+  "CELDA TRANSFORMADOR DE POTENCIA",
+  "TABLERO DE PROTECCIONES",
+];
 const si_no = {
   type: "string",
   enum: [
@@ -333,7 +343,6 @@ const transformador = {
       "Dyn0","Dyn5","Dyn11",
       "Yd0","Yd5","Yd11",
       "Ynd0","Ynd5","Ynd11",
-      "Ynd0","Ynd5","Ynd11",
       "Yny0","Yny5","Yny11",
       "Ynyn0","Ynyn5","Ynyn11",
     ]
@@ -468,41 +477,81 @@ const hv = {
     establecimiento: {
       type: "string"
     },
-    equipos: {
+    // equipos: {
+    //   type: "array",
+    //   items: {
+    //     type: "object",
+    //     properties: {
+    //       tipo: {
+    //         type: "string",
+    //         enum: equipos,
+    //         // default: equipos[4]
+    //       },
+    //       cantidad: {
+    //         type: "integer"
+    //       },
+    //     }
+    //   }
+    // }
+    contadores: {
       type: "array",
       items: {
         type: "object",
-        properties: {
-          tipo: {
-            type: "string",
-            enum: [
-              "CELDA CONTADORES",
-              "CELDA CORRECCION DE F.P",
-              "CELDA DOBLE TIRO PRIMARIO",
-              "CELDA MEDIDA EN MEDIA O BAJA TENSIÓN",
-              "CELDA SECCIONADOR",
-              "CELDA TRANSFERENCIA",
-              "CELDA TRANSFORMADOR DE POTENCIA",
-              "TABLERO DE PROTECCIONES",
-            ]
-          },
-         cantidad: {
-            type: "integer"
-          },
-        }
+        properties: contadores
       }
-    }
+    },
+    tablero: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: tablero
+      }
+    },
+    transformador: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: transformador
+      }
+    },
+    correccion: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: correccion
+      }
+    },
+    doble_tiro_primario: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: doble_tiro_primario
+      }
+    },
+    media_baja: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: media_baja
+      }
+    },
+    seccionador: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: seccionador
+      }
+    },
+    transferencia: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: transferencia
+      }
+    },
   }
 };
 
 export default {
-    hv,
-    doble_tiro_primario,
-    seccionador,
-    media_baja,
-    transformador,
-    transferencia,
-    correccion,
-    contadores,
-    tablero
+    hv
 };
