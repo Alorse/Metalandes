@@ -450,14 +450,14 @@ const tablero = {
 const hv = {
   type: "object",
   required: [
-    "indentificacion",
+    "identificacion",
     "fecha",
     "ciudad",
     "contacto",
     "establecimiento",
   ],
   properties: {
-    indentificacion: {
+    identificacion: {
       type: "string",
       minLength: 2,
       maxLength: 20
@@ -548,6 +548,9 @@ const hv = {
         type: "object",
         properties: transferencia
       }
+    },
+    observ_generales: {
+      type: "string"
     },
   }
 };

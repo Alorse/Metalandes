@@ -2,6 +2,7 @@ import React from "react";
 import { Dimensions } from "react-native";
 
 import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 // screens
@@ -19,7 +20,7 @@ import { Header } from "../components";
 
 const { width } = Dimensions.get("screen");
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
 function ElementsStack(props) {
@@ -89,20 +90,25 @@ function CreateReportsStack(props) {
 
 export default function App(props) {
   return (
-    <Drawer.Navigator
-      style={{ flex: 1 }}
-      drawerContent={props => <CustomDrawerContent {...props} />}
-      drawerStyle={{
-        backgroundColor: "white",
-        width: width * 0.8
-      }}
-    >
-      <Drawer.Screen name={I18n.pages.index.id} component={HomeStack} />
-      <Drawer.Screen name={I18n.pages.about.id} component={AboutUsStack} />
-      <Drawer.Screen name={I18n.pages.terms.id} component={ElementsStack} />
-      <Drawer.Screen name={I18n.pages.reports.id} component={ReportsStack} />
-      <Drawer.Screen name={I18n.pages.new.id} component={CreateReportsStack} />
-    </Drawer.Navigator>
+    // <Drawer.Navigator
+    //   style={{ flex: 1 }}
+    //   drawerContent={props => <CustomDrawerContent {...props} />}
+    //   drawerStyle={{
+    //     backgroundColor: "white",
+    //     width: width * 0.8
+    //   }}
+    // >
+    //   <Drawer.Screen name={I18n.pages.index.id} component={HomeStack} />
+    //   <Drawer.Screen name={I18n.pages.about.id} component={AboutUsStack} />
+    //   <Drawer.Screen name={I18n.pages.terms.id} component={ElementsStack} />
+    //   <Drawer.Screen name={I18n.pages.reports.id} component={ReportsStack} />
+    //   <Drawer.Screen name={I18n.pages.new.id} component={CreateReportsStack} />
+    // </Drawer.Navigator>
+    <Stack.Navigator>
+        <Stack.Screen name="Metalandes" component={Home} />
+        <Stack.Screen name="Reportes" component={Reports} />
+        <Stack.Screen name={I18n.pages.new.id} component={CreateReport} />
+    </Stack.Navigator>
   );
 }
 

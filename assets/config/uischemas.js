@@ -994,8 +994,8 @@ const hv = {
               elements: [
                 {
                   type: "Control",
-                  scope: "#/properties/indentificacion",
-                  label: "Indentificación"
+                  scope: "#/properties/identificacion",
+                  label: "Identificación"
                 },
                 {
                   type: "Control",
@@ -1061,6 +1061,19 @@ const hv = {
               ]
             }
           ],
+        },
+        {
+          type: "Group",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/observ_generales",
+              label: "Observaciones generales",
+              options: {
+                multi: true
+              }
+            },
+          ]
         },
       ],
     }

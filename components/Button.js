@@ -42,7 +42,9 @@ ArButton.propTypes = {
 
 const styles = StyleSheet.create({
   smallButton: {
-    width: 75,
+    width: 'auto',
+    paddingLeft: 12,
+    paddingRight: 12,
     height: 28
   },
   shadow: {

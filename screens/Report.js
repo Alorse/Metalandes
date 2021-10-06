@@ -6,26 +6,52 @@ import {
   Alert
 } from "react-native";
 //galio
-import { Block, Button, theme, Accordion, Text } from "galio-framework";
+import { Block, theme, Accordion, Text } from "galio-framework";
+import { Button } from "../components/";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width, height } = Dimensions.get("screen");
 
-const data = [
-  { title: "Rosales", content: renderContent('Text 1') },
-  { title: "Check", content: renderContent('Text 2') },
-  { title: "EPM", content: renderContent() },
-  { title: "Electro Caribe", content: renderContent() },
-  { title: "Report #3", content: "Lorem ipsum dolor sit amet"}
-];
+var data = [];
 
-function ReportScreen({  navigation }) {
+const getAllKeys = async (navigation) => {
+  let keys = []
+  data = [] // Resert Object
+  try {
+    keys = await AsyncStorage.getAllKeys()
+    let values
+    try {
+      values = await AsyncStorage.multiGet(keys)
+      values.map(item => {
+        if(item[0].includes('@reporte_')) {
+          var report = JSON.parse(item[1])
+          var title = report.identificacion + ' - ' + report.fecha
+          data.push({
+            title: title,
+            content: renderContent(
+              navigation,
+              item[0],
+              report
+            )
+          })
+        }
+      })
+    } catch(e) {
+      // read error
+    }
+  } catch(e) {
+    // read key error
+  }
+}
+
+
+function ReportScreen({ navigation }) {
+  getAllKeys(navigation)
   return (
     <Block flex center>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-      >
+      <ScrollView showsVerticalScrollIndicator={false}
+>
         {renderCards(navigation)}
-
       </ScrollView>
     </Block>
   );
@@ -33,7 +59,7 @@ function ReportScreen({  navigation }) {
 
 function renderCards(navigation) {
   var state = navigation.getState()
-  var type = state.routeNames[0] == 'Rutinas' ? 'Nueva Rutina' : 'Nuevo ' + state.routeNames[0].slice(0, -1)
+  navigation.setOptions({ title: state.routes[1].params.type + 's' })
   return (
     <Block style={{height:height-200}}>
       <Accordion 
@@ -50,16 +76,23 @@ function renderCards(navigation) {
           iconFamily="Font-Awesome"
           iconColor={theme.COLORS.WHITE}
           iconSize={theme.SIZES.BASE * 1.625}
-          color={theme.COLORS.SUCCESS}
-          style={[styles.shadow]}
-          onPress={() => navigation.navigate('new', { type: type })}
+          color="success"
+          onPress={() => navigation.navigate('new', 
+          {
+            itemId: null,
+            type: 'new',
+            title: state.routes[1].params.type
+          }
+          )}
         />
       </Block>
     </Block>
   );
 }
 
-function renderContent(text) {
+function renderContent(navigation, item, report) {
+  var observ = report.observ_generales ? report.observ_generales : 'Sin Observaciones'
+  var title = report.identificacion + ' - ' + report.fecha
   const createTwoButtonAlert = () =>
   Alert.alert(
     "Eliminar reporte",
@@ -73,23 +106,31 @@ function renderContent(text) {
       { text: "OK", onPress: () => console.log("OK Pressed") }
     ]
   );
+
+  const editReport = () => {
+
+    navigation.navigate('new', 
+      {
+        itemId: item,
+        type: 'edit',
+        title: title
+      }
+    )}
   
   return (
-    <Block>
-      <Text>{text}</Text>
-      <Text>Lorem ipsum dolor sit amet</Text>
-      <Text>Lorem ipsum dolor sit amet</Text>
-      <Block row space="evenly">
-        <Block flex left style={{marginTop: 8}}>
+    <Block style={styles.itemContent}>
+      <Text>{observ}</Text>
+      <Block row>
+        <Block flex left>
         </Block>
         <Block>
-          <Button size='small' center color="rgb(23, 43, 77)" onPress={createTwoButtonAlert}>
-            Borrar
+          <Button small color="default" onPress={createTwoButtonAlert}>
+            GENERAR REPORTE
           </Button>
         </Block>
         <Block>
-          <Button center color="rgb(23, 43, 77)">
-            Editar
+          <Button small color="default" onPress={editReport}>
+            EDITAR
           </Button>
         </Block>
       </Block>
@@ -102,6 +143,10 @@ const styles = StyleSheet.create({
     paddingBottom: theme.SIZES.BASE,
     paddingHorizontal: theme.SIZES.BASE * 2,
     marginTop: 22,
+  },
+  itemContent: {
+    width: width,
+    paddingRight:40,
   },
   content: {
     paddingBottom: theme.SIZES.BASE,

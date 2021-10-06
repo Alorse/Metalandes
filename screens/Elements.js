@@ -61,23 +61,25 @@ class Elements extends React.Component {
               ERROR
             </Button>
           </Block>
-          <Block row space="evenly">
+          <Block row>
             <Block flex left style={{marginTop: 8}}>
               {/* <Select
                 defaultIndex={1}
                 options={["01", "02", "03", "04", "05"]}
               /> */}
             </Block>
-            <Block flex center>
+            <Block>
               <Button small center color="default" style={styles.optionsButton}>
                 DELETE
               </Button>
             </Block>
-            <Block flex={1.25} right>
-              <Button center color="default" style={styles.optionsButton}>
+            <Block>
+              <Button small center color="default">
                 SAVE FOR LATER
               </Button>
             </Block>
+            <Block>
+        </Block>
           </Block>
         </Block>
       </Block>
