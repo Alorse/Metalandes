@@ -552,6 +552,10 @@ const hv = {
     observ_generales: {
       type: "string"
     },
+    mediaCapture: {
+      type: "array",
+      format: "media-capture",
+    }
   }
 };
 

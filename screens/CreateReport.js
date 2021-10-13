@@ -1,9 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Dimensions
-} from "react-native";
+import React, { useState, useEffect } from "react";
+import { ScrollView } from "react-native";
 import {
     materialRenderers,
     materialCells
@@ -19,9 +15,18 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle,
 } from '@material-ui/core';
 import Ajv from "ajv"
+import MediaCaptureControl, {
+  MediaCaptureControlTester,
+} from "../components/Upload/MediaCaptureControl";
+
+const renderers = [
+  ...materialRenderers,
+  //register custom renderers
+  { tester: MediaCaptureControlTester, renderer: MediaCaptureControl },
+];
+
 
 const initialData = {};
 var tales = schema.hv
@@ -30,11 +35,18 @@ var flag = true
 var item_id = null
 
 const ajv = new Ajv() // options can be passed, e.g. {allErrors: true}
+ajv.addFormat('media-capture', {
+  type: 'string'
+})
 
 function CreateReportScreen({ route, navigation }) {
   const { itemId, type, title } = route.params;
-  item_id = itemId
-  navigation.setOptions({ title: type == 'new' ?  'Nuevo ' + title : title })
+  item_id = itemId;
+  
+  useEffect(() => {
+    navigation.setOptions({ title: type == 'new' ?  'Nuevo ' + title : title })
+  });
+
 
   return (
     <Block flex center>
@@ -70,27 +82,24 @@ function renderCards(itemId, navigation) {
   const [data, setData] = useState(initialData);
   const [open, setOpen] = useState(false);
   const [successful, setSuccessful] = useState(false);
-  // useEffect(() => {
-    if (itemId) {
-      setTimeout(function(){
-        if (flag){
-          getReport()
-        }
-        flag = false
-      }, 10)
-    }
-    const getReport = async () => {
-      try {
-        let jsonValue = await AsyncStorage.getItem(itemId)
-        jsonValue = jsonValue != null ? JSON.parse(jsonValue) : null
-        console.log('asd',jsonValue);
-        setData(jsonValue)
-      } catch(e) {
-        // error reading value
-        console.log(e)
+  if (itemId) {
+    setTimeout(function(){
+      if (flag){
+        getReport()
       }
+      flag = false
+    }, 10)
+  }
+  const getReport = async () => {
+    try {
+      let jsonValue = await AsyncStorage.getItem(itemId)
+      jsonValue = jsonValue != null ? JSON.parse(jsonValue) : null
+      setData(jsonValue)
+    } catch(e) {
+      // error reading value
+      console.log(e)
     }
-  // }, [data, setData]);
+  }
 
   const handleClickOpen = () => {
     setSuccessful(handleSubmit(data))
@@ -103,6 +112,11 @@ function renderCards(itemId, navigation) {
       navigation.navigate('Reportes', { type: 'Mantenimiento' })
     }
   };
+
+  const JsonFormOnChange = (data) => {
+    console.log(data);
+    setData(data)
+  };
   
   return (
     <>
@@ -110,15 +124,17 @@ function renderCards(itemId, navigation) {
         schema={tales}
         uischema={uiTales}
         data={data}
-        renderers={materialRenderers}
+        renderers={renderers}
         cells={materialCells}
-        onChange={({ data, _errors }) => setData(data)}
+        onChange={({ data, _errors }) => JsonFormOnChange(data)}
+        ajv={ajv}
       />
       <Block right>
         <Button color="success" onPress={handleClickOpen}>
           {itemId ? 'ACTUALIZAR' : 'GUARDAR'}
         </Button>
       </Block>
+
       <Dialog
         open={open}
         onClose={handleClose}

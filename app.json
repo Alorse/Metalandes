@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MetalApp",
-    "slug": "MetalApp",
+    "name": "MetalJF3",
+    "slug": "MetalJF3",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -16,13 +16,14 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "ios": {
+      "supportsTablet": true
+    },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      },
-      "package": "net.metalandes.recordsapp",
-      "versionCode": 1
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png",

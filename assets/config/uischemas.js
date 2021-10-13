@@ -1073,6 +1073,11 @@ const hv = {
                 multi: true
               }
             },
+            {
+              type: "Control",
+              scope: "#/properties/mediaCapture",
+              label: "Fotos"
+            }
           ]
         },
       ],

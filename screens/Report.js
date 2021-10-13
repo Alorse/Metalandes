@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   ScrollView,
   StyleSheet,
   Dimensions,
-  Alert
+  Alert,
+  SafeAreaView
 } from "react-native";
 //galio
 import { Block, theme, Accordion, Text } from "galio-framework";
@@ -49,8 +50,7 @@ function ReportScreen({ navigation }) {
   getAllKeys(navigation)
   return (
     <Block flex center>
-      <ScrollView showsVerticalScrollIndicator={false}
->
+      <ScrollView showsVerticalScrollIndicator={false}>
         {renderCards(navigation)}
       </ScrollView>
     </Block>
@@ -59,9 +59,13 @@ function ReportScreen({ navigation }) {
 
 function renderCards(navigation) {
   var state = navigation.getState()
-  navigation.setOptions({ title: state.routes[1].params.type + 's' })
+
+  useEffect(() => {
+    navigation.setOptions({ title: state.routes[1].params.type + 's' })
+  });
+
   return (
-    <Block style={{height:height-200}}>
+    <SafeAreaView style={{height:height-200}}>
       <Accordion 
         style={styles.accordion}
         headerStyle={styles.listitemheader}
@@ -86,7 +90,7 @@ function renderCards(navigation) {
           )}
         />
       </Block>
-    </Block>
+    </SafeAreaView>
   );
 }
 
