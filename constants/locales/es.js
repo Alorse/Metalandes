@@ -19,6 +19,7 @@ export default {
         profile: { id: 'profile', title: 'Perfil' },
         new: { id: 'new', title: 'Nuevo' },
         reports: { id: 'reports', title: 'Reportes' },
+        generate: { id: 'generate', title: 'Generar Reporte' },
         terms: { id: 'terms', title: 'Términos y Condiciones' },
     },
     most_recent: 'Los más recientes',

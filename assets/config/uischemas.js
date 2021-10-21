@@ -2,510 +2,585 @@ const doble_tiro_primario = {
   type: "ListWithDetail",
   label: "CELDA DOBLE TIRO PRIMARIO",
   scope: "#/properties/doble_tiro_primario",
-  elements: [
-    {
-      type: "HorizontalLayout",
+  options: {
+    detail: {
+      type: "VerticalLayout",
       elements: [
         {
-          type: "Control",
-          scope: "#/properties/marca_dtp",
-          label: "Marca",
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/marca_dtp",
+              label: "Marca",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/tipo_dtp",
+              label: "Tipo",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/cap_fus_hh_dtp",
+              label: "Cap. Fusibles HH"
+            }
+          ]
         },
         {
-          type: "Control",
-          scope: "#/properties/tipo_dtp",
-          label: "Tipo",
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/NumeroCircuitoPreferencial",
+              label: "N° circuito preferencial",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/NumeroCircuitoEmergencia",
+              label: "N° circuito emergencia",
+            },
+          ]
         },
         {
-          type: "Control",
-          scope: "#/properties/cap_fus_hh_dtp",
-          label: "Cap. Fusibles HH"
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/TipoAccionamiento",
+              label: "Tipo Accionamiento",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/estado_dtp",
+              label: "Estado",
+            },
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/MarcaRele",
+              label: "Marca relé 27/59 y/o PLC",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/VoltajeAlto",
+              label: "Voltaje alto",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/VoltajeBajo",
+              label: "Voltaje bajo",
+            },
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/TensionDeControl",
+              label: "Tensión de Control",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/ano_fabricacion_dtp",
+              label: "Año de Fabricación",
+            },
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/observ_dtp",
+              label: "Observaciones generales",
+              options: {
+                multi: true
+              }
+            },
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/fotos_dtp",
+              label: "Fotos"
+            }
+          ]
         }
       ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/NumeroCircuitoPreferencial",
-          label: "N° circuito preferencial",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/NumeroCircuitoEmergencia",
-          label: "N° circuito emergencia",
-        },
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/TipoAccionamiento",
-          label: "Tipo Accionamiento",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/estado_dtp",
-          label: "Estado",
-        },
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/MarcaRele",
-          label: "Marca relé 27/59 y/o PLC",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/VoltajeAlto",
-          label: "Voltaje alto",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/VoltajeBajo",
-          label: "Voltaje bajo",
-        },
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/TensionDeControl",
-          label: "Tensión de Control",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/ano_fabricacion_dtp",
-          label: "Año de Fabricación",
-        },
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/observ_dtp",
-          label: "Observaciones generales",
-          options: {
-            multi: true
-          }
-        },
-      ]
-    },
-  ]
+    }
+  }
 };
 const correccion = {
   type: "ListWithDetail",
   label: "CELDA CORRECCION DE F.P",
   scope: "#/properties/correccion",
-  elements: [
-    {
-      type: "HorizontalLayout",
+  options: {
+    detail: {
+      type: "VerticalLayout",
       elements: [
         {
-          type: "Control",
-          scope: "#/properties/marca_rele_corre",
-          label: "Marca Relé",
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/marca_rele_corre",
+              label: "Marca Relé",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/referencia_corre",
+              label: "Referencia",
+            }
+          ]
         },
         {
-          type: "Control",
-          scope: "#/properties/referencia_corre",
-          label: "Referencia",
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/totalizador_corre",
+              label: "Totalizador",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/factor_corre",
+              label: "Factor de P",
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/bancos_fijos_corre",
+              label: "Nro. Bancos Fijos",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/bancos_moviles_corre",
+              label: "Nro. Bancos Móviles",
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/bancos_fijos_corre",
+              label: "Calibre conductores",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/bancos_moviles_corre",
+              label: "Relación TC",
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/observ_corre",
+              label: "Observaciones generales",
+              options: {
+                multi: true
+              }
+            },
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/fotos_corre",
+              label: "Fotos"
+            }
+          ]
         }
       ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/totalizador_corre",
-          label: "Totalizador",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/factor_corre",
-          label: "Factor de P",
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/bancos_fijos_corre",
-          label: "Nro. Bancos Fijos",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/bancos_moviles_corre",
-          label: "Nro. Bancos Móviles",
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/bancos_fijos_corre",
-          label: "Calibre conductores",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/bancos_moviles_corre",
-          label: "Relación TC",
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/observ_corre",
-          label: "Observaciones generales",
-          options: {
-            multi: true
-          }
-        },
-      ]
-    },
-  ]
+    }
+  }
 };
 const media_baja = {
   type: "ListWithDetail",
   label: "CELDA MEDIDA EN MEDIA O BAJA TENSIÓN",
   scope: "#/properties/media_baja",
-  elements: [
-    {
-      type: "HorizontalLayout",
+  options: {
+    detail: {
+      type: "VerticalLayout",
       elements: [
         {
-          type: "Control",
-          scope: "#/properties/tipo_mb",
-          label: "Tipo De Celda De Medida",
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/tipo_mb",
+              label: "Tipo De Celda De Medida",
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/marca_medidor_md",
+              label: "Marca Medidor",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/referencia_mb",
+              label: "Referencia",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/marca_tc_tp_mb",
+              label: "Marca TCs & TPs",
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/num_tc1_mb",
+              label: "Nro. de TC 1",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/num_tc2_mb",
+              label: "Nro. de TC 2",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/num_tc3_mb",
+              label: "Nro. de TC 3",
+            },
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/rel_trans_tc_mb",
+              label: "Relación de Transformación",
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/num_tp1_mb",
+              label: "Nro. de TC 1",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/num_tp2_mb",
+              label: "Nro. de TC 2",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/num_tp3_mb",
+              label: "Nro. de TC 3",
+            },
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/rel_trans_tp_mb",
+              label: "Relación de Transformación",
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/mult_mb",
+              label: "Constante o factor de multiplicación",
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/ano_fabricacion_mb",
+              label: "Año de fabricación",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/calibre_mb",
+              label: "Calibre de las Fases",
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/observ_mb",
+              label: "Observaciones generales",
+              options: {
+                multi: true
+              }
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/fotos_mb",
+              label: "Fotos"
+            }
+          ]
         }
       ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/marca_medidor_md",
-          label: "Marca Medidor",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/referencia_mb",
-          label: "Referencia",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/marca_tc_tp_mb",
-          label: "Marca TCs & TPs",
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/num_tc1_mb",
-          label: "Nro. de TC 1",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/num_tc2_mb",
-          label: "Nro. de TC 2",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/num_tc3_mb",
-          label: "Nro. de TC 3",
-        },
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/rel_trans_tc_mb",
-          label: "Relación de Transformación",
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/num_tp1_mb",
-          label: "Nro. de TC 1",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/num_tp2_mb",
-          label: "Nro. de TC 2",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/num_tp3_mb",
-          label: "Nro. de TC 3",
-        },
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/rel_trans_tp_mb",
-          label: "Relación de Transformación",
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/mult_mb",
-          label: "Constante o factor de multiplicación",
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/ano_fabricacion_mb",
-          label: "Año de fabricación",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/calibre_mb",
-          label: "Calibre de las Fases",
-        }
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/observ_mb",
-          label: "Observaciones generales",
-          options: {
-            multi: true
-          }
-        }
-      ]
-    },
-  ]
+    }
+  }
 };
 const seccionador = {
   type: "ListWithDetail",
   label: "CELDA SECCIONADOR",
   scope: "#/properties/seccionador",
-  elements: [
-    {
-      type: "HorizontalLayout",
+  options: {
+    detail: {
+      type: "VerticalLayout",
       elements: [
         {
-          type: "Control",
-          scope: "#/properties/marca_seccionador",
-          label: "Marca",
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/marca_seccionador",
+              label: "Marca",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/tipo_seccionador",
+              label: "Tipo",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/cap_fus_hh_seccionador",
+              label: "Cap. Fusibles HH"
+            }
+          ]
         },
         {
-          type: "Control",
-          scope: "#/properties/tipo_seccionador",
-          label: "Tipo",
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/referencia_seccionador",
+              label: "Referencia",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/numero_serie_seccionador",
+              label: "N° de serie del seccionador",
+            },
+          ]
         },
         {
-          type: "Control",
-          scope: "#/properties/cap_fus_hh_seccionador",
-          label: "Cap. Fusibles HH"
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/cuchillas_seccionador",
+              label: "Posee cuchillas de puesta tierra",
+              options: {
+                format: "radio"
+              }
+            },
+            {
+              type: "Control",
+              scope: "#/properties/palanca_seccionador",
+              label: "Posee palanca de accionamiento",
+              options: {
+                format: "radio"
+              }
+            },
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/ano_fabricacion_seccionador",
+              label: "Año de Fabricación",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/inom_seccionador",
+              label: "Inom (A)",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/vnom_seccionador",
+              label: "Vnom (KV)",
+            },
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/observ_seccionador",
+              label: "Observaciones generales",
+              options: {
+                multi: true
+              }
+            },
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/fotos_seccionador",
+              label: "Fotos"
+            }
+          ]
         }
       ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/referencia_seccionador",
-          label: "Referencia",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/numero_serie_seccionador",
-          label: "N° de serie del seccionador",
-        },
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/cuchillas_seccionador",
-          label: "Posee cuchillas de puesta tierra",
-          options: {
-            format: "radio"
-          }
-        },
-        {
-          type: "Control",
-          scope: "#/properties/palanca_seccionador",
-          label: "Posee palanca de accionamiento",
-          options: {
-            format: "radio"
-          }
-        },
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/ano_fabricacion_seccionador",
-          label: "Año de Fabricación",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/inom_seccionador",
-          label: "Inom (A)",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/vnom_seccionador",
-          label: "Vnom (KV)",
-        },
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/observ_seccionador",
-          label: "Observaciones generales",
-          options: {
-            multi: true
-          }
-        },
-      ]
-    },
-  ]
+    }
+  }
 };
 const transferencia = {
   type: "ListWithDetail",
   label: "CELDA TRANSFERENCIA",
   scope: "#/properties/transferencia",
-  elements: [
-    {
-      type: "HorizontalLayout",
+  options: {
+    detail: {
+      type: "VerticalLayout",
       elements: [
         {
-          type: "Control",
-          scope: "#/properties/marca_cia",
-          label: "Marca",
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/marca_cia",
+              label: "Marca",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/tipo_cia",
+              label: "Tipo",
+            }
+          ]
         },
         {
-          type: "Control",
-          scope: "#/properties/tipo_cia",
-          label: "Tipo",
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/capacidad_cia",
+              label: "Capacidad",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/estado_cia",
+              label: "Estado",
+            },
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/distribucion_cia",
+              label: "Posee distribución",
+              options: {
+                format: "radio"
+              }
+            },
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/rele_2759_cia",
+              label: "Relé de transferencia 27/59",
+            },
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/rele_81_cia",
+              label: "Relé 81",
+            },
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/calibre_conductores_cia",
+              label: "Calibre conductores",
+            },
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/observ_cia",
+              label: "Observaciones generales",
+              options: {
+                multi: true
+              }
+            },
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/fotos_cia",
+              label: "Fotos"
+            }
+          ]
         }
       ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/capacidad_cia",
-          label: "Capacidad",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/estado_cia",
-          label: "Estado",
-        },
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/distribucion_cia",
-          label: "Posee distribución",
-          options: {
-            format: "radio"
-          }
-        },
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/rele_2759_cia",
-          label: "Relé de transferencia 27/59",
-        },
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/rele_81_cia",
-          label: "Relé 81",
-        },
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/calibre_conductores_cia",
-          label: "Calibre conductores",
-        },
-      ]
-    },
-    {
-      type: "HorizontalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/observ_cia",
-          label: "Observaciones generales",
-          options: {
-            multi: true
-          }
-        },
-      ]
-    },
-  ]
+    }
+  }
 };
 const transformador = {
   type: "ListWithDetail",
@@ -771,6 +846,16 @@ const transformador = {
             }
           ]
         },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/fotos_dor",
+              label: "Fotos"
+            }
+          ]
+        }
       ]
     }
   }
@@ -864,6 +949,16 @@ const contadores = {
             }
           ]
         },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/fotos_cont",
+              label: "Fotos"
+            }
+          ]
+        }
       ]
     }
   }
@@ -974,6 +1069,16 @@ const tablero = {
             }
           ]
         },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/fotos_tab",
+              label: "Fotos"
+            }
+          ]
+        }
       ]
     }
   }
@@ -1075,7 +1180,7 @@ const hv = {
             },
             {
               type: "Control",
-              scope: "#/properties/mediaCapture",
+              scope: "#/properties/fotos_generales",
               label: "Fotos"
             }
           ]

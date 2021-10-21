@@ -7,28 +7,31 @@ import {
 
 interface MediaCaptureControlProps {
   data: any;
-  handleChange(path: string, value: any): void;
   path: string;
   label: string;
+  handleChange(path: string, value: any): void;
 }
 
 export const MediaCaptureControlTester = (uischema, schema) => {
-    if(!uischema.scope || uischema.type !== 'Control' ){
-        return -1;
-    }
-    const resolvedSchema = resolveSchema(schema, uischema.scope);
-    if(resolvedSchema.type === 'array' && resolvedSchema.format === 'media-capture'){
-        return 100;
-    }
+  if(!uischema.scope || uischema.type !== 'Control' ){
     return -1;
+  }
+  const resolvedSchema = resolveSchema(schema, uischema.scope);
+  if(resolvedSchema.type === 'array' && resolvedSchema.format === 'media-capture'){
+    return 100;
+  }
+  return -1;
 }
 
-// export const MediaCaptureControlTester = rankWith(100, and(isStringControl, formatIs('media-capture')));
+const newHaldleChange = (handleChange, path, newValue) => {
+  // console.log('path', path);
+  handleChange(path, newValue)
+}
 
-const MediaCaptureControl = ({ data, handleChange, path, label }: MediaCaptureControlProps) => (
+const MediaCaptureControl = ({ handleChange, path, label }: MediaCaptureControlProps) => (
   <MediaCapture
-    value={data}
-    updateValue={(newValue: array) => handleChange(path, newValue)}
+    updateValue={(newValue: string) => newHaldleChange(handleChange, path, newValue)}
+    path={path}
     label={label}
   />
 );

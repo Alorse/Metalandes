@@ -97,29 +97,24 @@ function renderCards(navigation) {
 function renderContent(navigation, item, report) {
   var observ = report.observ_generales ? report.observ_generales : 'Sin Observaciones'
   var title = report.identificacion + ' - ' + report.fecha
-  const createTwoButtonAlert = () =>
-  Alert.alert(
-    "Eliminar reporte",
-    "Esta seguro que desea eliminar el reporte?",
-    [
-      {
-        text: "Cancelar",
-        onPress: () => console.log("Cancel Pressed"),
-        style: "cancel"
-      },
-      { text: "OK", onPress: () => console.log("OK Pressed") }
-    ]
-  );
+  const generateReport = () => {
+    navigation.navigate('generate', 
+    {
+      itemId: item,
+      title: title
+    }
+  )
+  }
 
   const editReport = () => {
-
     navigation.navigate('new', 
       {
         itemId: item,
         type: 'edit',
         title: title
       }
-    )}
+    )
+  }
   
   return (
     <Block style={styles.itemContent}>
@@ -128,7 +123,7 @@ function renderContent(navigation, item, report) {
         <Block flex left>
         </Block>
         <Block>
-          <Button small color="default" onPress={createTwoButtonAlert}>
+          <Button small color="default" onPress={generateReport}>
             GENERAR REPORTE
           </Button>
         </Block>

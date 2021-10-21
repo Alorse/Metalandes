@@ -19,6 +19,7 @@ export class MediaCapture extends Component {
             fileReader = new FileReader();
             fileReader.readAsDataURL(file);
             fileReader.onload = (e) => {
+                console.log(this.state.images)
                 this.setState((prevState) => ({
                     ['images']: [...prevState['images'], e.target.result]
                 }));
@@ -31,7 +32,7 @@ export class MediaCapture extends Component {
         return (
             <Fragment>
                 <p style={{font: '14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'}}>
-                    {this.props.label}
+                    {this.props.path}
                 </p>
                 <input
                     accept="image/*"

@@ -10,6 +10,7 @@ import Elements from "../screens/Elements";
 import AboutUs from "../screens/AboutUs";
 import Reports from "../screens/Report";
 import CreateReport from "../screens/CreateReport";
+import GeneratePDF from "../screens/GeneratePDF";
 // drawer
 import CustomDrawerContent from "./Menu";
 import { I18n } from '../constants/locales';
@@ -106,6 +107,7 @@ export default function App(props) {
     <Stack.Navigator>
         <Stack.Screen name="Metalandes" component={Home} />
         <Stack.Screen name="Reportes" component={Reports} />
+        <Stack.Screen name="generate" component={GeneratePDF} />
         <Stack.Screen name={I18n.pages.new.id} component={CreateReport} />
     </Stack.Navigator>
   );

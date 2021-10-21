@@ -1,21 +1,80 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   ScrollView,
   StyleSheet
 } from "react-native";
-import { I18n } from "../constants/locales";
-import { Block, Text, theme } from "galio-framework";
+import { Block, theme } from "galio-framework";
+import { Button } from "../components/";
+import * as Print from 'expo-print';
+import * as MediaLibrary from "expo-media-library";
+import * as Sharing from "expo-sharing";
 
-function GeneratePDFScreen() {
+var item_id = null
+
+const htmlContent = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pdf Content</title>
+        <style>
+            body {
+                font-size: 16px;
+                color: rgb(255, 196, 0);
+            }
+            h1 {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Hello, UppLabs!</h1>
+    </body>
+    </html>
+`;
+
+const createAndSavePDF = async (html) => {
+  try {
+    const response = await Print.printToFileAsync({ html: html });
+    console.log(response)
+    if (Platform.OS === "ios") {
+      await Sharing.shareAsync(uri);
+    } else {
+      console.log('else')
+      const permission = await MediaLibrary.requestPermissionsAsync();
+      if (permission.granted) {
+        await MediaLibrary.createAssetAsync(uri);
+      }
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+function GeneratePDFScreen({ route, navigation }) {
+
+  const { itemId, title } = route.params;
+  item_id = itemId;
+  
+  useEffect(() => {
+    navigation.setOptions({ title: 'PDF: ' + title })
+  });
+
+  const handleClickOpen = () => {
+    createAndSavePDF(htmlContent)
+  };
+
   return (
     <Block flex center>
       <ScrollView
         showsVerticalScrollIndicator={false}
       >
-        <Text bold size={16} style={styles.title}>
-        { I18n.info }
-      </Text>
-
+        <Block right>
+          <Button color="success" onPress={handleClickOpen}>
+            Generar Reporte
+          </Button>
+        </Block>
       </ScrollView>
     </Block>
   );

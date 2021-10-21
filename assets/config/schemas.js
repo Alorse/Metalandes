@@ -54,6 +54,10 @@ const correccion = {
   observ_corre: {
     type: "string",
   },
+  fotos_corre: {
+    type: "array",
+    format: "media-capture",
+  }
 };
 const doble_tiro_primario = {
   marca_dtp: {
@@ -151,6 +155,10 @@ const doble_tiro_primario = {
   observ_dtp: {
     type: "string",
   },
+  fotos_dtp: {
+    type: "array",
+    format: "media-capture",
+  }
 };
 const media_baja = {
   tipo_mb: {
@@ -189,6 +197,10 @@ const media_baja = {
   },
   calibre_mb: {type: "string"},
   observ_mb: {type: "string"},
+  fotos_mb: {
+    type: "array",
+    format: "media-capture",
+  }
 };
 const seccionador = {
   marca_seccionador: doble_tiro_primario.marca_dtp,
@@ -216,6 +228,10 @@ const seccionador = {
   observ_seccionador:{
     type: "string",
   },
+  fotos_seccionador: {
+    type: "array",
+    format: "media-capture",
+  }
 };
 const transferencia = {
   marca_cia: {
@@ -281,6 +297,10 @@ const transferencia = {
   observ_cia: {
     type: "string",
   },
+  fotos_cia: {
+    type: "array",
+    format: "media-capture",
+  }
 };
 const transformador = {
   marca_dor: {
@@ -384,6 +404,10 @@ const transformador = {
     }
   },
   observ_dor: {type: "string"},
+  fotos_dor: {
+    type: "array",
+    format: "media-capture",
+  }
 };
 const contadores = {
   num_celdas_cont: {
@@ -407,6 +431,10 @@ const contadores = {
   observ_cont: {
     type: "string"
   },
+  fotos_cont: {
+    type: "array",
+    format: "media-capture",
+  }
 };
 const tablero = {
   nombre_tab: {
@@ -444,6 +472,10 @@ const tablero = {
   peligro_tab: si_no,
   observ_tab: {
     type: "string"
+  },
+  fotos_tab: {
+    type: "array",
+    format: "media-capture",
   }
 };
 
@@ -552,7 +584,7 @@ const hv = {
     observ_generales: {
       type: "string"
     },
-    mediaCapture: {
+    fotos_generales: {
       type: "array",
       format: "media-capture",
     }
