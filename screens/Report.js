@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   ScrollView,
   StyleSheet,
   Dimensions,
-  Alert,
   SafeAreaView
 } from "react-native";
 //galio
 import { Block, theme, Accordion, Text } from "galio-framework";
 import { Button } from "../components/";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import ReportExample from '../assets/config/example.json';
 
 const { width, height } = Dimensions.get("screen");
 
@@ -17,7 +17,7 @@ var data = [];
 
 const getAllKeys = async (navigation) => {
   let keys = []
-  data = [] // Resert Object
+  data = [] // Reset Object
   try {
     keys = await AsyncStorage.getAllKeys()
     let values
@@ -41,24 +41,45 @@ const getAllKeys = async (navigation) => {
       // read error
     }
   } catch(e) {
-    // read key error
+      // read error
+  }
+}
+
+const storeExample = async (value) => {
+  try {
+    const jsonValue = JSON.stringify(value)
+    await AsyncStorage.setItem('@reporte_000', jsonValue)
+  } catch (e) {
+    // saving error
   }
 }
 
 
 function ReportScreen({ navigation }) {
+  storeExample(ReportExample)
   getAllKeys(navigation)
   return (
     <Block flex center>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      {/* <ScrollView showsVerticalScrollIndicator={false}> */}
         {renderCards(navigation)}
-      </ScrollView>
+      {/* </ScrollView> */}
     </Block>
   );
 }
 
 function renderCards(navigation) {
   var state = navigation.getState()
+  
+  const [iData, setIData] = useState([]);
+  useEffect(
+    () => {
+      let timer1 = setTimeout(() => setIData(data), 1);
+      return () => {
+        clearTimeout(timer1);
+      };
+    },
+    []
+  );
 
   useEffect(() => {
     navigation.setOptions({ title: state.routes[1].params.type + 's' })
@@ -70,7 +91,7 @@ function renderCards(navigation) {
         style={styles.accordion}
         headerStyle={styles.listitemheader}
         contentStyle={styles.listitemcontent}
-        dataArray={data} />
+        dataArray={iData} />
       <Block flex-end middle right>
         <Button
           round

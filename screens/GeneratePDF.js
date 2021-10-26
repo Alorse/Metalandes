@@ -36,14 +36,13 @@ const htmlContent = `
 
 const createAndSavePDF = async (html) => {
   try {
-    const response = await Print.printToFileAsync({ html: html });
-    console.log(response)
+    const { uri } = await Print.printToFileAsync({ html: html });
     if (Platform.OS === "ios") {
       await Sharing.shareAsync(uri);
     } else {
-      console.log('else')
       const permission = await MediaLibrary.requestPermissionsAsync();
       if (permission.granted) {
+        console.log('aqui');
         await MediaLibrary.createAssetAsync(uri);
       }
     }
