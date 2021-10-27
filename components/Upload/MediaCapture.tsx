@@ -32,7 +32,7 @@ export class MediaCapture extends Component {
         return (
             <Fragment>
                 <p style={{font: '14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'}}>
-                    {this.props.path}
+                    {this.props.label}
                 </p>
                 <input
                     accept="image/*"
@@ -47,7 +47,7 @@ export class MediaCapture extends Component {
                         <PhotoCamera />
                     </IconButton>
                 </label>
-                <div>
+                <>
                     {this.state.images.map((photo, i) =>
                         <img 
                             src={photo} 
@@ -59,13 +59,13 @@ export class MediaCapture extends Component {
                             key={`${this.props.id}_${i}`}
                         />
                     )}
-                </div>
+                </>
             </Fragment>
         );
     }
     render2() {
         return (
-            <div id='#/properties/rating' className='rating'>
+            <>
             <p style={{font: '14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'}}>
                 {this.props.label}
             </p>
@@ -85,7 +85,7 @@ export class MediaCapture extends Component {
                 );
                 })}
             </span>
-            </div>
+            </>
         )
     }
 }

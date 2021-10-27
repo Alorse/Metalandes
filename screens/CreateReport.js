@@ -4,10 +4,11 @@ import {
     materialRenderers,
     materialCells
   } from '@jsonforms/material-renderers';
+import { RNCells, RNRenderers } from "../jsonforms";
 import { JsonForms } from '@jsonforms/react';
 import { Block } from "galio-framework";
-import schema from '../assets/config/schemas';
-import uiSchema from '../assets/config/uischemas';
+import schemaRoot from '../assets/config/schemas';
+import uiSchemaRoot from '../assets/config/uischemas';
 import { Button } from "../components/";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
@@ -29,8 +30,8 @@ const renderers = [
 
 
 const initialData = {};
-var tales = schema.hv
-var uiTales = uiSchema.hv
+var schema = schemaRoot.hv
+var uiSchema = uiSchemaRoot.hv
 var flag = true
 var item_id = null
 
@@ -121,8 +122,8 @@ function renderCards(itemId, navigation) {
   return (
     <>
       <JsonForms
-        schema={tales}
-        uischema={uiTales}
+        schema={schema}
+        uischema={uiSchema}
         data={data}
         renderers={renderers}
         cells={materialCells}
