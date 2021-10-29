@@ -6,6 +6,7 @@ import Header from './Header';
 import Input from './Input';
 // import Select from './Select';
 import Switch from './Switch';
+import Table from './TableComponent';
 
 export {
   Button,
@@ -15,5 +16,6 @@ export {
   Input,
   Header,
   // Select,
-  Switch
+  Switch,
+  Table
 };

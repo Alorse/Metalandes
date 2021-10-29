@@ -16,6 +16,7 @@ const si_no = {
   ]
 };
 const correccion = {
+  id_corre: { type: "string" },
   marca_rele_corre: {
     type: "string",
     enum: [
@@ -60,6 +61,7 @@ const correccion = {
   }
 };
 const doble_tiro_primario = {
+  id_dtp: { type: "string" },
   marca_dtp: {
     type: "string",
     enum: [
@@ -161,6 +163,7 @@ const doble_tiro_primario = {
   }
 };
 const media_baja = {
+  id_mb: { type: "string" },
   tipo_mb: {
     type: "string",
     enum: [
@@ -203,6 +206,7 @@ const media_baja = {
   }
 };
 const seccionador = {
+  id_seccionador: { type: "string" },
   marca_seccionador: doble_tiro_primario.marca_dtp,
   tipo_seccionador: doble_tiro_primario.tipo_dtp,
   cap_fus_hh_seccionador: doble_tiro_primario.cap_fus_hh_dtp,
@@ -234,6 +238,7 @@ const seccionador = {
   }
 };
 const transferencia = {
+  id_cia: { type: "string" },
   marca_cia: {
     type: "string",
     enum: [
@@ -303,6 +308,7 @@ const transferencia = {
   }
 };
 const transformador = {
+  id_dor: { type: "string" },
   marca_dor: {
     type: "string",
     enum: [
@@ -410,6 +416,7 @@ const transformador = {
   }
 };
 const contadores = {
+  id_cont: { type: "string" },
   num_celdas_cont: {
     type: "integer"
   },
@@ -492,7 +499,7 @@ const hv = {
     identificacion: {
       type: "string",
       minLength: 2,
-      maxLength: 20
+      maxLength: 200
     },
     fecha: {
       type: "string",
@@ -592,5 +599,6 @@ const hv = {
 };
 
 export default {
-    hv
+    hv,
+    equipos
 };

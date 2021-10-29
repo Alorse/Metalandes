@@ -59,7 +59,7 @@ function CreateReportScreen({ route, navigation }) {
 }
 
 function handleSubmit(data) {
-  const validate = ajv.compile(schema.hv)
+  const validate = ajv.compile(schema)
   const valid = validate(data)
   if (!valid) {
     return false

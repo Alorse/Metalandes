@@ -11,6 +11,16 @@ const doble_tiro_primario = {
           elements: [
             {
               type: "Control",
+              scope: "#/properties/id_dtp",
+              label: "Nombre / Ubicación / Referencia",
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
               scope: "#/properties/marca_dtp",
               label: "Marca",
             },
@@ -131,6 +141,16 @@ const correccion = {
           elements: [
             {
               type: "Control",
+              scope: "#/properties/id_corre",
+              label: "Nombre / Ubicación / Referencia",
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
               scope: "#/properties/marca_rele_corre",
               label: "Marca Relé",
             },
@@ -162,12 +182,12 @@ const correccion = {
             {
               type: "Control",
               scope: "#/properties/bancos_fijos_corre",
-              label: "Nro. Bancos Fijos",
+              label: "N° Bancos Fijos",
             },
             {
               type: "Control",
               scope: "#/properties/bancos_moviles_corre",
-              label: "Nro. Bancos Móviles",
+              label: "N° Bancos Móviles",
             }
           ]
         },
@@ -176,12 +196,12 @@ const correccion = {
           elements: [
             {
               type: "Control",
-              scope: "#/properties/bancos_fijos_corre",
+              scope: "#/properties/calibre_corre",
               label: "Calibre conductores",
             },
             {
               type: "Control",
-              scope: "#/properties/bancos_moviles_corre",
+              scope: "#/properties/relacion_corre",
               label: "Relación TC",
             }
           ]
@@ -226,6 +246,11 @@ const media_baja = {
           elements: [
             {
               type: "Control",
+              scope: "#/properties/id_mb",
+              label: "Nombre / Ubicación / Referencia",
+            },
+            {
+              type: "Control",
               scope: "#/properties/tipo_mb",
               label: "Tipo De Celda De Medida",
             }
@@ -257,17 +282,17 @@ const media_baja = {
             {
               type: "Control",
               scope: "#/properties/num_tc1_mb",
-              label: "Nro. de TC 1",
+              label: "N° de TC 1",
             },
             {
               type: "Control",
               scope: "#/properties/num_tc2_mb",
-              label: "Nro. de TC 2",
+              label: "N° de TC 2",
             },
             {
               type: "Control",
               scope: "#/properties/num_tc3_mb",
-              label: "Nro. de TC 3",
+              label: "N° de TC 3",
             },
           ]
         },
@@ -287,17 +312,17 @@ const media_baja = {
             {
               type: "Control",
               scope: "#/properties/num_tp1_mb",
-              label: "Nro. de TC 1",
+              label: "N° de TP 1",
             },
             {
               type: "Control",
               scope: "#/properties/num_tp2_mb",
-              label: "Nro. de TC 2",
+              label: "N° de TP 2",
             },
             {
               type: "Control",
               scope: "#/properties/num_tp3_mb",
-              label: "Nro. de TC 3",
+              label: "N° de TP 3",
             },
           ]
         },
@@ -371,6 +396,16 @@ const seccionador = {
     detail: {
       type: "VerticalLayout",
       elements: [
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/id_seccionador",
+              label: "Nombre / Ubicación / Referencia",
+            }
+          ]
+        },
         {
           type: "HorizontalLayout",
           elements: [
@@ -487,6 +522,16 @@ const transferencia = {
           elements: [
             {
               type: "Control",
+              scope: "#/properties/id_cia",
+              label: "Nombre / Ubicación / Referencia",
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
               scope: "#/properties/marca_cia",
               label: "Marca",
             },
@@ -590,6 +635,16 @@ const transformador = {
     detail: {
       type: "VerticalLayout",
       elements: [
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/id_dor",
+              label: "Nombre / Ubicación / Referencia",
+            }
+          ]
+        },
         {
           type: "HorizontalLayout",
           elements: [
@@ -873,13 +928,23 @@ const contadores = {
           elements: [
             {
               type: "Control",
+              scope: "#/properties/id_cont",
+              label: "Nombre / Ubicación / Referencia",
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
               scope: "#/properties/num_celdas_cont",
-              label: "Nro. Celdas de Medidores",
+              label: "N° Celdas de Medidores",
             },
             {
               type: "Control",
               scope: "#/properties/num_medidores_cont",
-              label: "Nro. Medidores por tablero",
+              label: "N° Medidores por tablero",
             }
           ]
         },
@@ -1007,7 +1072,7 @@ const tablero = {
             {
               type: "Control",
               scope: "#/properties/protecciones_tab",
-              label: "Nro. de protecciones en el tablero",
+              label: "N° de protecciones en el tablero",
             }
           ]
         },
