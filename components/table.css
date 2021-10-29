@@ -1,0 +1,82 @@
+.table {
+    width: 100%;
+    border: 1px solid #ccc;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 30px 0 30px;
+}
+.small {
+    margin: 15px;
+    width: 96%;
+}
+.small div.row div{
+    height: auto;
+}
+section.thead {
+    height: 30px;
+    background-color: #ddd;
+    display: flex;
+}
+.thead span {
+    font-weight: bold;
+}
+div.row div {
+    height: 45px;
+    display: inline-grid;
+    font-weight: bold;
+}
+div.row {
+    border-top: 1px solid #ccc;
+}
+div.row div span {
+    font-weight: normal;
+}
+div.row div p {
+    text-align: justify;
+    font-weight: normal;
+    text-transform: initial;
+    padding: 0 15px 0 10px;
+    white-space: pre-wrap;
+}
+.col-25 {
+    width: 22%;
+    border-right: 1px solid #ccc;
+    padding: 1%;
+}
+.col-30 {
+    width: 31%;
+    border-right: 1px solid #ccc;
+    padding: 1%;
+}
+.col-50 {
+    width: 47%;
+    border-right: 1px solid #ccc;
+    padding: 1%;
+}
+.col-100 {
+    width: 99%;
+    padding: 1%;
+}
+.no-border{
+    border: none !important;
+}
+.vertical {
+    justify-content: center;
+    align-items: center;
+}
+.center {
+    text-align: center;
+}
+.height-auto {
+    height: auto !important;
+}
+.width-auto {
+    width: auto !important;
+}
+.uppercase {
+    text-transform: uppercase;
+}
+.foto {
+    max-width: 48%;
+    border: 2px solid #aaa;
+    margin: 5px;
+}
