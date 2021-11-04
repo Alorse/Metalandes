@@ -21,6 +21,7 @@ import Ajv from "ajv"
 import MediaCaptureControl, {
   MediaCaptureControlTester,
 } from "../components/Upload/MediaCaptureControl";
+import { HeaderBackButton } from '@react-navigation/elements';
 
 const renderers = [
   ...materialRenderers,
@@ -45,7 +46,21 @@ function CreateReportScreen({ route, navigation }) {
   item_id = itemId;
   
   useEffect(() => {
-    navigation.setOptions({ title: type == 'new' ?  'Nuevo ' + title : title })
+    navigation.setOptions({ 
+      title: type == 'new' ?  'Nuevo ' + title : title,
+      headerLeft: (props) => (
+        <HeaderBackButton
+          {...props}
+          onPress={() => {
+            if (itemId) {
+              window.location.reload();
+            } else {
+              navigation.goBack()
+            }
+          }}
+        />
+      ),
+    })
   });
 
 
@@ -105,6 +120,11 @@ function renderCards(itemId, navigation) {
   const handleClickOpen = () => {
     setSuccessful(handleSubmit(data))
     setOpen(true);
+    if (itemId) {
+      setTimeout(() => {
+        window.location.reload();
+      }, 700)
+    }
   };
 
   const handleClose = () => {

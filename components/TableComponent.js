@@ -100,17 +100,19 @@ const Child = ({data, equipos, numGabinetes}) => (
               <p>{data.observ_generales}</p>
             </div>
           </div>
-          {
-            data.fotos_generales && 
-            (
-              <>
-                {data.fotos_generales.map((item, i) => {
-                  return (<img  key={i} src={item} className="foto" />)
-                })}
-              </>
-            )
-          }
         </section>
+    </div>
+    <div style={{width: width-20}}>
+      {
+        data.fotos_generales && 
+        (
+          <>
+            {data.fotos_generales.map((item, i) => {
+              return (<img  key={i} src={item} className="foto" />)
+            })}
+          </>
+        )
+      }
     </div>
     {
       data.doble_tiro_primario && 
