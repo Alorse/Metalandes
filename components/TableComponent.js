@@ -60,7 +60,7 @@ class TableComponent extends React.Component {
 const { width } = Dimensions.get("screen");
 
 const Child = ({data, equipos, numGabinetes}) => (
-  <>
+  <div>
     <div className="table" style={{width: width-20}}>
         <section className="thead vertical">
             <span>HOJA DE VIDA SUBESTACIÓN ELÉCTRICA</span>
@@ -118,6 +118,8 @@ const Child = ({data, equipos, numGabinetes}) => (
         <>
           {data.doble_tiro_primario.map((item) => {
             return (
+              <>
+              <div className="page-break" />
               <div className="table" style={{width: width-20}} key={item.id_cont}>
                 <section className="thead vertical">
                     <span className="uppercase">{equipos[2]} ({item.id_dtp})</span>
@@ -153,6 +155,7 @@ const Child = ({data, equipos, numGabinetes}) => (
                   </div>
                 </section>
               </div>
+              </>
             )
           })}
         </>
@@ -164,6 +167,8 @@ const Child = ({data, equipos, numGabinetes}) => (
         <>
           {data.correccion.map((item) => {
             return (
+              <>
+              <div className="page-break" />
               <div className="table" style={{width: width-20}} key={item.id_corre}>
                 <section className="thead vertical">
                     <span className="uppercase">{equipos[0]} ({item.id_corre})</span>
@@ -193,6 +198,7 @@ const Child = ({data, equipos, numGabinetes}) => (
                   </div>
                 </section>
               </div>
+              </>
             )
           })}
         </>
@@ -204,6 +210,8 @@ const Child = ({data, equipos, numGabinetes}) => (
         <>
           {data.media_baja.map((item) => {
             return (
+              <>
+              <div className="page-break" />
               <div className="table" style={{width: width-20}} key={item.id_mb}>
                 <section className="thead vertical">
                     <span className="uppercase">{equipos[3]} ({item.id_mb})</span>
@@ -248,6 +256,7 @@ const Child = ({data, equipos, numGabinetes}) => (
                   </div>
                 </section>
               </div>
+              </>
             )
           })}
         </>
@@ -259,6 +268,8 @@ const Child = ({data, equipos, numGabinetes}) => (
         <>
           {data.seccionador.map((item) => {
             return (
+              <>
+              <div className="page-break" />
               <div className="table" style={{width: width-20}} key={item.id_seccionador}>
                 <section className="thead vertical">
                     <span className="uppercase">{equipos[4]} ({item.id_seccionador})</span>
@@ -290,6 +301,7 @@ const Child = ({data, equipos, numGabinetes}) => (
                   </div>
                 </section>
               </div>
+              </>
             )
           })}
         </>
@@ -301,6 +313,8 @@ const Child = ({data, equipos, numGabinetes}) => (
         <>
           {data.transferencia.map((item) => {
             return (
+              <>
+              <div className="page-break" />
               <div className="table" style={{width: width-20}} key={item.id_cia}>
               <section className="thead vertical">
                 <span className="uppercase">{equipos[5]} ({item.id_cia})</span>
@@ -350,6 +364,7 @@ const Child = ({data, equipos, numGabinetes}) => (
                 </div>
               </section>
             </div>
+            </>
             )
           })}
         </>
@@ -361,6 +376,8 @@ const Child = ({data, equipos, numGabinetes}) => (
         <>
           {data.transformador.map((item) => {
             return (
+              <>
+              <div className="page-break" />
               <div className="table" style={{width: width-20}} key={item.id_dor}>
               <section className="thead vertical">
                   <span className="uppercase">{equipos[6]} ({item.id_dor})</span>
@@ -461,6 +478,7 @@ const Child = ({data, equipos, numGabinetes}) => (
                 )}
               </section>
             </div>
+            </>
             )
           })}
         </>
@@ -472,6 +490,8 @@ const Child = ({data, equipos, numGabinetes}) => (
         <>
           {data.contadores.map((item) => {
             return (
+              <>
+              <div className="page-break" />
               <div className="table" style={{width: width-20}} key={item.id_cont}>
                 <section className="thead vertical">
                     <span className="uppercase">{equipos[0]} ({item.id_cont})</span>
@@ -501,6 +521,7 @@ const Child = ({data, equipos, numGabinetes}) => (
                   </div>
                 </section>
               </div>
+              </>
             )
           })}
         </>
@@ -512,6 +533,8 @@ const Child = ({data, equipos, numGabinetes}) => (
         <>
           {data.tablero.map((item) => {
             return (
+              <>
+              <div className="page-break" />
               <div className="table" style={{width: width-20}} key={item.nombre_tab}>
               <section className="thead vertical">
                   <span className="uppercase">{equipos[7]} ({item.nombre_tab})</span>
@@ -545,12 +568,13 @@ const Child = ({data, equipos, numGabinetes}) => (
                   </div>
               </section>
             </div>
+            </>
             )
           })}
         </>
       )
     }
-  </>
+  </div>
 );
 
 export default TableComponent;

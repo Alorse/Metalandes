@@ -3,6 +3,7 @@
     border: 1px solid #ccc;
     font-family: Arial, Helvetica, sans-serif;
     margin: 30px 0 30px;
+    display: block;
 }
 .small {
     margin: 15px;
@@ -79,4 +80,45 @@ div.row div p {
     max-width: 48%;
     border: 2px solid #aaa;
     margin: 5px;
+}
+
+
+@media all {
+    .page-break {
+        display: none;
+        page-break-before: always;
+    }
+}
+
+@media print {
+    html, body {
+        height: initial !important;
+        overflow: initial !important;
+        -webkit-print-color-adjust: exact;
+        justify-content: center;
+    }
+}
+
+@media print {
+    .page-break {
+        margin-top: 1rem;
+        display: block;
+        /* page-break-before: auto; */
+        page-break-before: always;
+    }
+}
+
+/* @page {
+    size: auto;
+    margin: 20mm;
+} */
+@media print {
+    @page {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    body  {
+        padding-top: 20mm;
+        padding-bottom: 20mm;
+    }
 }
