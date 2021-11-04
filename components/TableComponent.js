@@ -317,20 +317,28 @@ const Child = ({data, equipos, numGabinetes}) => (
                 <div className="row vertical">
                   <div className="col-100"><span>Posee distribución</span> {item.distribucion_cia}</div>
                 </div>
-                <div className="row vertical uppercase">
-                  <div className="col-100 center height-auto">Relé de transferencia 27/59</div>
-                </div>
-                <div className="row vertical">
-                  <div className="col-50"><span>Marca</span> {item.rele_2759_cia.marca}</div>
-                  <div className="col-50 no-border"><span>Referencia</span> {item.rele_2759_cia.referencia}</div>
-                </div>
-                <div className="row vertical uppercase">
-                  <div className="col-100 center height-auto">Relé 81</div>
-                </div>
-                <div className="row vertical">
-                  <div className="col-50"><span>Marca</span> {item.rele_81_cia.marca}</div>
-                  <div className="col-50 no-border"><span>Referencia</span> {item.rele_81_cia.referencia}</div>
-                </div>
+                {item.rele_2759_cia && (
+                  <>
+                    <div className="row vertical uppercase">
+                      <div className="col-100 center height-auto">Relé de transferencia 27/59</div>
+                    </div>
+                    <div className="row vertical">
+                      <div className="col-50"><span>Marca</span> {item.rele_2759_cia ? item.rele_2759_cia.marca : ''}</div>
+                      <div className="col-50 no-border"><span>Referencia</span> {item.rele_2759_cia ? item.rele_2759_cia.referencia : ''}</div>
+                    </div>
+                  </>
+                )}
+                {item.rele_81_cia && (
+                  <>
+                    <div className="row vertical uppercase">
+                      <div className="col-100 center height-auto">Relé 81</div>
+                    </div>
+                    <div className="row vertical">
+                      <div className="col-50"><span>Marca</span> {item.rele_81_cia ? item.rele_81_cia.marca : ''}</div>
+                      <div className="col-50 no-border"><span>Referencia</span> {item.rele_81_cia ? item.rele_81_cia.referencia : ''}</div>
+                    </div>
+                  </>
+                )}
                 <div className="row vertical">
                   <div className="col-100"><span>Calibre conductores</span> {item.calibre_conductores_cia}</div>
                 </div>
