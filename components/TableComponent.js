@@ -328,7 +328,7 @@ const Child = ({data, equipos, numGabinetes}) => (
                     </div>
                   </>
                 )}
-                {item.rele_81_cia && (
+                {item.rele_81_cia && item.posee_rele_81_cia == "Sí" && (
                   <>
                     <div className="row vertical uppercase">
                       <div className="col-100 center height-auto">Relé 81</div>

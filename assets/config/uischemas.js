@@ -548,7 +548,7 @@ const transferencia = {
             {
               type: "Control",
               scope: "#/properties/capacidad_cia",
-              label: "Capacidad",
+              label: "Capacidad (Amp)",
             },
             {
               type: "Control",
@@ -564,6 +564,14 @@ const transferencia = {
               type: "Control",
               scope: "#/properties/distribucion_cia",
               label: "Posee distribución",
+              options: {
+                format: "radio"
+              }
+            },
+            {
+              type: "Control",
+              scope: "#/properties/posee_rele_81_cia",
+              label: "Posee Relé 81",
               options: {
                 format: "radio"
               }
@@ -587,6 +595,13 @@ const transferencia = {
               type: "Control",
               scope: "#/properties/rele_81_cia",
               label: "Relé 81",
+              rule: {
+                effect: "SHOW",
+                condition: {
+                  scope: "#/properties/posee_rele_81_cia",
+                  schema: { enum: ["Sí"] }
+                }
+              }
             },
           ]
         },
@@ -1052,7 +1067,7 @@ const tablero = {
             {
               type: "Control",
               scope: "#/properties/capacidad_tab",
-              label: "Capacidad totalizador",
+              label: "Capacidad totalizador (Amp)",
             },
             {
               type: "Control",
@@ -1113,11 +1128,17 @@ const tablero = {
               type: "Control",
               scope: "#/properties/barrajes_tab",
               label: "Posee protección de barrajes (lamina de policarbonato u otras)",
+              options: {
+                format: "radio"
+              }
             },
             {
               type: "Control",
               scope: "#/properties/peligro_tab",
               label: "Existe marcación de peligro (calcomanía rayo)",
+              options: {
+                format: "radio"
+              }
             }
           ]
         },

@@ -47,10 +47,10 @@ const correccion = {
     type: "integer",
   },
   calibre_corre: {
-    type: "integer",
+    type: "number",
   },
   relacion_corre: {
-    type: "integer",
+    type: "number",
   },
   observ_corre: {
     type: "string",
@@ -192,7 +192,7 @@ const media_baja = {
   num_tp2_mb: {type: "string"},
   num_tp3_mb: {type: "string"},
   rel_trans_tp_mb: {type: "string"},
-  mult_mb: {type: "string"},
+  mult_mb: {type: "number"},
   ano_fabricacion_mb: {
     type: "integer",
     minLength: 4,
@@ -224,10 +224,10 @@ const seccionador = {
     maxLength: 4,
   },
   inom_seccionador:{
-    type: "string",
+    type: "number",
   },
   vnom_seccionador:{
-    type: "string",
+    type: "number",
   },
   observ_seccionador:{
     type: "string",
@@ -264,7 +264,7 @@ const transferencia = {
     ]
   },
   capacidad_cia: {
-    type: "string",
+    type: "number",
   },
   estado_cia: {
     type: "string",
@@ -285,6 +285,7 @@ const transferencia = {
       },
     }
   },
+  posee_rele_81_cia: si_no,
   rele_81_cia: {
     type: "object",
     properties: {
@@ -421,7 +422,7 @@ const contadores = {
     type: "integer"
   },
   num_medidores_cont: {
-    type: "integer"
+    type: "string"
   },
   tipo_medidores_cont: {
     type: "string"
@@ -448,7 +449,7 @@ const tablero = {
     type: "string"
   },
   capacidad_tab: {
-    type: "string"
+    type: "number"
   },
   cortocircuito_tab: {
     type: "string"
