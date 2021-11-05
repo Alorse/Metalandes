@@ -5,7 +5,6 @@ import { Block, Text, Button } from 'galio-framework';
 
 import Theme from "../constants/Theme";
 import { I18n } from "../constants/locales";
-// import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 const { width } = Dimensions.get("screen");
 const thumbMeasure = (width - 48 - 32) / 3;

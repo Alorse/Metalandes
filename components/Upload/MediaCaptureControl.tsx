@@ -17,7 +17,7 @@ export const MediaCaptureControlTester = (uischema, schema) => {
     return -1;
   }
   const resolvedSchema = resolveSchema(schema, uischema.scope);
-  if(resolvedSchema.type === 'array' && resolvedSchema.format === 'media-capture'){
+  if(resolvedSchema && resolvedSchema.type === 'array' && resolvedSchema.format === 'media-capture'){
     return 100;
   }
   return -1;
@@ -28,9 +28,11 @@ const newHaldleChange = (handleChange, path, newValue) => {
   handleChange(path, newValue)
 }
 
-const MediaCaptureControl = ({ handleChange, path, label }: MediaCaptureControlProps) => (
+const MediaCaptureControl = ({ data, handleChange, path, label }: MediaCaptureControlProps) => (
   <MediaCapture
     updateValue={(newValue: string) => newHaldleChange(handleChange, path, newValue)}
+    value={data}
+    // onClick={(ev: any) => handleChange(path, Number(ev.value))}
     path={path}
     label={label}
   />

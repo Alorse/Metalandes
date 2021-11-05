@@ -105,8 +105,8 @@ function renderCards(navigation) {
           onPress={() => navigation.navigate('new', 
           {
             itemId: null,
-            type: 'new',
-            title: state.routes[1].params.type
+            mode: 'new',
+            type: state.routes[1].params.type
           }
           )}
         />
@@ -131,8 +131,8 @@ function renderContent(navigation, item, report) {
     navigation.navigate('new', 
       {
         itemId: item,
-        type: 'edit',
-        title: title
+        mode: 'edit',
+        type: title
       }
     )
   }

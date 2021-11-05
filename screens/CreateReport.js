@@ -8,7 +8,9 @@ import { RNCells, RNRenderers } from "../jsonforms";
 import { JsonForms } from '@jsonforms/react';
 import { Block } from "galio-framework";
 import schemaRoot from '../assets/config/schemas';
+import schemaRutina from '../assets/config/schemas_rutina';
 import uiSchemaRoot from '../assets/config/uischemas';
+import uiSchemaRutina from '../assets/config/uischemas_rutina';
 import { Button } from "../components/";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
@@ -33,6 +35,10 @@ const renderers = [
 const initialData = {};
 var schema = schemaRoot.hv
 var uiSchema = uiSchemaRoot.hv
+var schema_rutina = schemaRutina.rutina
+var uiSchema_rutina = uiSchemaRutina.hv
+var schema_servicio = {}
+var uiSchema_servicio = {}
 var flag = true
 var item_id = null
 
@@ -42,12 +48,12 @@ ajv.addFormat('media-capture', {
 })
 
 function CreateReportScreen({ route, navigation }) {
-  const { itemId, type, title } = route.params;
+  const { itemId, mode, type } = route.params;
   item_id = itemId;
   
   useEffect(() => {
     navigation.setOptions({ 
-      title: type == 'new' ?  'Nuevo ' + title : title,
+      title: mode == 'new' ?  'Nuevo ' + type : type,
       headerLeft: (props) => (
         <HeaderBackButton
           {...props}
@@ -67,7 +73,7 @@ function CreateReportScreen({ route, navigation }) {
   return (
     <Block flex center>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {renderCards(itemId, navigation)}
+        {renderCards(itemId, type, navigation)}
       </ScrollView>
     </Block>
   );
@@ -94,7 +100,7 @@ const storeData = async (value) => {
   }
 }
 
-function renderCards(itemId, navigation) {
+function renderCards(itemId, type, navigation) {
   const [data, setData] = useState(initialData);
   const [open, setOpen] = useState(false);
   const [successful, setSuccessful] = useState(false);
@@ -138,12 +144,24 @@ function renderCards(itemId, navigation) {
     console.log(data);
     setData(data)
   };
+
+  console.log(type)
+  var schemaType = schema
+  var uiSchemaType = uiSchema
+  if (type == 'Rutina'){
+    schemaType = schema_rutina
+    uiSchemaType = uiSchema_rutina
+  }
+  if (type == 'Servicio') {
+    schemaType = schema_servicio
+    uiSchemaType = uiSchema_servicio
+  }
   
   return (
     <>
       <JsonForms
-        schema={schema}
-        uischema={uiSchema}
+        schema={schemaType}
+        uischema={uiSchemaType}
         data={data}
         renderers={renderers}
         cells={materialCells}
