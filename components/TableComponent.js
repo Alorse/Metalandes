@@ -10,6 +10,7 @@ class TableComponent extends React.Component {
     super(props);
     this.state = {
       itemId: this.props.item,
+      type: this.props.type,
       data: {},
       equipos: schemaRoot.equipos,
       numGabinetes: 0
@@ -53,13 +54,14 @@ class TableComponent extends React.Component {
         data={this.state.data}
         equipos={this.state.equipos}
         numGabinetes={this.state.numGabinetes}
+        type={this.state.type}
         />
   }
 }
 
 const { width } = Dimensions.get("screen");
 
-const Child = ({data, equipos, numGabinetes}) => (
+const Child = ({data, equipos, numGabinetes, type}) => (
   <div>
     <div className="table" style={{width: width-20}}>
         <section className="thead vertical">
@@ -67,32 +69,32 @@ const Child = ({data, equipos, numGabinetes}) => (
         </section>
         <section className="tbody">
           <div className="row vertical">
-              <div className="col-30"><span>Identificación</span> {data.identificacion}</div>
-              <div className="col-30"><span>Fecha</span> {data.fecha}</div>
-              <div className="col-30 no-border"><span>Ciudad</span> {data.ciudad}</div>
+            <div className="col-30"><span>Identificación</span> {data.identificacion}</div>
+            <div className="col-30"><span>Fecha</span> {data.fecha}</div>
+            <div className="col-30 no-border"><span>Ciudad</span> {data.ciudad}</div>
           </div>
           <div className="row vertical">
-              <div className="col-100"><span>Contacto</span> {data.contacto}</div>
+            <div className="col-100"><span>Contacto</span> {data.contacto}</div>
           </div>
           <div className="row vertical">
-              <div className="col-100"><span>Establecimiento</span> {data.establecimiento}</div>
+            <div className="col-100"><span>Establecimiento</span> {data.establecimiento}</div>
           </div>
           <div className="row vertical uppercase">
               <div className="col-100 center height-auto">Gabinetes que componen la subestación ({numGabinetes})</div>
           </div>
           <div className="row vertical uppercase">
-              <div className="col-100 height-auto">
-                <ol type="1">
-                    {data.doble_tiro_primario && <li>{equipos[2]} ({data.doble_tiro_primario.length})</li>}
-                    {data.correccion && <li>{equipos[1]} ({data.correccion.length})</li>}
-                    {data.media_baja && <li>{equipos[3]} ({data.media_baja.length})</li>}
-                    {data.seccionador && <li>{equipos[4]} ({data.seccionador.length})</li>}
-                    {data.transferencia && <li>{equipos[5]} ({data.transferencia.length})</li>}
-                    {data.transformador && <li>{equipos[6]} ({data.transformador.length})</li>}
-                    {data.contadores && <li>{equipos[0]} ({data.contadores.length})</li>}
-                    {data.tablero && <li>{equipos[7]} ({data.tablero.length})</li>}
-                </ol>
-              </div>
+            <div className="col-100 height-auto">
+              <ol type="1">
+                {data.doble_tiro_primario && <li>{equipos[2]} ({data.doble_tiro_primario.length})</li>}
+                {data.correccion && <li>{equipos[1]} ({data.correccion.length})</li>}
+                {data.media_baja && <li>{equipos[3]} ({data.media_baja.length})</li>}
+                {data.seccionador && <li>{equipos[4]} ({data.seccionador.length})</li>}
+                {data.transferencia && <li>{equipos[5]} ({data.transferencia.length})</li>}
+                {data.transformador && <li>{equipos[6]} ({data.transformador.length})</li>}
+                {data.contadores && <li>{equipos[0]} ({data.contadores.length})</li>}
+                {data.tablero && <li>{equipos[7]} ({data.tablero.length})</li>}
+              </ol>
+            </div>
           </div>
           <div className="row vertical uppercase">
             <div className="col-100 center height-auto">
@@ -124,36 +126,45 @@ const Child = ({data, equipos, numGabinetes}) => (
               <div className="page-break" />
               <div className="table" style={{width: width-20}} key={item.id_cont}>
                 <section className="thead vertical">
-                    <span className="uppercase">{equipos[2]} ({item.id_dtp})</span>
+                  <span className="uppercase">{equipos[2]} ({item.id_dtp})</span>
                 </section>
                 <section className="tbody">
                   <div className="row vertical">
-                      <div className="col-30"><span>Marca</span> {item.marca_dtp}</div>
-                      <div className="col-30"><span>Tipo</span> {item.tipo_dtp}</div>
-                      <div className="col-30 no-border"><span>Cap. Fusibles HH</span> {item.cap_fus_hh_dtp}</div>
+                    <div className="col-30"><span>Marca</span> {item.marca_dtp}</div>
+                    <div className="col-30"><span>Tipo</span> {item.tipo_dtp}</div>
+                    <div className="col-30 no-border"><span>Cap. Fusibles HH</span> {item.cap_fus_hh_dtp}</div>
                   </div>
                   <div className="row vertical">
-                      <div className="col-50"><span>N° circuito preferencial</span> {item.NumeroCircuitoPreferencial}</div>
-                      <div className="col-50 no-border"><span>N° circuito emergencia</span> {item.NumeroCircuitoEmergencia}</div>
+                    <div className="col-50"><span>N° circuito preferencial</span> {item.NumeroCircuitoPreferencial}</div>
+                    <div className="col-50 no-border"><span>N° circuito emergencia</span> {item.NumeroCircuitoEmergencia}</div>
                   </div>
                   <div className="row vertical">
+                    {type == 'Mantenimiento' && 
                       <div className="col-50"><span>Tipo Accionamiento</span> {item.TipoAccionamiento}</div>
-                      <div className="col-50 no-border"><span>Estado</span> {item.estado_dtp}</div>
+                    }
+                    {type == 'Rutina' && 
+                      <div className="col-50"><span>Tipo de Inspección</span> {item.inspeccion_dtp}</div>
+                    }
+                    <div className="col-50 no-border"><span>Estado</span> {item.estado_dtp}</div>
                   </div>
-                  <div className="row vertical">
+                  {type == 'Mantenimiento' && 
+                    <>
+                    <div className="row vertical">
                       <div className="col-30"><span>Marca relé 27/59 y/o PLC</span> {item.MarcaRele}</div>
                       <div className="col-30"><span>Voltaje alto</span> {item.VoltajeAlto}</div>
                       <div className="col-30 no-border"><span>Voltaje bajo</span> {item.VoltajeBajo}</div>
-                  </div>
-                  <div className="row vertical">
+                    </div>
+                    <div className="row vertical">
                       <div className="col-50"><span>Tensión de Control</span> {item.TensionDeControl}</div>
                       <div className="col-50 no-border"><span>Año de fabricación</span> {item.ano_fabricacion_dtp}</div>
-                  </div>
+                    </div>
+                    </>
+                  }
                   <div className="row vertical uppercase">
-                      <div className="col-100 center height-auto">
-                        Observaciones generales
-                        <p>{item.observ_dtp}</p>
-                      </div>
+                    <div className="col-100 center height-auto">
+                      Observaciones generales
+                      <p>{item.observ_dtp}</p>
+                    </div>
                   </div>
                 </section>
               </div>
@@ -173,30 +184,63 @@ const Child = ({data, equipos, numGabinetes}) => (
               <div className="page-break" />
               <div className="table" style={{width: width-20}} key={item.id_corre}>
                 <section className="thead vertical">
-                    <span className="uppercase">{equipos[0]} ({item.id_corre})</span>
+                  <span className="uppercase">{equipos[1]} ({item.id_corre})</span>
                 </section>
                 <section className="tbody">
                   <div className="row vertical">
-                      <div className="col-50"><span>Marca Relé</span> {item.marca_rele_corre}</div>
-                      <div className="col-50 no-border"><span>Referencia</span> {item.referencia_corre}</div>
+                    <div className="col-50"><span>Marca Relé</span> {item.marca_rele_corre}</div>
+                    <div className="col-50 no-border"><span>Referencia</span> {item.referencia_corre}</div>
                   </div>
                   <div className="row vertical">
-                      <div className="col-50"><span>Totalizador</span> {item.totalizador_corre}</div>
-                      <div className="col-50 no-border"><span>Factor de P</span> {item.factor_corre}</div>
+                    <div className="col-50"><span>Totalizador</span> {item.totalizador_corre}</div>
+                    <div className="col-50 no-border"><span>Factor de P</span> {item.factor_corre}</div>
                   </div>
-                  <div className="row vertical">
+                  {type == 'Mantenimiento' && 
+                    <div className="row vertical">
                       <div className="col-50"><span>N° Bancos Fijos</span> {item.bancos_fijos_corre}</div>
                       <div className="col-50 no-border"><span>N° Bancos Móviles</span> {item.bancos_moviles_corre}</div>
-                  </div>
+                    </div>
+                  }
                   <div className="row vertical">
+                    {type == 'Mantenimiento' && 
                       <div className="col-50"><span>Calibre conductores</span> {item.calibre_corre}</div>
-                      <div className="col-50 no-border"><span>Relación TC</span> {item.relacion_corre}</div>
+                    }
+                    {type == 'Rutina' && 
+                      <div className="col-50"><span>Número Transformador Asociado</span> {item.num_trans_corre}</div>
+                    }
+                    <div className="col-50 no-border"><span>Relación TC</span> {item.relacion_corre}</div>
                   </div>
-                  <div className="row vertical uppercase">
-                      <div className="col-100 center height-auto">
-                        Observaciones generales
-                        <p>{item.observ_corre}</p>
+                  {type == 'Rutina' && 
+                  <>
+                    <div className="row vertical">
+                      <div className="col-14" style={{width: '13.2%'}}>Tipo de paso</div>
+                      <div className="col-14">Estado</div>
+                      <div className="col-14">Protección</div>
+                      <div className="col-14">kVAr</div>
+                      <div className="col-14">IR</div>
+                      <div className="col-14">IS</div>
+                      <div className="col-14 no-border">IT</div>
+                    </div>
+                    {item.lista_corre.map((lista) => {
+                      return (
+                      <div className="row vertical">
+                        <div className="col-14" style={{width: '13.2%'}}><span>{lista.paso}</span></div>
+                        <div className="col-14"><span>{lista.estado}</span></div>
+                        <div className="col-14"><span>{lista.proteccion}</span></div>
+                        <div className="col-14"><span>{lista.kvar}</span></div>
+                        <div className="col-14"><span>{lista.it}</span></div>
+                        <div className="col-14"><span>{lista.is}</span></div>
+                        <div className="col-14 no-border"><span>{lista.it}</span></div>
                       </div>
+                      )
+                    })}
+                  </>
+                  }
+                  <div className="row vertical uppercase">
+                    <div className="col-100 center height-auto">
+                      Observaciones generales
+                      <p>{item.observ_corre}</p>
+                    </div>
                   </div>
                 </section>
               </div>
@@ -216,45 +260,62 @@ const Child = ({data, equipos, numGabinetes}) => (
               <div className="page-break" />
               <div className="table" style={{width: width-20}} key={item.id_mb}>
                 <section className="thead vertical">
-                    <span className="uppercase">{equipos[3]} ({item.id_mb})</span>
+                  <span className="uppercase">{equipos[3]} ({item.id_mb})</span>
                 </section>
                 <section className="tbody">
                   <div className="row vertical">
                     <div className="col-100"><span>Tipo De Celda De Medida</span> {item.tipo_mb}</div>
                   </div>
                   <div className="row vertical">
-                      <div className="col-30"><span>Marca Medidor</span> {item.marca_medidor_md}</div>
-                      <div className="col-30"><span>Referencia</span> {item.referencia_mb}</div>
+                    <div className="col-30"><span>Marca Medidor</span> {item.marca_medidor_md}</div>
+                    <div className="col-30"><span>Referencia</span> {item.referencia_mb}</div>
+                    {type == 'Mantenimiento' && 
                       <div className="col-30 no-border"><span>Marca TCs & TPs</span> {item.marca_tc_tp_mb}</div>
+                    }
+                    {type == 'Rutina' && 
+                      <div className="col-30 no-border"><span>Tipo de Inspección</span> {item.inspeccion_mb}</div>
+                    }
                   </div>
-                  <div className="row vertical">
+                  {type == 'Mantenimiento' && 
+                    <>
+                    <div className="row vertical">
                       <div className="col-30"><span>N° de TC1</span> {item.num_tc1_mb}</div>
                       <div className="col-30"><span>N° de TC2</span> {item.num_tc2_mb}</div>
                       <div className="col-30 no-border"><span>N° de TC3</span> {item.num_tc3_mb}</div>
-                  </div>
-                  <div className="row vertical">
+                    </div>
+                    <div className="row vertical">
                       <div className="col-100"><span>Relación de Transformación</span> {item.rel_trans_tc_mb}</div>
-                  </div>
-                  <div className="row vertical">
+                    </div>
+                    <div className="row vertical">
                       <div className="col-30"><span>N° de TP1</span> {item.num_tp1_mb}</div>
                       <div className="col-30"><span>N° de TP2</span> {item.num_tp2_mb}</div>
                       <div className="col-30 no-border"><span>N° de TP3</span> {item.num_tp3_mb}</div>
-                  </div>
-                  <div className="row vertical">
+                    </div>
+                    <div className="row vertical">
                       <div className="col-100"><span>Relación de Transformación</span> {item.rel_trans_tp_mb}</div>
-                  </div>
-                  <div className="row vertical">
+                    </div>
+                    <div className="row vertical">
                       <div className="col-100"><span>Constante o factor de multiplicación</span> {item.mult_mb}</div>
-                  </div>
-                  <div className="row vertical">
+                    </div>
+                    <div className="row vertical">
                       <div className="col-50"><span>Año de fabricación</span> {item.ano_fabricacion_mb}</div>
                       <div className="col-50 no-border"><span>Calibre de las Fases</span> {item.calibre_mb}</div>
-                  </div>
+                    </div>
+                    </>
+                  }
+                  {type == 'Rutina' && 
+                    <>
+                    <div className="row vertical">
+                      <div className="col-50"><span>Estado de sellos</span> {item.sellos_mb}</div>
+                      <div className="col-50 no-border"><span>Estado General</span> {item.estado_mb}</div>
+                    </div>
+                    </>
+                  }
                   <div className="row vertical uppercase">
-                      <div className="col-100 center height-auto">
-                        Observaciones generales
-                        <p>{item.observ_mb}</p>
-                      </div>
+                    <div className="col-100 center height-auto">
+                      Observaciones generales
+                      <p>{item.observ_mb}</p>
+                    </div>
                   </div>
                 </section>
               </div>
@@ -274,27 +335,45 @@ const Child = ({data, equipos, numGabinetes}) => (
               <div className="page-break" />
               <div className="table" style={{width: width-20}} key={item.id_seccionador}>
                 <section className="thead vertical">
-                    <span className="uppercase">{equipos[4]} ({item.id_seccionador})</span>
+                  <span className="uppercase">{equipos[4]} ({item.id_seccionador})</span>
                 </section>
                 <section className="tbody">
                   <div className="row vertical">
-                      <div className="col-30"><span>Marca</span> {item.marca_seccionador}</div>
-                      <div className="col-30"><span>Tipo</span> {item.tipo_seccionador}</div>
+                    <div className="col-30"><span>Marca</span> {item.marca_seccionador}</div>
+                    <div className="col-30"><span>Tipo</span> {item.tipo_seccionador}</div>
+                    {type == 'Mantenimiento' && 
                       <div className="col-30 no-border"><span>Cap. Fusibles HH</span> {item.cap_fus_hh_seccionador}</div>
+                    }
+                    {type == 'Rutina' && 
+                      <div className="col-30 no-border"><span>Tipo de Inspección</span> {item.inspeccion_seccionador}</div>
+                    }
                   </div>
-                  <div className="row vertical">
+                  {type == 'Mantenimiento' && 
+                    <>
+                    <div className="row vertical">
                       <div className="col-50"><span>Referencia</span> {item.referencia_seccionador}</div>
                       <div className="col-50 no-border"><span>N° de serie del seccionador</span> {item.numero_serie_seccionador}</div>
-                  </div>
+                    </div>
+                    </>
+                  }
                   <div className="row vertical">
+                    {type == 'Mantenimiento' && 
                       <div className="col-50"><span>Posee cuchillas de puesta tierra</span> {item.cuchillas_seccionador}</div>
+                    }
+                    {type == 'Rutina' && 
+                      <div className="col-30 no-border"><span>Estado</span> {item.estado_seccionador}</div>
+                    }
                       <div className="col-50 no-border"><span>Posee palanca de accionamiento</span> {item.palanca_seccionador}</div>
                   </div>
-                  <div className="row vertical">
+                  {type == 'Mantenimiento' && 
+                    <>
+                    <div className="row vertical">
                       <div className="col-30"><span>Año de Fabricación</span> {item.ano_fabricacion_seccionador}</div>
                       <div className="col-30"><span>Inom (A)</span> {item.inom_seccionador}</div>
                       <div className="col-30 no-border"><span>Vnom (KV)</span> {item.vnom_seccionador}</div>
-                  </div>
+                    </div>
+                    </>
+                  }
                   <div className="row vertical uppercase">
                       <div className="col-100 center height-auto">
                         Observaciones generales
@@ -356,7 +435,12 @@ const Child = ({data, equipos, numGabinetes}) => (
                   </>
                 )}
                 <div className="row vertical">
-                  <div className="col-100"><span>Calibre conductores</span> {item.calibre_conductores_cia}</div>
+                  {type == 'Mantenimiento' && 
+                    <div className="col-100"><span>Calibre conductores</span> {item.calibre_conductores_cia}</div>
+                  }
+                  {type == 'Rutina' && 
+                    <div className="col-100"><span>Tipo de Inspección</span> {item.inspeccion_cia}</div>
+                  }
                 </div>
                 <div className="row vertical uppercase">
                   <div className="col-100 center height-auto">
@@ -386,42 +470,59 @@ const Child = ({data, equipos, numGabinetes}) => (
               </section>
               <section className="tbody">
                 <div className="row vertical">
-                  <div className="col-30"><span>Marca</span> {item.marca_dor}</div>
-                  <div className="col-30"><span>Tipo</span> {item.tipo_dor}</div>
-                  <div className="col-30 no-border"><span>Relación de transformación</span> {item.rel_trans_dor}</div>
+                  <div className={type == 'Mantenimiento' ? 'col-30' : 'col-50'}><span>Marca</span> {item.marca_dor}</div>
+                  <div className={type == 'Mantenimiento' ? 'col-30' : 'col-50 no-border'}><span>Tipo</span> {item.tipo_dor}</div>
+                  {type == 'Mantenimiento' && 
+                    <div className="col-30 no-border"><span>Relación de transformación</span> {item.rel_trans_dor}</div>
+                  }
                 </div>
                 <div className="row vertical">
-                  <div className="col-30"><span>Capacidad</span> {item.capacidad_dor}</div>
-                  <div className="col-30"><span>Número EPM</span> {item.num_epm_dor}</div>
-                  <div className="col-30 no-border"><span>Número de serie</span> {item.num_serie_dor}</div>
+                  <div className={type == 'Mantenimiento' ? 'col-30' : 'col-50'}><span>Capacidad</span> {item.capacidad_dor}</div>
+                  <div className={type == 'Mantenimiento' ? 'col-30' : 'col-50 no-border'}><span>Número EPM</span> {item.num_epm_dor}</div>
+                  {type == 'Mantenimiento' && 
+                    <div className="col-30 no-border"><span>Número de serie</span> {item.num_serie_dor}</div>
+                  }
                 </div>
+                {type == 'Mantenimiento' && 
+                  <>
+                  <div className="row vertical">
+                    <div className="col-50"><span>Capacidad totalizador y corriente de Cortocircuito</span> {item.capacidad_tot_dor}</div>
+                    <div className="col-50 no-border"><span>Icc</span> {item.icc_dor}</div>
+                  </div>
+                  <div className="row vertical">
+                    <div className="col-50"><span>Calibre conductores en baja tensión</span> {item.calibre_baja_dor}</div>
+                    <div className="col-50 no-border"><span>Calibre conductores en media tensión</span> {item.calibre_media_dor}</div>
+                  </div>
+                  </>
+                }
                 <div className="row vertical">
-                  <div className="col-50"><span>Capacidad totalizador y corriente de Cortocircuito</span> {item.capacidad_tot_dor}</div>
-                  <div className="col-50 no-border"><span>Icc</span> {item.icc_dor}</div>
+                  <div className={type == 'Mantenimiento' ? 'col-30' : 'col-50'}><span>Posee foso (aplica trf aceite)</span> {item.foso_dor}</div>
+                  <div className={type == 'Mantenimiento' ? 'col-30' : 'col-50 no-border'}><span>Posee DPS o pararrayos en el lado de alta</span> {item.dps_alta_dor}</div>
+                  {type == 'Mantenimiento' && 
+                    <div className="col-30 no-border"><span>Posee DPS o pararrayos en el lado de baja</span> {item.dps_baja_dor}</div>
+                  }
                 </div>
-                <div className="row vertical">
-                  <div className="col-50"><span>Calibre conductores en baja tensión</span> {item.calibre_baja_dor}</div>
-                  <div className="col-50 no-border"><span>Calibre conductores en media tensión</span> {item.calibre_media_dor}</div>
-                </div>
-                <div className="row vertical">
-                  <div className="col-30"><span>Posee foso (aplica trf aceite)</span> {item.foso_dor}</div>
-                  <div className="col-30"><span>Posee DPS o pararrayos en el lado de alta</span> {item.dps_alta_dor}</div>
-                  <div className="col-30 no-border"><span>Posee DPS o pararrayos en el lado de baja</span> {item.dps_baja_dor}</div>
-                </div>
-                <div className="row vertical">
-                  <div className="col-30"><span>Año fabricación</span> {item.ano_fabricacion_dor}</div>
-                  <div className="col-30"><span>Peso (Kg)</span> {item.peso_dor}</div>
-                  <div className="col-30 no-border"><span>Grupo Conexión</span> {item.conexion_dor}</div>
-                </div>
-                <div className="row vertical">
-                  <div className="col-25"><span>ADFQ</span> {item.adfq_dor}</div>
-                  <div className="col-25"><span>PCB</span> {item.pcb_dor}</div>
-                  <div className="col-25"><span>TTR</span> {item.ttr_dor}</div>
-                  <div className="col-25 no-border width-auto"><span>Cromatografía de gases</span> {item.gases_dor}</div>
-                </div>
-                {/* <div className="row vertical">
-                  <div className="col-100"><span>Prueba de aislamiento e índice de polarización</span> {item.prueba_dor}</div>
-                </div> */}
+                {type == 'Mantenimiento' && 
+                  <>
+                  <div className="row vertical">
+                    <div className="col-30"><span>Año fabricación</span> {item.ano_fabricacion_dor}</div>
+                    <div className="col-30"><span>Peso (Kg)</span> {item.peso_dor}</div>
+                    <div className="col-30 no-border"><span>Grupo Conexión</span> {item.conexion_dor}</div>
+                  </div>
+                  <div className="row vertical">
+                    <div className="col-25"><span>ADFQ</span> {item.adfq_dor}</div>
+                    <div className="col-25"><span>PCB</span> {item.pcb_dor}</div>
+                    <div className="col-25"><span>TTR</span> {item.ttr_dor}</div>
+                    <div className="col-25 no-border width-auto"><span>Cromatografía de gases</span> {item.gases_dor}</div>
+                  </div>
+                  </>
+                }
+                {type == 'Rutina' && 
+                  <div className="row vertical">
+                    <div className="col-50"><span>Estado</span> {item.estado_dor}</div>
+                    <div className="col-50 no-border"><span>Neutro Equipotencializado a tierra</span> {item.equipotencializado_dor}</div>
+                  </div>
+                }
                 <div className="row vertical uppercase">
                   <div className="col-100 center height-auto">
                     Observaciones generales
@@ -510,7 +611,12 @@ const Child = ({data, equipos, numGabinetes}) => (
                     <div className="col-100"><span>Marca de los medidores</span> {item.marca_medidores_cont}</div>
                   </div>
                   <div className="row vertical">
-                    <div className="col-100"><span>Calibre conductores</span> {item.calibre_conductores_cont}</div>
+                    {type == 'Mantenimiento' && 
+                      <div className="col-100"><span>Calibre conductores</span> {item.calibre_conductores_cont}</div>
+                    }
+                    {type == 'Rutina' && 
+                      <div className="col-100"><span>Estado de sellos</span> {item.sellos_cont}</div>
+                    }
                   </div>
                   <div className="row vertical">
                     <div className="col-100"><span>Totalizador principal de cada celda</span> {item.totalizador_cont}</div>

@@ -41,6 +41,7 @@ var schema_servicio = {}
 var uiSchema_servicio = {}
 var flag = true
 var item_id = null
+var type_ = null
 
 const ajv = new Ajv() // options can be passed, e.g. {allErrors: true}
 ajv.addFormat('media-capture', {
@@ -48,12 +49,13 @@ ajv.addFormat('media-capture', {
 })
 
 function CreateReportScreen({ route, navigation }) {
-  const { itemId, mode, type } = route.params;
+  const { itemId, mode, type, title } = route.params;
   item_id = itemId;
+  type_ = type;
   
   useEffect(() => {
     navigation.setOptions({ 
-      title: mode == 'new' ?  'Nuevo ' + type : type,
+      title: mode == 'new' ?  'Nuevo ' + type : title,
       headerLeft: (props) => (
         <HeaderBackButton
           {...props}
@@ -91,9 +93,10 @@ function handleSubmit(data) {
 }
 
 const storeData = async (value) => {
+  let fkey = type_ == 'Servicio' ? '@servicio_' : type_ == 'Rutina' ? '@rutina_' : '@reporte_'
   try {
     const jsonValue = JSON.stringify(value)
-    let key = item_id ? item_id : '@reporte_' + new Date().getTime()
+    let key = item_id ? item_id : fkey + new Date().getTime()
     await AsyncStorage.setItem(key, jsonValue)
   } catch (e) {
     // saving error
@@ -126,7 +129,7 @@ function renderCards(itemId, type, navigation) {
   const handleClickOpen = () => {
     setSuccessful(handleSubmit(data))
     setOpen(true);
-    if (itemId) {
+    if (itemId && successful) {
       setTimeout(() => {
         window.location.reload();
       }, 700)
@@ -141,11 +144,10 @@ function renderCards(itemId, type, navigation) {
   };
 
   const JsonFormOnChange = (data) => {
-    console.log(data);
+    // console.log(data);
     setData(data)
   };
 
-  console.log(type)
   var schemaType = schema
   var uiSchemaType = uiSchema
   if (type == 'Rutina'){
@@ -182,7 +184,7 @@ function renderCards(itemId, type, navigation) {
       >
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            {successful ? "Reporte guardado con exito!" : "Tienes campos obligatorios sin completar"}
+            {successful ? "Guardado con exito!" : "Tienes campos obligatorios sin completar"}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

@@ -16,6 +16,9 @@ const { width, height } = Dimensions.get("screen");
 var data = [];
 
 const getAllKeys = async (navigation) => {
+  var state = navigation.getState()
+  let type_ = state.routes[1].params.type
+  let fkey = type_ == 'Servicio' ? '@servicio_' : type_ == 'Rutina' ? '@rutina_' : '@reporte_'
   let keys = []
   data = [] // Reset Object
   try {
@@ -24,7 +27,7 @@ const getAllKeys = async (navigation) => {
     try {
       values = await AsyncStorage.multiGet(keys)
       values.map(item => {
-        if(item[0].includes('@reporte_')) {
+        if(item[0].includes(fkey)) {
           var report = JSON.parse(item[1])
           var title = report.identificacion + ' - ' + report.fecha
           data.push({
@@ -118,21 +121,25 @@ function renderCards(navigation) {
 function renderContent(navigation, item, report) {
   var observ = report.observ_generales ? report.observ_generales : 'Sin Observaciones'
   var title = report.identificacion + ' - ' + report.fecha
+  var state = navigation.getState()
   const generateReport = () => {
     navigation.navigate('generate', 
     {
       itemId: item,
-      title: title
+      title: title,
+      type: state.routes[1].params.type,
     }
   )
   }
 
   const editReport = () => {
+    var state = navigation.getState()
     navigation.navigate('new', 
       {
         itemId: item,
         mode: 'edit',
-        type: title
+        type: state.routes[1].params.type,
+        title: title
       }
     )
   }

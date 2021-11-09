@@ -7,11 +7,13 @@ import { Button, Table } from "../components/";
 import ReactToPrint, { PrintContextConsumer } from 'react-to-print';
 
 var item_id = null
+var ftype = null
 
 function GeneratePDFScreen({ route, navigation }) {
 
-  const { itemId, title } = route.params;
+  const { itemId, title, type } = route.params;
   item_id = itemId;
+  ftype = type;
   const [html, setHTML] = useState();
   
   useEffect(() => {
@@ -24,7 +26,7 @@ function GeneratePDFScreen({ route, navigation }) {
         showsVerticalScrollIndicator={false}
       >
         <Block right>
-          <Table item={item_id} ref={(response) => setHTML(response)} />
+          <Table item={item_id} type={ftype} ref={(response) => setHTML(response)} />
           <ReactToPrint content={() => html}>
             <PrintContextConsumer>
               {({ handlePrint }) => (

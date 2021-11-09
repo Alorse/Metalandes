@@ -79,8 +79,8 @@ delete rutina.properties.media_baja.items.properties.calibre_mb
 
 // TRANSFORMADOR DE POTENCIA 
 // Add
-rutina.properties.transformador.items.properties.estado_mb = estado
-rutina.properties.transformador.items.properties.equipotencializado_mb = si_no
+rutina.properties.transformador.items.properties.estado_dor = estado
+rutina.properties.transformador.items.properties.equipotencializado_dor = si_no
 // Remove
 delete rutina.properties.transformador.items.properties.rel_trans_dor
 delete rutina.properties.transformador.items.properties.num_serie_dor

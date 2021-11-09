@@ -173,7 +173,7 @@ const correccion = {
                         {
                           type: "Control",
                           scope: "#/properties/paso",
-                          label: "Paso",
+                          label: "Tipo de paso",
                         },
                         {
                           type: "Control",
@@ -600,12 +600,12 @@ const transformador = {
           elements: [
             {
               type: "Control",
-              scope: "#/properties/estado_mb",
+              scope: "#/properties/estado_dor",
               label: "Estado",
             },
             {
               type: "Control",
-              scope: "#/properties/equipotencializado_mb",
+              scope: "#/properties/equipotencializado_dor",
               label: "Neutro Equipotencializado a tierra",
               options: {
                 format: "radio"

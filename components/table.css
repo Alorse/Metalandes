@@ -38,6 +38,12 @@ div.row div p {
     padding: 0 15px 0 10px;
     white-space: pre-wrap;
 }
+.col-14 {
+    width: 12%;
+    border-right: 1px solid #ccc;
+    padding: 1%;
+    height: auto !important;
+}
 .col-25 {
     width: 22%;
     border-right: 1px solid #ccc;
