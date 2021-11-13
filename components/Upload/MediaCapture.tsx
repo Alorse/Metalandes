@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import "./MediaCapture.css"
 
 export class MediaCapture extends Component {
     constructor(props){  
@@ -19,7 +20,6 @@ export class MediaCapture extends Component {
             fileReader = new FileReader();
             fileReader.readAsDataURL(file);
             fileReader.onload = (e) => {
-                console.log(this.state.images)
                 this.setState((prevState) => ({
                     ['images']: [...prevState['images'], e.target.result]
                 }));
@@ -31,18 +31,18 @@ export class MediaCapture extends Component {
     render() {
         return (
             <Fragment>
-                <p style={{font: '14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'}}>
+                <p className="para">
                     {this.props.label}
                 </p>
                 <input
                     accept="image/*"
                     style={{ display: 'none' }}
-                    id="icon-button-photo"
+                    id={`icon_${this.props.path}`}
                     onChange={this.handleCapture}
                     type="file"
                     multiple
                 />
-                <label htmlFor="icon-button-photo">
+                <label htmlFor={`icon_${this.props.path}`} className="icon-button-photo">
                     <IconButton color="primary" component="span">
                         <PhotoCamera />
                     </IconButton>
@@ -56,7 +56,7 @@ export class MediaCapture extends Component {
                                 border: '2px solid #aaa',
                                 marginRight: '2px'
                             }}
-                            key={`${this.props.id}_${i}`}
+                            key={`${this.props.path}_${i}`}
                         />
                     )}
                 </>
@@ -66,7 +66,7 @@ export class MediaCapture extends Component {
     render2() {
         return (
             <>
-            <p style={{font: '14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'}}>
+            <p className="para">
                 {this.props.label}
             </p>
             <span style={{ cursor: 'pointer' }}>

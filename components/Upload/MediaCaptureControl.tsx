@@ -24,7 +24,6 @@ export const MediaCaptureControlTester = (uischema, schema) => {
 }
 
 const newHaldleChange = (handleChange, path, newValue) => {
-  // console.log('path', path);
   handleChange(path, newValue)
 }
 
