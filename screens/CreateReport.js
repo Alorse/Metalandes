@@ -9,8 +9,10 @@ import { JsonForms } from '@jsonforms/react';
 import { Block } from "galio-framework";
 import schemaRoot from '../assets/config/schemas';
 import schemaRutina from '../assets/config/schemas_rutina';
+import schemaServicio from '../assets/config/schemas_servicio';
 import uiSchemaRoot from '../assets/config/uischemas';
 import uiSchemaRutina from '../assets/config/uischemas_rutina';
+import uiSchemaServicio from '../assets/config/uischemas_servicio';
 import { Button } from "../components/";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
@@ -37,8 +39,8 @@ var schema = schemaRoot.hv
 var uiSchema = uiSchemaRoot.hv
 var schema_rutina = schemaRutina.rutina
 var uiSchema_rutina = uiSchemaRutina.hv
-var schema_servicio = {}
-var uiSchema_servicio = {}
+var schema_servicio = schemaServicio.hv
+var uiSchema_servicio = uiSchemaServicio.hv
 var flag = true
 var item_id = null
 var type_ = null
