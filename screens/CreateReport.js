@@ -84,7 +84,14 @@ function CreateReportScreen({ route, navigation }) {
 }
 
 function handleSubmit(data) {
-  const validate = ajv.compile(schema)
+  var schemaType = schema
+  if (type_ == 'Rutina'){
+    schemaType = schema_rutina
+  }
+  if (type_ == 'Servicio') {
+    schemaType = schema_servicio
+  }
+  const validate = ajv.compile(schemaType)
   const valid = validate(data)
   if (!valid) {
     return false
@@ -100,8 +107,11 @@ const storeData = async (value) => {
     const jsonValue = JSON.stringify(value)
     let key = item_id ? item_id : fkey + new Date().getTime()
     await AsyncStorage.setItem(key, jsonValue)
+    console.log(jsonValue)
   } catch (e) {
     // saving error
+    console.log(e)
+    console.log("Local Storage is full, Please empty data");
   }
 }
 
@@ -146,7 +156,7 @@ function renderCards(itemId, type, navigation) {
   };
 
   const JsonFormOnChange = (data) => {
-    // console.log(data);
+    console.log(data)
     setData(data)
   };
 

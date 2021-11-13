@@ -87,11 +87,11 @@ const hv = {
                 multi: true
               }
             },
-            {
-              type: "Control",
-              scope: "#/properties/fotos_generales",
-              label: "Fotos"
-            }
+            // {
+            //   type: "Control",
+            //   scope: "#/properties/fotos_generales",
+            //   label: "Fotos"
+            // }
           ]
         },
       ],

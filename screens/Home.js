@@ -10,17 +10,14 @@ const { width } = Dimensions.get("screen");
 const thumbMeasure = (width - 48 - 32) / 3;
 
 function HomeScreen({ navigation }) {
-  // const { getItem } = useAsyncStorage('@storage_user');
-
-  const readItemFromStorage = async () => {
-    // let item = await getItem();
-  };
+  const [localSize, setLocalSize] = useState();
 
   useEffect(() => {
-    readItemFromStorage();
+    setLocalSize(testLocalStorage())
   }, []);
 
   return (
+    <>
     <Block flex center>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Block
@@ -54,7 +51,64 @@ function HomeScreen({ navigation }) {
         </Block>
       </ScrollView>
     </Block>
+    <Text style={styles.localSize}>{localSize}</Text>
+    </>
   );
+}
+
+function testLocalStorage() {
+  var timeStart = Date.now();
+  var timeEnd, countKey, countValue, amountLeft, itemLength;
+  var occupied = 3; //Shurav's comment on initial overhead
+  var leftCount = 3;
+//create localStorage entries until localStorage is totally filled and browser issues a warning.
+  var i = 0;
+  while (!error) {
+      try {
+//length of the 'value' was picked to be a compromise between speed and accuracy, 
+// the longer the 'value' the quicker script and result less accurate. This one is around 2Kb 
+          localStorage.setItem('testKey' + i, '11111111112222222222333333333344444444445555555555666661111111111222222222233333333334444444444555555555566666');
+      } catch (e) {
+          var error = e;
+      }
+      i++;
+  }
+//if the warning was issued - localStorage is full.
+  if (error) {
+//iterate through all keys and values to count their length
+      for (var i = 0; i < localStorage.length; i++) {
+          countKey = localStorage.key(i);
+          countValue = localStorage.getItem(localStorage.key(i));
+          itemLength = countKey.length + countValue.length;
+//if the key is one of our 'test' keys count it separately
+          if (countKey.indexOf("testKey") !== -1) {
+              leftCount = leftCount + itemLength;
+          }
+//count all keys and their values
+          occupied = occupied + itemLength;
+      }
+      ;
+//all keys + values lenght recalculated to Mb
+      occupied = (((occupied * 16) / (8 * 1024)) / 1024).toFixed(2);
+//if there are any other keys then our 'testKeys' it will show how much localStorage is left
+      amountLeft = occupied - (((leftCount * 16) / (8 * 1024)) / 1024).toFixed(2);
+//iterate through all localStorage keys and remove 'testKeys'
+      Object.keys(localStorage).forEach(function(key) {
+          if (key.indexOf("testKey") !== -1) {
+              localStorage.removeItem(key);
+          }
+      });
+
+  }
+  //calculate execution time
+  var timeEnd = Date.now();
+  var time = timeEnd - timeStart;
+  //create message
+  var message = 'Almacenamiento total: ' + occupied + 'MB \nAlmacenamiento disponible: ' + amountLeft + "MB";
+  //put the message on the screen
+  //document.getElementById('scene').innerText = message; //this works with Chrome,Safari, Opera, IE
+  //document.getElementById('scene').textContent = message;  //Required for Firefox to show messages
+  return message;
 }
 
 const styles = StyleSheet.create({
@@ -98,6 +152,11 @@ const styles = StyleSheet.create({
     // paddingTop: Theme.SIZES.BASE,
     paddingBottom: Theme.SIZES.BASE
   },
+  localSize: {
+    position: 'absolute',
+    bottom: 10,
+    right: 10
+  }
 });
 
 export default HomeScreen;

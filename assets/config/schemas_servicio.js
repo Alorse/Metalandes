@@ -6,12 +6,12 @@ const hv = {
     "ciudad",
     "contacto",
     "establecimiento",
+    "asunto",
+    "trabajos"
   ],
   properties: {
     identificacion: {
       type: "string",
-      minLength: 2,
-      maxLength: 200
     },
     fecha: {
       type: "string",
@@ -19,8 +19,6 @@ const hv = {
     },
     ciudad: {
       type: "string",
-      minimum: 1,
-      maximum: 20
     },
     contacto: {
       type: "string"
@@ -45,8 +43,15 @@ const hv = {
           },
           descripcion: {
             type: "string",
+            options: {
+              multi: true
+            }
           },
-        }
+        },
+        required: [
+          "imagen",
+          "descripcion"
+        ]
       }
     },
     observ_generales: {
@@ -54,19 +59,19 @@ const hv = {
       items: {
         type: "object",
         properties: {
-          enunciados: {
+          enunciado: {
             type: "string",
             options: {
               multi: true
             }
+          },
+          fotos: {
+            type: "array",
+            format: "media-capture",
           }
         }
       }
     },
-    fotos_generales: {
-      type: "array",
-      format: "media-capture",
-    }
   }
 };
 

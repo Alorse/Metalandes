@@ -3,7 +3,7 @@ import {
   ScrollView
 } from "react-native";
 import { Block } from "galio-framework";
-import { Button, Table } from "../components/";
+import { Button, Table1, Table2 } from "../components/";
 import ReactToPrint, { PrintContextConsumer } from 'react-to-print';
 
 var item_id = null
@@ -20,13 +20,25 @@ function GeneratePDFScreen({ route, navigation }) {
     navigation.setOptions({ title: 'PDF: ' + title })
   });
 
+
+  const renderTable = () => {
+    let table;
+    if (type == 'Servicio') {
+      table = <Table2 item={item_id} type={ftype} ref={(response) => setHTML(response)} />
+    } else {
+      table = <Table1 item={item_id} type={ftype} ref={(response) => setHTML(response)} />
+    }
+
+    return table
+  }
+
   return (
     <Block flex center>
       <ScrollView
         showsVerticalScrollIndicator={false}
       >
         <Block right>
-          <Table item={item_id} type={ftype} ref={(response) => setHTML(response)} />
+          {renderTable()}
           <ReactToPrint content={() => html}>
             <PrintContextConsumer>
               {({ handlePrint }) => (

@@ -14,10 +14,11 @@ import ReportExample from '../assets/config/example.json';
 const { width, height } = Dimensions.get("screen");
 
 var data = [];
+var type_ = null
 
 const getAllKeys = async (navigation) => {
   var state = navigation.getState()
-  let type_ = state.routes[1].params.type
+  type_ = state.routes[1].params.type
   let fkey = type_ == 'Servicio' ? '@servicio_' : type_ == 'Rutina' ? '@rutina_' : '@reporte_'
   let keys = []
   data = [] // Reset Object
@@ -119,7 +120,12 @@ function renderCards(navigation) {
 }
 
 function renderContent(navigation, item, report) {
-  var observ = report.observ_generales ? report.observ_generales : 'Sin Observaciones'
+  var observ = 'Sin Observaciones'
+  if (type_ == 'Servicio') {
+    observ = report.asunto
+  } else {
+    observ = report.observ_generales ? report.observ_generales : observ
+  }
   var title = report.identificacion + ' - ' + report.fecha
   var state = navigation.getState()
   const generateReport = () => {
