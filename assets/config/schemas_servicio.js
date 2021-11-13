@@ -50,7 +50,18 @@ const hv = {
       }
     },
     observ_generales: {
-      type: "string"
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          enunciados: {
+            type: "string",
+            options: {
+              multi: true
+            }
+          }
+        }
+      }
     },
     fotos_generales: {
       type: "array",
