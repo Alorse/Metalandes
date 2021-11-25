@@ -7,7 +7,6 @@ import {
 import { Block, Text } from 'galio-framework';
 
 import Theme from '../constants/Theme';
-import Images from "../constants/Images";
 import { DrawerItem as DrawerCustomItem } from '../components';
 import { I18n } from "../constants/locales";
 
@@ -28,7 +27,6 @@ function CustomDrawerContent({
       forceInset={{ top: 'always', horizontal: 'never' }}
     >
       <Block flex={0.06} style={styles.header} center>
-        <Image styles={styles.logo} source={Images.LogoSmall} />
       </Block>
       <Block flex style={{ paddingLeft: 8, paddingRight: 14 }}>
         <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
