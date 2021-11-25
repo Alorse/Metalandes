@@ -14,7 +14,7 @@ import uiSchemaRoot from '../assets/config/uischemas';
 import uiSchemaRutina from '../assets/config/uischemas_rutina';
 import uiSchemaServicio from '../assets/config/uischemas_servicio';
 import { Button } from "../components/";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   Dialog,
   DialogActions,
@@ -44,6 +44,7 @@ var uiSchema_servicio = uiSchemaServicio.hv
 var flag = true
 var item_id = null
 var type_ = null
+var db = openDatabase('metalapp', '1.0', 'Metalandes App', 50 * 1024 * 1024); 
 
 const ajv = new Ajv() // options can be passed, e.g. {allErrors: true}
 ajv.addFormat('media-capture', {
@@ -105,9 +106,15 @@ const storeData = async (value) => {
   let fkey = type_ == 'Servicio' ? '@servicio_' : type_ == 'Rutina' ? '@rutina_' : '@reporte_'
   try {
     const jsonValue = JSON.stringify(value)
-    let key = item_id ? item_id : fkey + new Date().getTime()
-    await AsyncStorage.setItem(key, jsonValue)
-    console.log(jsonValue)
+    // let key = item_id ? item_id : fkey + new Date().getTime()
+    // await AsyncStorage.setItem(key, jsonValue)
+    db.transaction(function (tx) {
+      if (item_id) {
+        tx.executeSql('UPDATE RECORDS SET value = "' + encodeURI(jsonValue) + '" WHERE key = ' + item_id);
+      } else {
+        tx.executeSql('INSERT INTO RECORDS (type, value) VALUES ("' + type_ + '", "' + encodeURI(jsonValue) + '")');
+      }
+    })
   } catch (e) {
     // saving error
     console.log(e)
@@ -128,10 +135,17 @@ function renderCards(itemId, type, navigation) {
     }, 10)
   }
   const getReport = async () => {
+    let jsonValue;
     try {
-      let jsonValue = await AsyncStorage.getItem(itemId)
-      jsonValue = jsonValue != null ? JSON.parse(jsonValue) : null
-      setData(jsonValue)
+      db.transaction(function (tx) {
+        tx.executeSql('SELECT * FROM RECORDS WHERE key = ' + itemId, [], function (tx, results) {
+          jsonValue = decodeURI(results.rows.item(0).value)
+          jsonValue = jsonValue != null ? JSON.parse(jsonValue) : null
+          setData(jsonValue)
+        }, null); 
+      });
+      // jsonValue = await AsyncStorage.getItem(itemId)
+      // jsonValue = jsonValue != null ? JSON.parse(jsonValue) : null
     } catch(e) {
       // error reading value
       console.log(e)
@@ -156,7 +170,6 @@ function renderCards(itemId, type, navigation) {
   };
 
   const JsonFormOnChange = (data) => {
-    console.log(data)
     setData(data)
   };
 

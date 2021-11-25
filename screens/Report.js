@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-  ScrollView,
   StyleSheet,
   Dimensions,
   SafeAreaView
@@ -8,51 +7,80 @@ import {
 //galio
 import { Block, theme, Accordion, Text } from "galio-framework";
 import { Button } from "../components/";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 import ReportExample from '../assets/config/example.json';
 
 const { width, height } = Dimensions.get("screen");
 
-var data = [];
+var db = openDatabase('metalapp', '1.0', 'Metalandes App', 50 * 1024 * 1024); 
+
+var data, data2 = [];
 var type_ = null
 
 const getAllKeys = async (navigation) => {
   var state = navigation.getState()
   type_ = state.routes[1].params.type
-  let fkey = type_ == 'Servicio' ? '@servicio_' : type_ == 'Rutina' ? '@rutina_' : '@reporte_'
-  let keys = []
+  // let fkey = type_ == 'Servicio' ? '@servicio_' : type_ == 'Rutina' ? '@rutina_' : '@reporte_'
+  // let keys = []
   data = [] // Reset Object
-  try {
-    keys = await AsyncStorage.getAllKeys()
-    let values
-    try {
-      values = await AsyncStorage.multiGet(keys)
-      values.map(item => {
-        if(item[0].includes(fkey)) {
-          var report = JSON.parse(item[1])
-          var title = report.identificacion + ' - ' + report.fecha
-          data.push({
-            title: title,
-            content: renderContent(
-              navigation,
-              item[0],
-              report
-            )
-          })
-        }
-      })
-    } catch(e) {
-      // read error
-    }
-  } catch(e) {
-      // read error
-  }
+  data2 = [] // Reset Object
+  // try {
+  //   keys = await AsyncStorage.getAllKeys()
+  //   let values
+  //   try {
+  //     values = await AsyncStorage.multiGet(keys)
+  //     values.map((item, i) => {
+  //       if(item[0].includes(fkey)) {
+  //         var report = JSON.parse(item[1])
+  //         var title = report.identificacion + ' - ' + report.fecha
+  //         data.push({
+  //           title: i + '. ' + title,
+  //           content: renderContent(
+  //             navigation,
+  //             item[0],
+  //             report
+  //           )
+  //         })
+  //       }
+  //     })
+  //     // console.log('data1', data)
+  //   } catch(e) {
+  //     // read error
+  //   }
+  // } catch(e) {
+  //     // read error
+  // }
+
+  db.transaction(function (tx) {
+    tx.executeSql('SELECT * FROM RECORDS WHERE type = "' + type_ + '"', [], function (tx, results) {
+      var len = results.rows.length, i;
+      var t;
+      for (i = 0; i < len; i++) {
+        t = decodeURI(results.rows.item(i).value)
+        var report = JSON.parse(t)
+        var title = report.identificacion + ' - ' + report.fecha
+        data2.push({
+          title: title,
+          content: renderContent(
+            navigation,
+            results.rows.item(i).key,
+            report
+          )
+        })
+      } 
+      // console.log('data2', data2)
+    }, null); 
+  });
 }
 
 const storeExample = async (value) => {
   try {
     const jsonValue = JSON.stringify(value)
-    await AsyncStorage.setItem('@reporte_000', jsonValue)
+    // await AsyncStorage.setItem('@reporte_000', jsonValue)
+    db.transaction(function (tx) {
+      tx.executeSql('CREATE TABLE IF NOT EXISTS RECORDS (key INTEGER PRIMARY KEY AUTOINCREMENT, type TEXT, value TEXT)');
+      tx.executeSql('INSERT INTO RECORDS (key, type, value) VALUES (1, "Mantenimiento", "' + encodeURI(jsonValue) + '")');
+    })
   } catch (e) {
     // saving error
   }
@@ -77,7 +105,7 @@ function renderCards(navigation) {
   const [iData, setIData] = useState([]);
   useEffect(
     () => {
-      let timer1 = setTimeout(() => setIData(data), 1);
+      let timer1 = setTimeout(() => setIData(data2), 300);
       return () => {
         clearTimeout(timer1);
       };

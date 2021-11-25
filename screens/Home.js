@@ -13,7 +13,7 @@ function HomeScreen({ navigation }) {
   const [localSize, setLocalSize] = useState();
 
   useEffect(() => {
-    setLocalSize(testLocalStorage())
+    // setLocalSize(testLocalStorage())
   }, []);
 
   return (

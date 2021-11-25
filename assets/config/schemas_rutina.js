@@ -129,7 +129,7 @@ rutina.properties.correccion.items.properties.lista_corre = {
       estado: estado,
       proteccion: {type: "string"},
       kvar: {
-        type: "string",
+        type: "number",
         enum: [
           2, 2.5, 3, 5, 7.5, 10, 12.5, 15, 17.5, 20, 22.5, 25, 27.5, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100
         ]

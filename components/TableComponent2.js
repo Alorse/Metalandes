@@ -1,9 +1,10 @@
 import React from "react";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Dimensions } from "react-native";
 import schemaRoot from '../assets/config/schemas';
 import "./table.css"
 
+var db = openDatabase('metalapp', '1.0', 'Metalandes App', 50 * 1024 * 1024); 
 class TableComponent2 extends React.Component {
     
   constructor(props) {
@@ -20,10 +21,19 @@ class TableComponent2 extends React.Component {
 
   getReport = async () => {
     try {
-      let jsonValue = await AsyncStorage.getItem(this.state.itemId)
-      jsonValue = jsonValue != null ? JSON.parse(jsonValue) : null
-      this.setState({data: jsonValue})
-      console.log('async', this.state)
+      let jsonValue;
+      var _this = this;
+      db.transaction(function (tx) {
+        tx.executeSql('SELECT * FROM RECORDS WHERE key = ' + _this.state.itemId, [], function (tx, results) {
+          jsonValue = decodeURI(results.rows.item(0).value)
+          jsonValue = jsonValue != null ? JSON.parse(jsonValue) : null
+          _this.setState({data: jsonValue})
+        }, null); 
+      });
+      // jsonValue = await AsyncStorage.getItem(this.state.itemId)
+      // jsonValue = jsonValue != null ? JSON.parse(jsonValue) : null
+      // this.setState({data: jsonValue})
+      // this.gabinetesCount()
     } catch(e) {
       // error reading value
       console.log(e)
