@@ -90,9 +90,16 @@ const Child = ({data}) => (
             <>
               {data.fotos1.map((item, i) => {
                 return (
-                  <>
-                    <div className="col-100"><img  key={i} src={item.imagen} className="foto" /><span>{item.descripcion}</span></div>
-                  </>
+                  <div className="block border-bottom" key={'trabajo' + i}>
+                    <div className="block center">
+                    {item.imagen.map((imagen, j) => {
+                      return (
+                        <img key={'foto_' + j} src={imagen} className="foto" />
+                      )
+                    })}
+                    </div>
+                    <p className="center">{item.descripcion}</p>
+                  </div>
                 )
               })}
             </>
@@ -116,12 +123,16 @@ const Child = ({data}) => (
               {data.observ_generales.map((item, i) => {
                 return (
                   <>
-                    <li className="col-100">
+                    <li className="col-100 center"  key={'li' + i}>
                       <span>{item.enunciado}</span>
                       {item.fotos && (
                         <>
                           <br />
-                          <img key={i} src={item.fotos} className="foto" />
+                          {item.fotos.map((imagen, j) => {
+                            return (
+                              <img key={'obvs_' + j} src={imagen} className="foto" />
+                            )
+                          })}
                         </>
                       )}
                     </li>

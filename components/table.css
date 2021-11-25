@@ -63,6 +63,9 @@ div.row div p {
     width: 99%;
     padding: 1%;
 }
+.border-bottom {
+    border-bottom: 1px solid #ccc;
+}
 .no-border{
     border: none !important;
 }
@@ -86,6 +89,14 @@ div.row div p {
     max-width: 48%;
     border: 2px solid #aaa;
     margin: 5px;
+}
+
+.block {
+    display: block !important;
+    height: auto !important;
+}
+.inline {
+    display: inline-block;
 }
 
 

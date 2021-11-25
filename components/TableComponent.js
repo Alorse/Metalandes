@@ -7,7 +7,6 @@ import "./table.css"
 var db = openDatabase('metalapp', '1.0', 'Metalandes App', 50 * 1024 * 1024); 
 class TableComponent extends React.Component {
 
-    
   constructor(props) {
     super(props);
     this.state = {
@@ -179,6 +178,18 @@ const Child = ({data, equipos, numGabinetes, type}) => (
                   </div>
                 </section>
               </div>
+              <div style={{width: width-20}}>
+                {
+                  item.fotos_dtp && 
+                  (
+                    <>
+                      {item.fotos_dtp.map((item, i) => {
+                        return (<img  key={i} src={item} className="foto" />)
+                      })}
+                    </>
+                  )
+                }
+              </div>
               </>
             )
           })}
@@ -255,6 +266,18 @@ const Child = ({data, equipos, numGabinetes, type}) => (
                   </div>
                 </section>
               </div>
+              <div style={{width: width-20}}>
+                {
+                  item.fotos_corre && 
+                  (
+                    <>
+                      {item.fotos_corre.map((item, i) => {
+                        return (<img  key={i} src={item} className="foto" />)
+                      })}
+                    </>
+                  )
+                }
+              </div>
               </>
             )
           })}
@@ -330,6 +353,18 @@ const Child = ({data, equipos, numGabinetes, type}) => (
                   </div>
                 </section>
               </div>
+              <div style={{width: width-20}}>
+                {
+                  item.fotos_mb && 
+                  (
+                    <>
+                      {item.fotos_mb.map((item, i) => {
+                        return (<img  key={i} src={item} className="foto" />)
+                      })}
+                    </>
+                  )
+                }
+              </div>
               </>
             )
           })}
@@ -386,12 +421,24 @@ const Child = ({data, equipos, numGabinetes, type}) => (
                     </>
                   }
                   <div className="row vertical uppercase">
-                      <div className="col-100 center height-auto">
-                        Observaciones generales
-                        <p>{item.observ_seccionador}</p>
-                      </div>
+                    <div className="col-100 center height-auto">
+                      Observaciones generales
+                      <p>{item.observ_seccionador}</p>
+                    </div>
                   </div>
                 </section>
+              </div>
+              <div style={{width: width-20}}>
+                {
+                  item.fotos_seccionador && 
+                  (
+                    <>
+                      {item.fotos_seccionador.map((item, i) => {
+                        return (<img  key={i} src={item} className="foto" />)
+                      })}
+                    </>
+                  )
+                }
               </div>
               </>
             )
@@ -460,6 +507,18 @@ const Child = ({data, equipos, numGabinetes, type}) => (
                   </div>
                 </div>
               </section>
+            </div>
+            <div style={{width: width-20}}>
+              {
+                item.fotos_cia && 
+                (
+                  <>
+                    {item.fotos_cia.map((item, i) => {
+                      return (<img  key={i} src={item} className="foto" />)
+                    })}
+                  </>
+                )
+              }
             </div>
             </>
             )
@@ -592,6 +651,18 @@ const Child = ({data, equipos, numGabinetes, type}) => (
                 )}
               </section>
             </div>
+            <div style={{width: width-20}}>
+              {
+                item.fotos_dor && 
+                (
+                  <>
+                    {item.fotos_dor.map((item, i) => {
+                      return (<img  key={i} src={item} className="foto" />)
+                    })}
+                  </>
+                )
+              }
+            </div>
             </>
             )
           })}
@@ -640,6 +711,18 @@ const Child = ({data, equipos, numGabinetes, type}) => (
                   </div>
                 </section>
               </div>
+              <div style={{width: width-20}}>
+                {
+                  item.fotos_cont && 
+                  (
+                    <>
+                      {item.fotos_cont.map((item, i) => {
+                        return (<img  key={i} src={item} className="foto" />)
+                      })}
+                    </>
+                  )
+                }
+              </div>
               </>
             )
           })}
@@ -680,12 +763,24 @@ const Child = ({data, equipos, numGabinetes, type}) => (
                   <div className="col-50 no-border"><span>Existe marcación de peligro (calcomanía rayo)</span> {item.peligro_tab}</div>
                 </div>
                 <div className="row vertical uppercase">
-                      <div className="col-100 center height-auto">
-                        Observaciones generales
-                        <p>{item.observ_tab}</p>
-                      </div>
+                    <div className="col-100 center height-auto">
+                      Observaciones generales
+                      <p>{item.observ_tab}</p>
+                    </div>
                   </div>
               </section>
+            </div>
+            <div style={{width: width-20}}>
+              {
+                item.fotos_tab && 
+                (
+                  <>
+                    {item.fotos_tab.map((item, i) => {
+                      return (<img  key={i} src={item} className="foto" />)
+                    })}
+                  </>
+                )
+              }
             </div>
             </>
             )
