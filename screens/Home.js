@@ -25,7 +25,7 @@ function HomeScreen({ navigation }) {
             <Block key={`mantenimientos`}>
               <Button 
                 style={styles.report_btn}
-                color="#5bc0de"
+                color="#01161C"
                 onPress={() => navigation.navigate('Reportes', { type: 'Mantenimiento' })}
                 >
                   Mantenimientos
@@ -38,8 +38,9 @@ function HomeScreen({ navigation }) {
                 >Rutinas</Button>
             </Block>
             <Block key={`servicios`}>
-              <Button style={styles.report_btn}
-                color="#01161C"
+              <Button 
+                style={styles.report_btn}
+                color="#5bc0de"
                 onPress={() => navigation.navigate('Reportes', { type: 'Servicio' })}
                 >Servicios</Button>
             </Block>

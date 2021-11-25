@@ -8,8 +8,7 @@ export class MediaCapture extends Component {
     constructor(props){  
         super(props);
         this.state = {
-            images: [],
-            names: [],
+            images: props.value !== undefined ? props.value : [],
             hoverAt: null
         };
     }
