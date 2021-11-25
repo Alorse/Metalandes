@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MetalJF3",
-    "slug": "MetalJF3",
+    "name": "Metalandes App",
+    "slug": "MetalandesApp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,7 +24,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.alorse.MetalJF3"
+      "package": "com.alorse.MetalandesApp"
     },
     "web": {
       "favicon": "./assets/favicon.png",
