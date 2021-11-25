@@ -12,13 +12,10 @@ import Reports from "../screens/Report";
 import CreateReport from "../screens/CreateReport";
 import GeneratePDF from "../screens/GeneratePDF";
 // drawer
-import CustomDrawerContent from "./Menu";
 import { I18n } from '../constants/locales';
 
 // header for screens
 import { Header } from "../components";
-
-const { width } = Dimensions.get("screen");
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();

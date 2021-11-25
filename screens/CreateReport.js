@@ -164,7 +164,7 @@ function renderCards(itemId, type, navigation) {
   const handleClose = () => {
     setOpen(false);
     if (successful){
-      navigation.navigate('Reportes', { type: 'Mantenimiento' })
+      navigation.navigate('Metalandes')
     }
   };
 
