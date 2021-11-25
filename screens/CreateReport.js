@@ -4,7 +4,6 @@ import {
     materialRenderers,
     materialCells
   } from '@jsonforms/material-renderers';
-import { RNCells, RNRenderers } from "../jsonforms";
 import { JsonForms } from '@jsonforms/react';
 import { Block } from "galio-framework";
 import schemaRoot from '../assets/config/schemas';

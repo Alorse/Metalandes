@@ -8,7 +8,9 @@ import {
 import { Block, theme, Accordion, Text } from "galio-framework";
 import { Button } from "../components/";
 // import AsyncStorage from '@react-native-async-storage/async-storage';
-import ReportExample from '../assets/config/example.json';
+import MantenimientoExample from '../assets/config/example.json';
+import RutinaExample from '../assets/config/example_rutina.json';
+import ServicioExample from '../assets/config/example_servicio.json';
 
 const { width, height } = Dimensions.get("screen");
 
@@ -73,13 +75,17 @@ const getAllKeys = async (navigation) => {
   });
 }
 
-const storeExample = async (value) => {
+const storeExample = async () => {
   try {
-    const jsonValue = JSON.stringify(value)
+    const jsonMantenimiento = JSON.stringify(MantenimientoExample)
+    const jsonRutina = JSON.stringify(RutinaExample)
+    const jsonServicio = JSON.stringify(ServicioExample)
     // await AsyncStorage.setItem('@reporte_000', jsonValue)
     db.transaction(function (tx) {
       tx.executeSql('CREATE TABLE IF NOT EXISTS RECORDS (key INTEGER PRIMARY KEY AUTOINCREMENT, type TEXT, value TEXT)');
-      tx.executeSql('INSERT INTO RECORDS (key, type, value) VALUES (1, "Mantenimiento", "' + encodeURI(jsonValue) + '")');
+      tx.executeSql('INSERT INTO RECORDS (key, type, value) VALUES (1, "Mantenimiento", "' + encodeURI(jsonMantenimiento) + '")');
+      tx.executeSql('INSERT INTO RECORDS (key, type, value) VALUES (2, "Rutina", "' + encodeURI(jsonRutina) + '")');
+      tx.executeSql('INSERT INTO RECORDS (key, type, value) VALUES (3, "Servicio", "' + encodeURI(jsonServicio) + '")');
     })
   } catch (e) {
     // saving error
@@ -88,7 +94,7 @@ const storeExample = async (value) => {
 
 
 function ReportScreen({ navigation }) {
-  storeExample(ReportExample)
+  storeExample()
   getAllKeys(navigation)
   return (
     <Block flex center>
