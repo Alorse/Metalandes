@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
-import { Block, Text, Button } from 'galio-framework';
+import { Block, Button } from 'galio-framework';
 
 import Theme from "../constants/Theme";
 import logo from '../assets/logo_300.png'; 
@@ -18,9 +18,6 @@ function HomeScreen({ navigation }) {
           <br />
           <img src={logo} />
           <br /><br />
-          {/* <Text bold size={16} style={styles.title}>
-            { I18n.categories }
-          </Text> */}
           <Block>
             <Block key={`mantenimientos`}>
               <Button 
