@@ -8,8 +8,7 @@ export class MediaCapture extends Component {
     constructor(props){  
         super(props);
         this.state = {
-            images: props.value !== undefined ? props.value : [],
-            hoverAt: null
+            images: props.value !== undefined ? props.value : []
         };
     }
 
@@ -61,30 +60,5 @@ export class MediaCapture extends Component {
                 </>
             </Fragment>
         );
-    }
-    render2() {
-        return (
-            <>
-            <p className="para">
-                {this.props.label}
-            </p>
-            <span style={{ cursor: 'pointer' }}>
-                {[0, 1, 2, 3, 4].map((i) => {
-                const fullStars = this.state.hoverAt ?? this.props.value;
-
-                return (
-                    <span
-                    onMouseOver={() => this.setState({ hoverAt: i + 1 })}
-                    onMouseOut={() => this.setState({ hoverAt: null })}
-                    onClick={() => this.props.updateValue(i + 1)}
-                    key={`${this.props.id}_${i}`}
-                    >
-                    {i < fullStars ? '\u2605' : '\u2606'}
-                    </span>
-                );
-                })}
-            </span>
-            </>
-        )
     }
 }
