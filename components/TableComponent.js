@@ -3,6 +3,7 @@ import React from "react";
 import { Dimensions } from "react-native";
 import schemaRoot from '../assets/config/schemas';
 import "./table.css"
+import logo from '../assets/logo_doc.jpg';
 
 var db = openDatabase('metalapp', '1.0', 'Metalandes App', 50 * 1024 * 1024); 
 class TableComponent extends React.Component {
@@ -788,6 +789,26 @@ const Child = ({data, equipos, numGabinetes, type}) => (
         </>
       )
     }
+    <header>
+      <div>
+        <img src={logo} />
+      </div>
+    </header>
+    <div className="signature">
+      <div className="page-break" />
+      <p>METALANDES S.A.S</p>
+      <p>Tel (574) 4446153 Ext. 112</p>
+      <p>Cel. 3106682128</p>
+      <p>Email <a href="mailto:servicios@metalandes.com">servicios@metalandes.com</a>, <a href="mailto:servicios2@metalandes.com">servicios2@metalandes.com</a> </p>
+      <p><a href="https://www.metalandes.com">www.metalandes.com</a></p>
+    </div>
+    <footer>
+      <div>
+        <hr class="s9" />
+        <p className="center">CR. 53 # 29C 73 TEL.: (574) 235 00 28 FAX.: (574)235 59 88   MEDELLÍN COLOMBIA.</p>
+        <p className="center"><a href="mailto:servicios@metalandes.com">servicios@metalandes.com</a> <a href="https://www.metalandes.com">www.metalandes.com</a></p>
+      </div>
+    </footer>
   </div>
 );
 
