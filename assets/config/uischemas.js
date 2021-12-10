@@ -1072,7 +1072,7 @@ const tablero = {
             {
               type: "Control",
               scope: "#/properties/cortocircuito_tab",
-              label: "I cortocircuito",
+              label: "I cortocircuito (kA)",
             }
           ]
         },
@@ -1226,11 +1226,11 @@ const hv = {
               type: "Group",
               elements: [
                 doble_tiro_primario,
-                correccion,
                 media_baja,
                 seccionador,
-                transferencia,
                 transformador,
+                correccion,
+                transferencia,
                 contadores,
                 tablero
                 // {

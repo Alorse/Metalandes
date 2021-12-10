@@ -47,10 +47,10 @@ const correccion = {
     type: "integer",
   },
   calibre_corre: {
-    type: "number",
+    type: "string",
   },
   relacion_corre: {
-    type: "number",
+    type: "string",
   },
   observ_corre: {
     type: "string",
@@ -269,7 +269,8 @@ const transferencia = {
   estado_cia: {
     type: "string",
     enum: [
-      "Operativo",
+      "Bueno",
+      "Regular",
       "Inoperativo"
     ]
   },
@@ -452,7 +453,7 @@ const tablero = {
     type: "number"
   },
   cortocircuito_tab: {
-    type: "string"
+    type: "number"
   },
   marca_tab: {
     type: "string",
