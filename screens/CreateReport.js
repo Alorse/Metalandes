@@ -54,6 +54,7 @@ function CreateReportScreen({ route, navigation }) {
   const { itemId, mode, type, title } = route.params;
   item_id = itemId;
   type_ = type;
+  const [openBack, setOpenBack] = useState(false);
   
   useEffect(() => {
     navigation.setOptions({ 
@@ -62,11 +63,7 @@ function CreateReportScreen({ route, navigation }) {
         <HeaderBackButton
           {...props}
           onPress={() => {
-            if (itemId) {
-              window.location.reload();
-            } else {
-              navigation.goBack()
-            }
+            setOpenBack(true)
           }}
         />
       ),
@@ -77,7 +74,7 @@ function CreateReportScreen({ route, navigation }) {
   return (
     <Block flex center>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {renderCards(itemId, type, navigation)}
+        {renderCards(itemId, type, navigation, setOpenBack, openBack)}
       </ScrollView>
     </Block>
   );
@@ -121,7 +118,7 @@ const storeData = async (value) => {
   }
 }
 
-function renderCards(itemId, type, navigation) {
+function renderCards(itemId, type, navigation, setOpenBack, openBack) {
   const [data, setData] = useState(initialData);
   const [open, setOpen] = useState(false);
   const [successful, setSuccessful] = useState(false);
@@ -165,6 +162,18 @@ function renderCards(itemId, type, navigation) {
     setOpen(false);
     if (successful){
       navigation.navigate('Metalandes')
+    }
+  };
+
+  const handleCloseBack = (status) => {
+    if (status) {
+      if (itemId) {
+        window.location.reload();
+      } else {
+        navigation.goBack()
+      }
+    } else {
+      setOpenBack(false);
     }
   };
 
@@ -213,6 +222,22 @@ function renderCards(itemId, type, navigation) {
         </DialogContent>
         <DialogActions>
           <Button onPress={handleClose}>OK</Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        open={openBack}
+        onClose={() => handleCloseBack(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            ¿Estás seguro que quieres salir sin guardar primero?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button small onPress={() => handleCloseBack(true)}>   Sí   </Button>
+          <Button small color="default" onPress={() => handleCloseBack(false)}>   No   </Button>
         </DialogActions>
       </Dialog>
     </>
