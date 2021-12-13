@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect }  from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
-import { Block, Button } from 'galio-framework';
+import { Block, Button, Text } from 'galio-framework';
+import ping from 'web-pingjs';
 
 import Theme from "../constants/Theme";
 import logo from '../assets/logo_300.png'; 
 
 function HomeScreen({ navigation }) {
+
+  const [server, setServer] = useState(null);
+
+  useEffect(() => {
+    ping('http://0.0.0.0:8080').then(function(delta) {
+    // ping('https://googleee.com/').then(function(delta) {
+      console.log('Ping time was ' + String(delta) + ' ms');
+      setServer(true)
+    }).catch(function(err) {
+      setServer(false)
+      console.error('Could not ping remote URL', err);
+    });
+  });
 
   return (
     <Block flex center>
@@ -43,6 +57,14 @@ function HomeScreen({ navigation }) {
             </Block>
           </Block>
         </Block>
+        <Block style={styles.server}>
+          <Text>
+          Servidor: 
+            <Text style={server ? styles.green : styles.red}>
+              {server ? " Encendido" : " Apagado"}
+            </Text>
+          </Text>
+        </Block>
       </ScrollView>
     </Block>
   );
@@ -59,6 +81,17 @@ const styles = StyleSheet.create({
   },
   group: {
     paddingTop: Theme.SIZES.BASE
+  },
+  server:{
+    alignItems: "center"
+  },
+  red: {
+    color: "red",
+    fontWeight: 'bold'
+  },
+  green: {
+    color: "green",
+    fontWeight: 'bold'
   }
 });
 

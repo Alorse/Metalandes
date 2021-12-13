@@ -34,7 +34,8 @@
     "react-native-screens": "~3.4.0",
     "react-native-web": "~0.13.12",
     "react-to-print": "^2.14.0",
-    "tslib": "^2.3.1"
+    "tslib": "^2.3.1",
+    "web-pingjs": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
