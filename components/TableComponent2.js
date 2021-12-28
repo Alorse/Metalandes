@@ -160,7 +160,7 @@ const Child = ({data}) => (
     </div>
     <footer>
       <div>
-        <hr class="s9" />
+        <hr className="s9" />
         <p className="center">CR. 53 # 29C 73 TEL.: (574) 235 00 28 FAX.: (574)235 59 88   MEDELLÍN COLOMBIA.</p>
         <p className="center"><a href="mailto:servicios@metalandes.com">servicios@metalandes.com</a> <a href="https://www.metalandes.com">www.metalandes.com</a></p>
       </div>

@@ -13,7 +13,6 @@ import uiSchemaRoot from '../assets/config/uischemas';
 import uiSchemaRutina from '../assets/config/uischemas_rutina';
 import uiSchemaServicio from '../assets/config/uischemas_servicio';
 import { Button } from "../components/";
-// import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   Dialog,
   DialogActions,
@@ -99,22 +98,29 @@ function handleSubmit(data) {
 }
 
 const storeData = async (value) => {
-  let fkey = type_ == 'Servicio' ? '@servicio_' : type_ == 'Rutina' ? '@rutina_' : '@reporte_'
+  console.log(value)
   try {
     const jsonValue = JSON.stringify(value)
-    // let key = item_id ? item_id : fkey + new Date().getTime()
-    // await AsyncStorage.setItem(key, jsonValue)
     db.transaction(function (tx) {
+      var obs = type_ == 'Servicio' ? value.asunto : (value.observ_generales ? value.observ_generales : "")
       if (item_id) {
-        tx.executeSql('UPDATE RECORDS SET value = "' + encodeURI(jsonValue) + '" WHERE key = ' + item_id);
+        tx.executeSql(
+          'UPDATE RECORDS SET ' +
+          'title = "' + value.identificacion + '", ' + 
+          'date = "' + value.fecha + '", ' + 
+          'observations = "' + obs + '", ' + 
+          'value = "' + encodeURI(jsonValue) + '" ' + 
+          'WHERE key = ' + item_id);
       } else {
-        tx.executeSql('INSERT INTO RECORDS (type, value) VALUES ("' + type_ + '", "' + encodeURI(jsonValue) + '")');
+        tx.executeSql(
+          'INSERT INTO RECORDS (type, title, date, observations, value) ' + 
+          'VALUES ("' + type_ + '","' + value.identificacion + '","' + value.fecha + '","' + obs + '", "' + encodeURI(jsonValue) + '")'
+        );
       }
     })
   } catch (e) {
     // saving error
     console.log(e)
-    console.log("Local Storage is full, Please empty data");
   }
 }
 
@@ -140,8 +146,6 @@ function renderCards(itemId, type, navigation, setOpenBack, openBack) {
           setData(jsonValue)
         }, null); 
       });
-      // jsonValue = await AsyncStorage.getItem(itemId)
-      // jsonValue = jsonValue != null ? JSON.parse(jsonValue) : null
     } catch(e) {
       // error reading value
       console.log(e)

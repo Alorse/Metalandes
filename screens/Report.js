@@ -2,75 +2,43 @@ import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Dimensions,
-  SafeAreaView
+  SafeAreaView,
+  ActivityIndicator
 } from "react-native";
-//galio
 import { Block, theme, Accordion, Text } from "galio-framework";
 import { Button } from "../components/";
-// import AsyncStorage from '@react-native-async-storage/async-storage';
 import MantenimientoExample from '../assets/config/example.json';
 import RutinaExample from '../assets/config/example_rutina.json';
+import RutinaExample2 from '../assets/config/example2.json';
 import ServicioExample from '../assets/config/example_servicio.json';
 
 const { width, height } = Dimensions.get("screen");
 
 var db = openDatabase('metalapp', '1.0', 'Metalandes App', 50 * 1024 * 1024); 
 
-var data, data2 = [];
+var data = [];
 var type_ = null
 
-const getAllKeys = async (navigation) => {
+const getAllKeys = async (navigation, setIData) => {
   var state = navigation.getState()
   type_ = state.routes[1].params.type
-  // let fkey = type_ == 'Servicio' ? '@servicio_' : type_ == 'Rutina' ? '@rutina_' : '@reporte_'
-  // let keys = []
   data = [] // Reset Object
-  data2 = [] // Reset Object
-  // try {
-  //   keys = await AsyncStorage.getAllKeys()
-  //   let values
-  //   try {
-  //     values = await AsyncStorage.multiGet(keys)
-  //     values.map((item, i) => {
-  //       if(item[0].includes(fkey)) {
-  //         var report = JSON.parse(item[1])
-  //         var title = report.identificacion + ' - ' + report.fecha
-  //         data.push({
-  //           title: i + '. ' + title,
-  //           content: renderContent(
-  //             navigation,
-  //             item[0],
-  //             report
-  //           )
-  //         })
-  //       }
-  //     })
-  //     // console.log('data1', data)
-  //   } catch(e) {
-  //     // read error
-  //   }
-  // } catch(e) {
-  //     // read error
-  // }
 
   db.transaction(function (tx) {
-    tx.executeSql('SELECT * FROM RECORDS WHERE type = "' + type_ + '"', [], function (tx, results) {
+    tx.executeSql('SELECT key, type, title, date, observations FROM RECORDS WHERE type = "' + type_ + '"', [], function (tx, results) {
       var len = results.rows.length, i;
-      var t;
       for (i = 0; i < len; i++) {
-        t = decodeURI(results.rows.item(i).value)
-        var report = JSON.parse(t)
-        var title = report.identificacion + ' - ' + report.fecha
-        data2.push({
+        var title = results.rows.item(i).title + ' - ' + results.rows.item(i).date
+        data.push({
           title: title,
           content: renderContent(
             navigation,
-            results.rows.item(i).key,
-            report
+            results.rows.item(i),
           )
         })
-      } 
-      // console.log('data2', data2)
+      }
+      setIData(data)
+      // console.log('data2', data)
     }, null); 
   });
 }
@@ -79,13 +47,14 @@ const storeExample = async () => {
   try {
     const jsonMantenimiento = JSON.stringify(MantenimientoExample)
     const jsonRutina = JSON.stringify(RutinaExample)
+    const jsonRutina2 = JSON.stringify(RutinaExample2)
     const jsonServicio = JSON.stringify(ServicioExample)
-    // await AsyncStorage.setItem('@reporte_000', jsonValue)
     db.transaction(function (tx) {
-      tx.executeSql('CREATE TABLE IF NOT EXISTS RECORDS (key INTEGER PRIMARY KEY AUTOINCREMENT, type TEXT, value TEXT)');
-      tx.executeSql('INSERT INTO RECORDS (key, type, value) VALUES (1, "Mantenimiento", "' + encodeURI(jsonMantenimiento) + '")');
-      tx.executeSql('INSERT INTO RECORDS (key, type, value) VALUES (2, "Rutina", "' + encodeURI(jsonRutina) + '")');
-      tx.executeSql('INSERT INTO RECORDS (key, type, value) VALUES (3, "Servicio", "' + encodeURI(jsonServicio) + '")');
+      tx.executeSql('CREATE TABLE IF NOT EXISTS RECORDS (key INTEGER PRIMARY KEY AUTOINCREMENT, type, title, date, observations, value TEXT)');
+      tx.executeSql('INSERT INTO RECORDS (key, type, title, date, observations, value) VALUES (1, "Mantenimiento", "Mantenimiento de Prueba Full", "2021-12-10", "Esta es una prueba para tener un primer Mantenimiento creado cuando se inicializa la aplicación.", "' + encodeURI(jsonMantenimiento) + '")');
+      tx.executeSql('INSERT INTO RECORDS (key, type, title, date, observations, value) VALUES (2, "Rutina", "Rutina de Prueba Full", "2021-12-11", "Esta es una prueba para tener una primer Rutina creada cuando se inicializa la aplicación.", "' + encodeURI(jsonRutina) + '")');
+      tx.executeSql('INSERT INTO RECORDS (key, type, title, date, value) VALUES (4, "Rutina", "Rutina de Prueba 2", "2021-12-12", "' + encodeURI(jsonRutina2) + '")');
+      tx.executeSql('INSERT INTO RECORDS (key, type, title, date, observations, value) VALUES (3, "Servicio", "Servicio de Prueba Full", "2021-12-13", "Esta es una prueba para tener un primer Servicio creado cuando se inicializa la aplicación.", "' + encodeURI(jsonServicio) + '")');
     })
   } catch (e) {
     // saving error
@@ -94,78 +63,65 @@ const storeExample = async () => {
 
 
 function ReportScreen({ navigation }) {
+  const [iData, setIData] = useState(null);
+  var state = navigation.getState()
   storeExample()
-  getAllKeys(navigation)
+  getAllKeys(navigation, setIData)
+
+  // useEffect(
+  //   () => {
+  //     let timer1 = setTimeout(() => setIData(data), 1000);
+  //     return () => {
+  //       clearTimeout(timer1);
+  //     };
+  //   },
+  //   []
+  // );
+  
+  useEffect(() => {
+    navigation.setOptions({ title: state.routes[1].params.type + 's' })
+  });
   return (
     <Block flex center>
-      {/* <ScrollView showsVerticalScrollIndicator={false}> */}
-        {renderCards(navigation)}
-      {/* </ScrollView> */}
+        <SafeAreaView style={{height:height-200}}>
+          <Accordion 
+            style={styles.accordion}
+            headerStyle={styles.listitemheader}
+            contentStyle={styles.listitemcontent}
+            dataArray={iData} />
+          <Block flex-end middle right>
+            <Button
+              round
+              onlyIcon
+              shadowless
+              icon="plus"
+              iconFamily="Font-Awesome"
+              iconColor={theme.COLORS.WHITE}
+              iconSize={theme.SIZES.BASE * 1.625}
+              color="success"
+              onPress={() => navigation.navigate('new', 
+              {
+                itemId: null,
+                mode: 'new',
+                type: state.routes[1].params.type
+              }
+              )}
+            />
+          </Block>
+        </SafeAreaView>
+      <ActivityIndicator size="large" animating={iData == null ? true : false} />
     </Block>
   );
 }
 
-function renderCards(navigation) {
-  var state = navigation.getState()
-  
-  const [iData, setIData] = useState([]);
-  useEffect(
-    () => {
-      let timer1 = setTimeout(() => setIData(data2), 300);
-      return () => {
-        clearTimeout(timer1);
-      };
-    },
-    []
-  );
-
-  useEffect(() => {
-    navigation.setOptions({ title: state.routes[1].params.type + 's' })
-  });
-
-  return (
-    <SafeAreaView style={{height:height-200}}>
-      <Accordion 
-        style={styles.accordion}
-        headerStyle={styles.listitemheader}
-        contentStyle={styles.listitemcontent}
-        dataArray={iData} />
-      <Block flex-end middle right>
-        <Button
-          round
-          onlyIcon
-          shadowless
-          icon="plus"
-          iconFamily="Font-Awesome"
-          iconColor={theme.COLORS.WHITE}
-          iconSize={theme.SIZES.BASE * 1.625}
-          color="success"
-          onPress={() => navigation.navigate('new', 
-          {
-            itemId: null,
-            mode: 'new',
-            type: state.routes[1].params.type
-          }
-          )}
-        />
-      </Block>
-    </SafeAreaView>
-  );
-}
-
-function renderContent(navigation, item, report) {
-  var observ = 'Sin Observaciones'
-  if (type_ == 'Servicio') {
-    observ = report.asunto
-  } else {
-    observ = report.observ_generales ? report.observ_generales : observ
-  }
-  var title = report.identificacion + ' - ' + report.fecha
+function renderContent(navigation, item) {
+  var observ = item.observations ? item.observations : 'Sin Observaciones'
+  var title = item.title + ' - ' + item.date
   var state = navigation.getState()
   const generateReport = () => {
     navigation.navigate('generate', 
     {
-      itemId: item,
+      itemId: item.key,
       title: title,
       type: state.routes[1].params.type,
     }
@@ -176,7 +132,7 @@ function renderContent(navigation, item, report) {
     var state = navigation.getState()
     navigation.navigate('new', 
       {
-        itemId: item,
+        itemId: item.key,
         mode: 'edit',
         type: state.routes[1].params.type,
         title: title

@@ -57,14 +57,14 @@ function HomeScreen({ navigation }) {
             </Block>
           </Block>
         </Block>
-        <Block style={styles.server}>
+        {/* <Block style={styles.server}>
           <Text>
           Servidor: 
             <Text style={server ? styles.green : styles.red}>
               {server ? " Encendido" : " Apagado"}
             </Text>
           </Text>
-        </Block>
+        </Block> */}
       </ScrollView>
     </Block>
   );
