@@ -5,9 +5,6 @@
  * @param {Number} MAX_HEIGHT - The height of the image in pixels
  */
 
-export function saludo(){
-    console.log('hola')
-}
 async function reduce_image_file_size(base64Str, MAX_WIDTH = 450, MAX_HEIGHT = 450) {
     let resized_base64 = await new Promise((resolve) => {
         let img = new Image()
