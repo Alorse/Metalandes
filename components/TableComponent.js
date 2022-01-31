@@ -1,6 +1,10 @@
 import React from "react";
 // import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Dimensions } from "react-native";
+import { 
+  Dimensions,
+  ActivityIndicator
+ } from "react-native";
+import { Block } from 'galio-framework';
 import schemaRoot from '../assets/config/schemas';
 import "./table.css"
 import logo from '../assets/logo_doc.jpg';
@@ -14,6 +18,7 @@ class TableComponent extends React.Component {
       itemId: this.props.item,
       type: this.props.type,
       data: {},
+      loading: true,
       equipos: schemaRoot.equipos,
       numGabinetes: 0
     };
@@ -32,13 +37,10 @@ class TableComponent extends React.Component {
           jsonValue = decodeURI(results.rows.item(0).value)
           jsonValue = jsonValue != null ? JSON.parse(jsonValue) : null
           _this.setState({data: jsonValue})
+          _this.setState({loading: false})
           _this.gabinetesCount()
         }, null); 
       });
-      // jsonValue = await AsyncStorage.getItem(this.state.itemId)
-      // jsonValue = jsonValue != null ? JSON.parse(jsonValue) : null
-      // this.setState({data: jsonValue})
-      // this.gabinetesCount()
     } catch(e) {
       // error reading value
       console.log(e)
@@ -61,12 +63,17 @@ class TableComponent extends React.Component {
   }
 
   render() {
-    return this.state.data && <Child 
+    return (<>
+      <Block flex center>
+        <ActivityIndicator size="large" animating={this.state.loading} />
+      </Block>
+      { !this.state.loading && <Child
         data={this.state.data}
         equipos={this.state.equipos}
         numGabinetes={this.state.numGabinetes}
         type={this.state.type}
-        />
+        />}
+    </>)
   }
 }
 

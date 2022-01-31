@@ -78,6 +78,7 @@ const doble_tiro_primario = {
       "Ormazabal",
       "Sarel",
       "Schneider Electric",
+      "Siemens",
       "Socol",
       "Xikai",
       "Otro"
