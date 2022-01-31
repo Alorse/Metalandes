@@ -11,6 +11,12 @@ import MantenimientoExample from '../assets/config/example.json';
 import RutinaExample from '../assets/config/example_rutina.json';
 import RutinaExample2 from '../assets/config/example2.json';
 import ServicioExample from '../assets/config/example_servicio.json';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+} from '@material-ui/core';
 
 const { width, height } = Dimensions.get("screen");
 
@@ -19,7 +25,7 @@ var db = openDatabase('metalapp', '1.0', 'Metalandes App', 50 * 1024 * 1024);
 var data = [];
 var type_ = null
 
-const getAllKeys = async (navigation, setIData) => {
+const getAllKeys = async (navigation, setIData, setOpenBack) => {
   var state = navigation.getState()
   type_ = state.routes[1].params.type
   data = [] // Reset Object
@@ -34,6 +40,7 @@ const getAllKeys = async (navigation, setIData) => {
           content: renderContent(
             navigation,
             results.rows.item(i),
+            setOpenBack
           )
         })
       }
@@ -65,22 +72,27 @@ const storeExample = async () => {
 function ReportScreen({ navigation }) {
   const [iData, setIData] = useState(null);
   var state = navigation.getState()
+  const [openBack, setOpenBack] = useState([null, false]);
   storeExample()
-  getAllKeys(navigation, setIData)
-
-  // useEffect(
-  //   () => {
-  //     let timer1 = setTimeout(() => setIData(data), 1000);
-  //     return () => {
-  //       clearTimeout(timer1);
-  //     };
-  //   },
-  //   []
-  // );
+  getAllKeys(navigation, setIData, setOpenBack)
   
   useEffect(() => {
     navigation.setOptions({ title: state.routes[1].params.type + 's' })
   });
+
+  const handleCloseBack = (status) => {
+    if (status[1]) {
+      // window.location.reload();
+      db.transaction(function (tx) {
+        tx.executeSql(`DELETE FROM RECORDS WHERE key = ?`, [status[0]]);
+        console.log('Delete ' + status[0])
+        setOpenBack([null, false]);
+      });
+    } else {
+      setOpenBack([null, false]);
+    }
+  };
+
   return (
     <Block flex center>
         <SafeAreaView style={{height:height-200}}>
@@ -110,11 +122,27 @@ function ReportScreen({ navigation }) {
           </Block>
         </SafeAreaView>
       <ActivityIndicator size="large" animating={iData == null ? true : false} />
+      <Dialog
+        open={openBack[1]}
+        onClose={() => handleCloseBack([null, false])}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            ¿Estás seguro que quieres eliminar este {state.routes[1].params.type}?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button small onPress={() => handleCloseBack([openBack[0], true])}>   Sí   </Button>
+          <Button small color="default" onPress={() => handleCloseBack([null, false])}>   No   </Button>
+        </DialogActions>
+      </Dialog>
     </Block>
   );
 }
 
-function renderContent(navigation, item) {
+function renderContent(navigation, item, setOpenBack) {
   var observ = item.observations ? item.observations : 'Sin Observaciones'
   var title = item.title + ' - ' + item.date
   var state = navigation.getState()
@@ -139,6 +167,10 @@ function renderContent(navigation, item) {
       }
     )
   }
+
+  const deleteReport = () => {
+    setOpenBack([item.key, true])
+  }
   
   return (
     <Block style={styles.itemContent}>
@@ -147,13 +179,18 @@ function renderContent(navigation, item) {
         <Block flex left>
         </Block>
         <Block>
-          <Button small color="default" onPress={generateReport}>
+          <Button small color="success" onPress={generateReport}>
             GENERAR REPORTE
           </Button>
         </Block>
         <Block>
           <Button small color="default" onPress={editReport}>
             EDITAR
+          </Button>
+        </Block>
+        <Block>
+          <Button small color="error" onPress={deleteReport}>
+            ELIMINAR
           </Button>
         </Block>
       </Block>
