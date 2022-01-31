@@ -65,9 +65,11 @@ class TableComponent extends React.Component {
 
   render() {
     return (<>
-      <Block flex center>
-        <ActivityIndicator size="large" animating={this.state.loading} />
-      </Block>
+      { this.state.loading && 
+        <Block flex center>
+          <ActivityIndicator size="large" animating={this.state.loading} />
+        </Block>
+      }
       { !this.state.loading && <Child
         data={this.state.data}
         equipos={this.state.equipos}

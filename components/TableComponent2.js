@@ -36,10 +36,6 @@ class TableComponent2 extends React.Component {
           _this.setState({loading: false})
         }, null); 
       });
-      // jsonValue = await AsyncStorage.getItem(this.state.itemId)
-      // jsonValue = jsonValue != null ? JSON.parse(jsonValue) : null
-      // this.setState({data: jsonValue})
-      // this.gabinetesCount()
     } catch(e) {
       // error reading value
       console.log(e)
@@ -48,9 +44,11 @@ class TableComponent2 extends React.Component {
 
   render() {
     return (<>
-      <Block flex center>
-        <ActivityIndicator size="large" animating={this.state.loading} />
-      </Block>
+      { this.state.loading && 
+        <Block flex center>
+          <ActivityIndicator size="large" animating={this.state.loading} />
+        </Block>
+      }
       { !this.state.loading && <Child
         data={this.state.data}
         />}
