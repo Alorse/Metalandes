@@ -37,6 +37,7 @@ class TableComponent extends React.Component {
           jsonValue = decodeURI(results.rows.item(0).value)
           jsonValue = jsonValue != null ? JSON.parse(jsonValue) : null
           _this.setState({data: jsonValue})
+          console.log(jsonValue)
           _this.setState({loading: false})
           _this.gabinetesCount()
         }, null); 
@@ -607,7 +608,7 @@ const Child = ({data, equipos, numGabinetes, type}) => (
                     <p>{item.observ_dor}</p>
                   </div>
                 </div>
-                {item.prueba_dor == true && (
+                {item.prueba_dor == true && item.prueba && (
                   <>
                     <div className="table small">
                       <section className="thead vertical">
