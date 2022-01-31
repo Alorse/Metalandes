@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react';
 
 import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import "./MediaCapture.css"
-
+import "./MediaCapture.css";
+import {preview_image} from './resize_base64_image.js';
 export class MediaCapture extends Component {
     constructor(props){  
         super(props);
@@ -13,17 +13,18 @@ export class MediaCapture extends Component {
     }
 
     handleCapture = ({ target }) => {
-        var fileReader
-        Array.from(target.files).forEach(file => {
-            fileReader = new FileReader();
-            fileReader.readAsDataURL(file);
-            fileReader.onload = (e) => {
-                this.setState((prevState) => ({
-                    ['images']: [...prevState['images'], e.target.result]
-                }));
-                this.props.updateValue(this.state.images)
-            };
-        });
+        preview_image(this);
+        // var fileReader
+        // Array.from(target.files).forEach(file => {
+        //     fileReader = new FileReader();
+        //     fileReader.readAsDataURL(file);
+        //     fileReader.onload = (e) => {
+        //         this.setState((prevState) => ({
+        //             ['images']: [...prevState['images'], e.target.result]
+        //         }));
+        //         this.props.updateValue(this.state.images)
+        //     };
+        // });
     };
 
     render() {
