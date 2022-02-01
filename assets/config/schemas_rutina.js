@@ -60,7 +60,7 @@ delete rutina.properties.seccionador.items.properties.vnom_seccionador
 
 // CELDA MEDIDA EN MEDIA O BAJA TENSION
 // Add
-rutina.properties.media_baja.items.properties.inspeccion_mb = inspeccion
+// rutina.properties.media_baja.items.properties.inspeccion_mb = inspeccion
 rutina.properties.media_baja.items.properties.estado_mb = estado
 rutina.properties.media_baja.items.properties.sellos_mb = sellos
 // Remove

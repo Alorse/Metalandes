@@ -317,9 +317,9 @@ const Child = ({data, equipos, numGabinetes, type}) => (
                     {type == 'Mantenimiento' && 
                       <div className="col-30 no-border"><span>Marca TCs & TPs</span> {item.marca_tc_tp_mb}</div>
                     }
-                    {type == 'Rutina' && 
+                    {/* {type == 'Rutina' && 
                       <div className="col-30 no-border"><span>Tipo de Inspección</span> {item.inspeccion_mb}</div>
-                    }
+                    } */}
                   </div>
                   {type == 'Mantenimiento' && 
                     <>

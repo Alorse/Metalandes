@@ -281,11 +281,11 @@ const media_baja = {
               scope: "#/properties/referencia_mb",
               label: "Referencia",
             },
-            {
-              type: "Control",
-              scope: "#/properties/inspeccion_mb",
-              label: "Tipo de Inspección",
-            }
+            // {
+            //   type: "Control",
+            //   scope: "#/properties/inspeccion_mb",
+            //   label: "Tipo de Inspección",
+            // }
           ]
         },
         {
