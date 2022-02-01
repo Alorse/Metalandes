@@ -77,7 +77,7 @@ export async function preview_image(react) {
     var image;
     Array.from(file.files).forEach(async img => {
         image = await process_image(img);
-        console.log(image)
+        // console.log(image)
         react.setState((prevState) => ({
             ['images']: [...prevState['images'], image]
         }));

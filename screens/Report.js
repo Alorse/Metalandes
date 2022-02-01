@@ -31,10 +31,11 @@ const getAllKeys = async (navigation, setIData, setOpenBack) => {
   data = [] // Reset Object
 
   db.transaction(function (tx) {
-    tx.executeSql('SELECT key, type, title, date, observations FROM RECORDS WHERE type = "' + type_ + '"', [], function (tx, results) {
+    tx.executeSql('SELECT key, type, title, date, city, person, plant, observations FROM RECORDS WHERE type = "' + type_ + '"', [], function (tx, results) {
       var len = results.rows.length, i;
       for (i = 0; i < len; i++) {
-        var title = results.rows.item(i).title + ' - ' + results.rows.item(i).date
+        var title = results.rows.item(i).plant != "" ? decodeURI(results.rows.item(i).plant) : results.rows.item(i).title
+        title = title + ' - ' + results.rows.item(i).date
         data.push({
           title: title,
           content: renderContent(
@@ -45,7 +46,6 @@ const getAllKeys = async (navigation, setIData, setOpenBack) => {
         })
       }
       setIData(data)
-      // console.log('data2', data)
     }, null); 
   });
 }
@@ -58,10 +58,19 @@ const storeExample = async () => {
     const jsonServicio = JSON.stringify(ServicioExample)
     db.transaction(function (tx) {
       tx.executeSql('CREATE TABLE IF NOT EXISTS RECORDS (key INTEGER PRIMARY KEY AUTOINCREMENT, type, title, date, observations, value TEXT)');
-      tx.executeSql('INSERT INTO RECORDS (key, type, title, date, observations, value) VALUES (1, "Mantenimiento", "Mantenimiento de Prueba Full", "2021-12-10", "Esta es una prueba para tener un primer Mantenimiento creado cuando se inicializa la aplicación.", "' + encodeURI(jsonMantenimiento) + '")');
-      tx.executeSql('INSERT INTO RECORDS (key, type, title, date, observations, value) VALUES (2, "Rutina", "Rutina de Prueba Full", "2021-12-11", "Esta es una prueba para tener una primer Rutina creada cuando se inicializa la aplicación.", "' + encodeURI(jsonRutina) + '")');
-      tx.executeSql('INSERT INTO RECORDS (key, type, title, date, value) VALUES (4, "Rutina", "Rutina de Prueba 2", "2021-12-12", "' + encodeURI(jsonRutina2) + '")');
-      tx.executeSql('INSERT INTO RECORDS (key, type, title, date, observations, value) VALUES (3, "Servicio", "Servicio de Prueba Full", "2021-12-13", "Esta es una prueba para tener un primer Servicio creado cuando se inicializa la aplicación.", "' + encodeURI(jsonServicio) + '")');
+      tx.executeSql('INSERT INTO RECORDS (key, type, title, date, observations, city, person, plant, value) VALUES '
+      + '(1, "Mantenimiento", "Mantenimiento de Prueba Full", "2021-12-10", "Esta es una prueba para tener un primer Mantenimiento creado cuando se inicializa la aplicación.", "Manizales", "Andrés Felipe Arias Lopéz", "Subestación Centro Cultural", "' + encodeURI(jsonMantenimiento) + '")');
+      tx.executeSql('INSERT INTO RECORDS (key, type, title, date, observations, city, person, plant, value) VALUES '
+      + '(2, "Rutina", "Rutina de Prueba Full", "2021-12-11", "Esta es una prueba para tener una primer Rutina creada cuando se inicializa la aplicación.", "Cali", "Andrés Felipe Arias Lopéz", "Subestación Centro Comercial", "' + encodeURI(jsonRutina) + '")');
+      tx.executeSql('INSERT INTO RECORDS (key, type, title, date, city, person, plant, value) VALUES '
+      + '(4, "Rutina", "Rutina de Prueba 2", "2021-12-12", "Sabaneta", "Andrés Felipe Arias Lopéz", "Subestación Centro", "' + encodeURI(jsonRutina2) + '")');
+      tx.executeSql('INSERT INTO RECORDS (key, type, title, date, observations, city, person, plant, value) VALUES '
+      + '(3, "Servicio", "Servicio de Prueba Full", "2021-12-13", "Esta es una prueba para tener un primer Servicio creado cuando se inicializa la aplicación.", "Medellín", "Andrés Felipe Arias Lopéz", "Subestación Centro Monterrey", "' + encodeURI(jsonServicio) + '")');
+    })
+    db.transaction(function (tx) {
+      tx.executeSql('ALTER TABLE RECORDS ADD COLUMN city TEXT NOT NULL DEFAULT ""');
+      tx.executeSql('ALTER TABLE RECORDS ADD COLUMN person TEXT NOT NULL DEFAULT ""');
+      tx.executeSql('ALTER TABLE RECORDS ADD COLUMN plant TEXT NOT NULL DEFAULT ""');
     })
   } catch (e) {
     // saving error
@@ -82,7 +91,6 @@ function ReportScreen({ navigation }) {
 
   const handleCloseBack = (status) => {
     if (status[1]) {
-      // window.location.reload();
       db.transaction(function (tx) {
         tx.executeSql(`DELETE FROM RECORDS WHERE key = ?`, [status[0]]);
         console.log('Delete ' + status[0])
@@ -144,7 +152,8 @@ function ReportScreen({ navigation }) {
 
 function renderContent(navigation, item, setOpenBack) {
   var observ = item.observations ? item.observations : 'Sin Observaciones'
-  var title = item.title + ' - ' + item.date
+  var title = item.plant != "" ? decodeURI(item.plant) : item.title
+  title = title + ' - ' + item.date
   var state = navigation.getState()
   const generateReport = () => {
     navigation.navigate('generate', 
@@ -174,7 +183,9 @@ function renderContent(navigation, item, setOpenBack) {
   
   return (
     <Block style={styles.itemContent}>
-      <Text>{observ}</Text>
+      <Text><strong>Indentificación</strong>: {decodeURI(item.title)}</Text>
+      <Text><strong>Contacto</strong>: {decodeURI(item.person)}</Text>
+      <Text>{decodeURI(observ)}</Text>
       <Block row>
         <Block flex left>
         </Block>

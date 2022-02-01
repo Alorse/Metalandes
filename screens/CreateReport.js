@@ -57,7 +57,7 @@ function CreateReportScreen({ route, navigation }) {
   
   useEffect(() => {
     navigation.setOptions({ 
-      title: mode == 'new' ?  'Nuevo ' + type : title,
+      title: mode == 'new' ?  'Nuevo ' + type : decodeURI(title),
       headerLeft: (props) => (
         <HeaderBackButton
           {...props}
@@ -103,20 +103,39 @@ const storeData = async (value) => {
     const jsonValue = JSON.stringify(value)
     db.transaction(function (tx) {
       var obs = type_ == 'Servicio' ? value.asunto : (value.observ_generales ? value.observ_generales : "")
+      var sql;
       if (item_id) {
-        tx.executeSql(
-          'UPDATE RECORDS SET ' +
-          'title = "' + value.identificacion + '", ' + 
-          'date = "' + value.fecha + '", ' + 
-          'observations = "' + obs + '", ' + 
-          'value = "' + encodeURI(jsonValue) + '" ' + 
-          'WHERE key = ' + item_id);
+        sql = 'UPDATE RECORDS SET ' +
+        'title = "' + encodeURI(value.identificacion) + '", ' + 
+        'date = "' + value.fecha + '", ' + 
+        'observations = "' + encodeURI(obs) + '", ' + 
+        'value = "' + encodeURI(jsonValue) + '", ' + 
+        'city = "' + encodeURI(value.ciudad) + '", ' + 
+        'person = "' + encodeURI(value.contacto) + '", ' + 
+        'plant = "' + encodeURI(value.establecimiento) + '" ' + 
+        'WHERE key = ' + item_id
+        tx.executeSql(sql, [], function(err){
+          console.log("Ok", err);
+        }, function(err){
+          console.log("Error", err);
+        });
       } else {
-        tx.executeSql(
-          'INSERT INTO RECORDS (type, title, date, observations, value) ' + 
-          'VALUES ("' + type_ + '","' + value.identificacion + '","' + value.fecha + '","' + obs + '", "' + encodeURI(jsonValue) + '")'
-        );
+        sql = 'INSERT INTO RECORDS (type, title, date, observations, value, city, person, plant) ' + 
+        'VALUES ("' + type_ 
+          + '","' + encodeURI(value.identificacion)
+          + '","' + value.fecha 
+          + '","' + encodeURI(obs)
+          + '","' + encodeURI(jsonValue)
+          + '","' + encodeURI(value.ciudad)
+          + '","' + encodeURI(value.contacto)
+          + '","' + encodeURI(value.establecimiento) + '")'
+          tx.executeSql(sql, [], function(err){
+            console.log("Ok", err);
+          }, function(err){
+            console.log("Error", err);
+          });
       }
+      console.log(sql);
     })
   } catch (e) {
     // saving error
@@ -165,17 +184,14 @@ function renderCards(itemId, type, navigation, setOpenBack, openBack) {
   const handleClose = () => {
     setOpen(false);
     if (successful){
-      navigation.navigate('Metalandes')
+      window.location.reload();
     }
   };
 
   const handleCloseBack = (status) => {
     if (status) {
-      if (itemId) {
-        window.location.reload();
-      } else {
-        navigation.goBack()
-      }
+      flag = true
+      navigation.goBack()
     } else {
       setOpenBack(false);
     }

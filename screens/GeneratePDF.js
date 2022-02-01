@@ -17,7 +17,7 @@ function GeneratePDFScreen({ route, navigation }) {
   const [html, setHTML] = useState();
   
   useEffect(() => {
-    navigation.setOptions({ title: 'PDF: ' + title })
+    navigation.setOptions({ title: 'PDF: ' + decodeURI(title) })
   });
 
 
