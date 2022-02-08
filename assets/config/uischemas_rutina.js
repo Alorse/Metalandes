@@ -750,6 +750,271 @@ const contadores = {
     }
   }
 };
+const tablero = {
+  type: "ListWithDetail",
+  label: "TABLERO DE PROTECCIONES",
+  scope: "#/properties/tablero",
+  options: {
+    detail: {
+      type: "VerticalLayout",
+      elements: [
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/nombre_tab",
+              label: "Nombre del Tablero",
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/capacidad_tab",
+              label: "Capacidad totalizador (Amp)",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/cortocircuito_tab",
+              label: "I cortocircuito (kA)",
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/marca_tab",
+              label: "Marca",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/protecciones_tab",
+              label: "N° de protecciones en el tablero",
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/tiene_dps_tab",
+              label: "Posee DPS",
+              options: {
+                format: "radio"
+              }
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/dps_tab",
+              label: "Especificaciones DPS",
+              rule: {
+                effect: "SHOW",
+                condition: {
+                  scope: "#/properties/tiene_dps_tab",
+                  schema: { enum: ["Sí"] }
+                }
+              }
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/barrajes_tab",
+              label: "Posee protección de barrajes (lamina de policarbonato u otras)",
+              options: {
+                format: "radio"
+              }
+            },
+            {
+              type: "Control",
+              scope: "#/properties/peligro_tab",
+              label: "Existe marcación de peligro (calcomanía rayo)",
+              options: {
+                format: "radio"
+              }
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Group",
+              // scope: "#/properties/mediciones_tab",
+              label: "Mediciones del sistema eléctrico",
+              elements: [
+                {
+                  type: "HorizontalLayout",
+                  elements: [
+                    {
+                      type: "Control",
+                      scope: "#/properties/vrs_tab",
+                      label: "Voltaje AC R-S",
+                    },
+                    {
+                      type: "Control",
+                      scope: "#/properties/vst_tab",
+                      label: "Voltaje AC S-T",
+                    },
+                    {
+                      type: "Control",
+                      scope: "#/properties/vtr_tab",
+                      label: "Voltaje AC T-R",
+                    }
+                  ]
+                },
+                {
+                  type: "HorizontalLayout",
+                  elements: [
+                    {
+                      type: "Control",
+                      scope: "#/properties/vnt_tab",
+                      label: "Voltaje AC N-T",
+                    },
+                    {
+                      type: "Control",
+                      scope: "#/properties/vrn_tab",
+                      label: "Voltaje AC R-N",
+                    },
+                    {
+                      type: "Control",
+                      scope: "#/properties/vsn_tab",
+                      label: "Voltaje AC S-N",
+                    }
+                  ]
+                },
+                {
+                  type: "HorizontalLayout",
+                  elements: [
+                    {
+                      type: "Control",
+                      scope: "#/properties/vtn_tab",
+                      label: "Voltaje AC T-N",
+                    }
+                  ]
+                },
+                {
+                  type: "HorizontalLayout",
+                  elements: [
+                    {
+                      type: "Control",
+                      scope: "#/properties/transformador_tab",
+                      label: "Transformador",
+                    },
+                    {
+                      type: "Control",
+                      scope: "#/properties/kva_tab",
+                      label: "Kva",
+                    }
+                  ]
+                },
+                {
+                  type: "Group",
+                  label: "Corrientes generales del sistema",
+                  elements: [
+                    {
+                      type: "HorizontalLayout",
+                      elements: [
+                        {
+                          type: "Control",
+                          scope: "#/properties/g_inom_tab",
+                          label: "Inom",
+                        },
+                        {
+                          type: "Control",
+                          scope: "#/properties/g_ir_tab",
+                          label: "IR (Amp)",
+                        },
+                        {
+                          type: "Control",
+                          scope: "#/properties/g_is_tab",
+                          label: "IS (Amp)",
+                        },
+                        {
+                          type: "Control",
+                          scope: "#/properties/g_it_tab",
+                          label: "IT (Amp)",
+                        },
+                      ]
+                    }
+                  ]
+                },
+                {
+                  type: "Group",
+                  label: "Corrientes de la trasferencia",
+                  elements: [
+                    {
+                      type: "HorizontalLayout",
+                      elements: [
+                        {
+                          type: "Control",
+                          scope: "#/properties/t_inom_tab",
+                          label: "Inom",
+                        },
+                        {
+                          type: "Control",
+                          scope: "#/properties/t_ir_tab",
+                          label: "IR (Amp)",
+                        },
+                        {
+                          type: "Control",
+                          scope: "#/properties/t_is_tab",
+                          label: "IS (Amp)",
+                        },
+                        {
+                          type: "Control",
+                          scope: "#/properties/t_it_tab",
+                          label: "IT (Amp)",
+                        },
+                      ]
+                    }
+                  ]
+                },
+              ],
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/observ_tab",
+              label: "Observaciones generales",
+              options: {
+                multi: true
+              }
+            }
+          ]
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/fotos_tab",
+              label: "Fotos"
+            }
+          ]
+        }
+      ]
+    }
+  }
+};
 
 const hv = {
   type: "Categorization",
@@ -813,6 +1078,7 @@ const hv = {
                 transferencia,
                 transformador,
                 contadores,
+                tablero
               ]
             }
           ],

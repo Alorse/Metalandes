@@ -33,6 +33,8 @@ const si_no = {
   ]
 }
 
+const number = {type: "number"}
+
 // CELDA DOBLE TIRO PRIMARIO 
 // Add
 rutina.properties.doble_tiro_primario.items.properties.inspeccion_dtp = inspeccion
@@ -153,7 +155,27 @@ rutina.properties.contadores.items.properties.sellos_cont = sellos
 delete rutina.properties.contadores.items.properties.calibre_conductores_cont
 
 // TABLERO DE PROTECCIONES
-delete rutina.properties.tablero
+// Add
+rutina.properties.tablero.items.properties.vrs_tab = number
+rutina.properties.tablero.items.properties.vst_tab = number
+rutina.properties.tablero.items.properties.vtr_tab = number
+rutina.properties.tablero.items.properties.vnt_tab = number
+rutina.properties.tablero.items.properties.vrn_tab = number
+rutina.properties.tablero.items.properties.vsn_tab = number
+rutina.properties.tablero.items.properties.vtn_tab = number
+
+rutina.properties.tablero.items.properties.transformador_tab = {type: "string"}
+rutina.properties.tablero.items.properties.kva_tab = number
+
+rutina.properties.tablero.items.properties.g_inom_tab = number
+rutina.properties.tablero.items.properties.g_ir_tab = number
+rutina.properties.tablero.items.properties.g_is_tab = number
+rutina.properties.tablero.items.properties.g_it_tab = number
+rutina.properties.tablero.items.properties.t_inom_tab = number
+rutina.properties.tablero.items.properties.t_ir_tab = number
+rutina.properties.tablero.items.properties.t_is_tab = number
+rutina.properties.tablero.items.properties.t_it_tab = number
+//delete rutina.properties.tablero
 
 export default {
   rutina
