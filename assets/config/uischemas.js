@@ -1233,22 +1233,6 @@ const hv = {
                 transferencia,
                 contadores,
                 tablero
-                // {
-                //   type: "Control",
-                //   scope: "#/properties/equipos",
-                //   label: "Equipos",
-                //   options: {
-                //     detail: {
-                //       type: "VerticalLayout",
-                //       elements: [
-                //         {
-                //           type: "Label",
-                //           text: "Person Info",
-                //         },
-                //       ],
-                //     },
-                //   },
-                // }
               ]
             }
           ],
