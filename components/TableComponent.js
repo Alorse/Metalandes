@@ -773,12 +773,55 @@ const Child = ({data, equipos, numGabinetes, type}) => (
                   <div className="col-50"><span>Posee protección de barrajes (lamina de policarbonato u otras)</span> {item.barrajes_tab}</div>
                   <div className="col-50 no-border"><span>Existe marcación de peligro (calcomanía rayo)</span> {item.peligro_tab}</div>
                 </div>
-                <div className="row vertical uppercase">
-                    <div className="col-100 center height-auto">
-                      Observaciones generales
-                      <p>{item.observ_tab}</p>
+                {type == 'Rutina' && 
+                  <>
+                    <div className="row vertical uppercase">
+                      <div className="col-100 center height-auto">
+                        Mediciones del sistema eléctrico
+                      </div>
                     </div>
+                    <div className="row vertical">
+                      <div className="col-25"><span>Voltaje AC R-S</span> {item.vrs_tab}</div>
+                      <div className="col-25"><span>Voltaje AC S-T</span> {item.vst_tab}</div>
+                      <div className="col-25"><span>Voltaje AC T-R</span> {item.vtr_tab}</div>
+                      <div className="col-25 no-border"><span>Voltaje AC N-T</span> {item.vnt_tab}</div>
+                    </div>
+                    <div className="row vertical">
+                      <div className="col-25"><span>Voltaje AC R-N</span> {item.vrn_tab}</div>
+                      <div className="col-25"><span>Voltaje AC S-N</span> {item.vsn_tab}</div>
+                      <div className="col-25"><span>Voltaje AC T-N</span> {item.vtn_tab}</div>
+                      <div className="col-25 no-border"><span>Kva</span> {item.kva_tab}</div>
+                    </div>
+                    <div className="row vertical">
+                      <div className="col-100 center height-auto">
+                        Corrientes generales del sistema
+                      </div>
+                    </div>
+                    <div className="row vertical">
+                      <div className="col-25"><span>Inom</span> {item.g_inom_tab}</div>
+                      <div className="col-25"><span>IR</span> {item.g_ir_tab} Amp</div>
+                      <div className="col-25"><span>IS</span> {item.g_is_tab} Amp</div>
+                      <div className="col-25 no-border"><span>IT</span> {item.g_it_tab} Amp</div>
+                    </div>
+                    <div className="row vertical">
+                      <div className="col-100 center height-auto">
+                        Corrientes de la trasferencia
+                      </div>
+                    </div>
+                    <div className="row vertical">
+                      <div className="col-25"><span>Inom</span> {item.t_inom_tab}</div>
+                      <div className="col-25"><span>IR</span> {item.t_ir_tab} Amp</div>
+                      <div className="col-25"><span>IS</span> {item.t_is_tab} Amp</div>
+                      <div className="col-25 no-border"><span>IT</span> {item.t_it_tab} Amp</div>
+                    </div>
+                  </>
+                }
+                <div className="row vertical uppercase">
+                  <div className="col-100 center height-auto">
+                    Observaciones generales
+                    <p>{item.observ_tab}</p>
                   </div>
+                </div>
               </section>
             </div>
             <div style={{width: width-20}}>
