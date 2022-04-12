@@ -102,9 +102,10 @@ const Child = ({data}) => (
                   <div className="block border-bottom" key={'trabajo' + i}>
                     <div className="block center">
                     {item.imagen.map((imagen, j) => {
-                      return (
+                      return (<>
                         <img key={'foto_' + j} src={imagen} className="foto" />
-                      )
+                        {j == 2 && <div className="page-break" />}
+                      </>)
                     })}
                     </div>
                     <p className="center">{item.descripcion}</p>
@@ -138,9 +139,10 @@ const Child = ({data}) => (
                         <>
                           <br />
                           {item.fotos.map((imagen, j) => {
-                            return (
-                              <img key={'obvs_' + j} src={imagen} className="foto" />
-                            )
+                            return (<>
+                              <img key={'foto_' + j} src={imagen} className="foto" />
+                              {j == 2 && <div className="page-break" />}
+                            </>)
                           })}
                         </>
                       )}
