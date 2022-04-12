@@ -150,6 +150,16 @@ function ReportScreen({ navigation }) {
   );
 }
 
+function downloadObjectAsJson(exportObj, exportName){
+  var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
+  var downloadAnchorNode = document.createElement('a');
+  downloadAnchorNode.setAttribute("href",     dataStr);
+  downloadAnchorNode.setAttribute("download", exportName + ".json");
+  document.body.appendChild(downloadAnchorNode); // required for firefox
+  downloadAnchorNode.click();
+  downloadAnchorNode.remove();
+}
+
 function renderContent(navigation, item, setOpenBack) {
   var observ = item.observations ? item.observations : 'Sin Observaciones'
   var title = item.plant != "" ? decodeURI(item.plant) : item.title
@@ -180,6 +190,24 @@ function renderContent(navigation, item, setOpenBack) {
   const deleteReport = () => {
     setOpenBack([item.key, true])
   }
+
+  const downloadReport = () => {
+    db.transaction(function (tx) {
+      tx.executeSql(`SELECT * FROM RECORDS WHERE key = ?`, [item.key], function(tx, results){
+        let json = results.rows.item(0)
+        let jsonValue
+        json.title = decodeURI(json.title)
+        json.plant = decodeURI(json.plant)
+        json.person = decodeURI(json.person)
+        json.observations = decodeURI(json.observations)
+        jsonValue = decodeURI(results.rows.item(0).value)
+        jsonValue = jsonValue != null ? JSON.parse(jsonValue) : null
+        json.value = jsonValue
+        console.log(json)
+        downloadObjectAsJson(json, json.title)
+      });
+    });
+  }
   
   return (
     <Block style={styles.itemContent}>
@@ -188,6 +216,11 @@ function renderContent(navigation, item, setOpenBack) {
       <Text>{decodeURI(observ)}</Text>
       <Block row>
         <Block flex left>
+        </Block>
+        <Block>
+          <Button small color="info" onPress={downloadReport}>
+            DESCARGAR
+          </Button>
         </Block>
         <Block>
           <Button small color="success" onPress={generateReport}>
