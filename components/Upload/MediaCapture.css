@@ -12,3 +12,14 @@
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     color: #777;
 }
+.abs{
+    position: relative;
+}
+.max-images{
+    font-size: 12px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    color: #777;
+    position: absolute;
+    right: 0;
+    top: 20px;
+}

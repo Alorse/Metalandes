@@ -13,7 +13,11 @@ export class MediaCapture extends Component {
     }
 
     handleCapture = ({ target }) => {
-        preview_image(this);
+        if (target.files.length > 6) {
+            alert("Solo puedes subir hasta 6 imágenes");
+        } else {
+            preview_image(this);
+        }
         // var fileReader
         // Array.from(target.files).forEach(file => {
         //     fileReader = new FileReader();
@@ -30,9 +34,12 @@ export class MediaCapture extends Component {
     render() {
         return (
             <Fragment>
-                <p className="para">
-                    {this.props.label}
-                </p>
+                <div className="abs">
+                    <p className="para">
+                        {this.props.label}
+                    </p>
+                    <span className="max-images">Máximo 6 imágenes</span>
+                </div>
                 <input
                     accept="image/*"
                     style={{ display: 'none' }}
