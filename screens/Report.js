@@ -20,7 +20,7 @@ import {
 
 const { width, height } = Dimensions.get("screen");
 
-var db = openDatabase('metalapp', '1.0', 'Metalandes App', 50 * 1024 * 1024); 
+var db = openDatabase('metalapp', '1.0', 'Metalandes App', 50 * 1024 * 1024);
 
 var data = [];
 var type_ = null
@@ -57,7 +57,7 @@ const storeExample = async () => {
     const jsonRutina2 = JSON.stringify(RutinaExample2)
     const jsonServicio = JSON.stringify(ServicioExample)
     db.transaction(function (tx) {
-      tx.executeSql('CREATE TABLE IF NOT EXISTS RECORDS (key INTEGER PRIMARY KEY AUTOINCREMENT, type, title, date, observations, value TEXT)');
+      tx.executeSql('CREATE TABLE IF NOT EXISTS RECORDS (key INTEGER PRIMARY KEY AUTOINCREMENT, type, title, date, observations, city, person, plant, value TEXT)');
       tx.executeSql('INSERT INTO RECORDS (key, type, title, date, observations, city, person, plant, value) VALUES '
       + '(1, "Mantenimiento", "Mantenimiento de Prueba Full", "2021-12-10", "Esta es una prueba para tener un primer Mantenimiento creado cuando se inicializa la aplicación.", "Manizales", "Andrés Felipe Arias Lopéz", "Subestación Centro Cultural", "' + encodeURI(jsonMantenimiento) + '")');
       tx.executeSql('INSERT INTO RECORDS (key, type, title, date, observations, city, person, plant, value) VALUES '
@@ -67,13 +67,9 @@ const storeExample = async () => {
       tx.executeSql('INSERT INTO RECORDS (key, type, title, date, observations, city, person, plant, value) VALUES '
       + '(3, "Servicio", "Servicio de Prueba Full", "2021-12-13", "Esta es una prueba para tener un primer Servicio creado cuando se inicializa la aplicación.", "Medellín", "Andrés Felipe Arias Lopéz", "Subestación Centro Monterrey", "' + encodeURI(jsonServicio) + '")');
     })
-    db.transaction(function (tx) {
-      tx.executeSql('ALTER TABLE RECORDS ADD COLUMN city TEXT NOT NULL DEFAULT ""');
-      tx.executeSql('ALTER TABLE RECORDS ADD COLUMN person TEXT NOT NULL DEFAULT ""');
-      tx.executeSql('ALTER TABLE RECORDS ADD COLUMN plant TEXT NOT NULL DEFAULT ""');
-    })
   } catch (e) {
     // saving error
+    console.log('error', e)
   }
 }
 
