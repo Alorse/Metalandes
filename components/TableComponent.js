@@ -37,7 +37,6 @@ class TableComponent extends React.Component {
           jsonValue = decodeURI(results.rows.item(0).value)
           jsonValue = jsonValue != null ? JSON.parse(jsonValue) : null
           _this.setState({data: jsonValue})
-          console.log(jsonValue)
           _this.setState({loading: false})
           _this.gabinetesCount()
         }, null); 
@@ -249,7 +248,7 @@ const Child = ({data, equipos, numGabinetes, type}) => (
                     }
                     <div className="col-50 no-border"><span>Relación TC</span> {item.relacion_corre}</div>
                   </div>
-                  {type == 'Rutina' && 
+                  {type == 'Rutina' && item.lista_corre && 
                   <>
                     <div className="row vertical">
                       <div className="col-14" style={{width: '13.2%'}}>Tipo de paso</div>
@@ -260,9 +259,9 @@ const Child = ({data, equipos, numGabinetes, type}) => (
                       <div className="col-14">IS</div>
                       <div className="col-14 no-border">IT</div>
                     </div>
-                    {item.lista_corre.map((lista) => {
+                    {item.lista_corre.map((lista, i) => {
                       return (
-                      <div className="row vertical">
+                      <div className="row vertical"  key={i}>
                         <div className="col-14" style={{width: '13.2%'}}><span>{lista.paso}</span></div>
                         <div className="col-14"><span>{lista.estado}</span></div>
                         <div className="col-14"><span>{lista.proteccion}</span></div>
