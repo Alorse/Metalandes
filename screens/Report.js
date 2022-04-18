@@ -97,14 +97,50 @@ function ReportScreen({ navigation }) {
     }
   };
 
+  const uploadReport = async (event) => {
+    const file = event.target.files.item(0)
+    const text = await file.text();
+    let json = JSON.parse(text);
+    db.transaction(function (tx) {
+      var sql = 'INSERT INTO RECORDS (type, title, date, observations, value, city, person, plant) ' + 
+      'VALUES ("' + json.type 
+        + '","' + encodeURI(json.title)
+        + '","' + json.date 
+        + '","' + encodeURI(json.observations)
+        + '","' + encodeURI(JSON.stringify(json.value))
+        + '","' + encodeURI(json.city)
+        + '","' + encodeURI(json.person)
+        + '","' + encodeURI(json.plant) + '")'
+        tx.executeSql(sql, [], function(err){
+          console.log("Ok", err);
+        }, function(err){
+          console.log("Error", err);
+        });
+    })
+    console.log(json);
+  };
+
   return (
     <Block flex center>
-        <SafeAreaView style={{height:height-200}}>
+        <SafeAreaView style={{height:height-100}}>
+        <ActivityIndicator 
+          size="large" 
+          animating={iData == null ? true : false}
+          style={{display:iData == null ? 'inherit' : 'none'}}
+          />
           <Accordion 
             style={styles.accordion}
             headerStyle={styles.listitemheader}
             contentStyle={styles.listitemcontent}
             dataArray={iData} />
+          {/* Just for test, only works in web version,
+              You can use it as an import, if you want to use it for production,
+              you should change "<input type>" for a native component.
+           */}
+          {/* <input 
+            type="file"
+            onChange={uploadReport}
+            /> */}
           <Block flex-end middle right>
             <Button
               round
@@ -125,7 +161,6 @@ function ReportScreen({ navigation }) {
             />
           </Block>
         </SafeAreaView>
-      <ActivityIndicator size="large" animating={iData == null ? true : false} />
       <Dialog
         open={openBack[1]}
         onClose={() => handleCloseBack([null, false])}
