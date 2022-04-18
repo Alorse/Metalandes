@@ -199,7 +199,7 @@ const Child = ({data, equipos, numGabinetes, type}) => (
                       {item.fotos_dtp.map((item, i) => {
                         return (<>
                           <img key={i} src={item} className="foto" />
-                          {i == 5 && <div className="page-break" />}
+                          {i == 2 && <div className="page-break" />}
                         </>)
                       })}
                     </>
@@ -290,7 +290,7 @@ const Child = ({data, equipos, numGabinetes, type}) => (
                       {item.fotos_corre.map((item, i) => {
                         return (<>
                           <img key={i} src={item} className="foto" />
-                          {i == 5 && <div className="page-break" />}
+                          {i == 2 && <div className="page-break" />}
                         </>)
                       })}
                     </>
@@ -380,7 +380,7 @@ const Child = ({data, equipos, numGabinetes, type}) => (
                       {item.fotos_mb.map((item, i) => {
                         return (<>
                           <img key={i} src={item} className="foto" />
-                          {i == 5 && <div className="page-break" />}
+                          {i == 2 && <div className="page-break" />}
                         </>)
                       })}
                     </>
@@ -458,7 +458,7 @@ const Child = ({data, equipos, numGabinetes, type}) => (
                       {item.fotos_seccionador.map((item, i) => {
                         return (<>
                           <img key={i} src={item} className="foto" />
-                          {i == 5 && <div className="page-break" />}
+                          {i == 2 && <div className="page-break" />}
                         </>)
                       })}
                     </>
@@ -687,7 +687,7 @@ const Child = ({data, equipos, numGabinetes, type}) => (
                     {item.fotos_dor.map((item, i) => {
                       return (<>
                         <img key={i} src={item} className="foto" />
-                        {i == 5 && <div className="page-break" />}
+                        {i == 2 && <div className="page-break" />}
                       </>)
                     })}
                   </>
